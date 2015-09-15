@@ -2,4 +2,11 @@
     <string name="app_name">EducationDemo</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
+    <string name="received_messages">Полученные сообщения:</string>
+    <string name="send_test_message">Отправить сообщение</string>
+    <string name="message_sent">Сообщение успешно отправлено.</string>
+    <string name="error_message">Ошибка в отправке сообщения.</string>
+    <string name="peer_connected">Подключение установлено.</string>
+    <string name="peer_disconnected">Подключение разорвано.</string>
+    <string name="message_content">Содержимое тестового сообщения</string>
 </resources>
