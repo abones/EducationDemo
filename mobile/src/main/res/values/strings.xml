@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">EducationDemo</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="success_message">Сообщение успешно отправлено!</string>
@@ -8,4 +7,8 @@
     <string name="peer_connected">Устройство подключено!</string>
     <string name="peer_disconnected">Устройство отключено!</string>
     <string name="wearable_api_unavailable">API носимых устройств не доступно!</string>
+    <string name="application_name">ТРАНСГАЗ-Обучение</string>
+    <string name="exam_item">Экзамен</string>
+    <string name="learning_item">Обучение</string>
+    <string name="students_item">Студенты</string>
 </resources>
