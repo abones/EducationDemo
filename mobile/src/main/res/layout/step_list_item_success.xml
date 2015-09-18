@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/EditText01"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/imageView"
+        android:textAlignment="center"
+        android:textSize="@dimen/abc_dialog_padding_material">
+    </TextView>
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/presence_online"
+        android:contentDescription="@string/successDesc" />
+
+
+</RelativeLayout>

@@ -11,4 +11,5 @@
     <string name="exam_item">Экзамен</string>
     <string name="learning_item">Обучение</string>
     <string name="students_item">Студенты</string>
+    <string name="successDesc">success</string>
 </resources>
