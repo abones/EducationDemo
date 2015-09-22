@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * Created by Антон on 16.09.2015.
@@ -18,6 +22,7 @@ import android.view.MenuItem;
 public class LearningActivity extends AppCompatActivity {
     final String LOG_TAG = "myLogs";
     private static final String TAG = "junk";
+    private Date learningStartDate;
     SettingsFragment settingsFragment;
     LearningFragment learningFragment;
     FragmentTransaction fTrans;
@@ -68,9 +73,14 @@ public class LearningActivity extends AppCompatActivity {
         return false;
     }
 
-    public void startLearning(int programId){
+    public void startLearning(int programId, int studentId){
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
         Bundle bundle = new Bundle();
+        learningStartDate = new Date();
         bundle.putInt("programId", programId);
+        bundle.putInt("studentId", studentId);
+        bundle.putString("date", dateFormat.format(learningStartDate));
         learningFragment.setArguments(bundle);
 
         FragmentManager fragmentManager = getSupportFragmentManager();

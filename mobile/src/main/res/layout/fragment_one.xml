@@ -6,12 +6,6 @@
     android:weightSum="1">
 
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="339dp"
-        android:id="@+id/listView"
-        android:layout_weight="0.50" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,5 +18,37 @@
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/test_btn" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Object"
+        android:id="@+id/object_btn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send info"
+        android:id="@+id/info_btn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Progress"
+        android:id="@+id/progress_btn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send start exam"
+        android:id="@+id/exam_start_btn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Object"
+        android:id="@+id/learn_start_btn" />
+
+
+
 
 </LinearLayout>

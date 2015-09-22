@@ -24,6 +24,7 @@ import ru.sibhtc.educationdemo.mock.StudentMock;
  **/
 public class SettingsFragment extends Fragment {
     private int selectedProgramm;
+    private int selectedStudent;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 LearningActivity activity = (LearningActivity)getActivity();
-                activity.startLearning(selectedProgramm);
+                activity.startLearning(selectedProgramm, selectedStudent);
             }
         });
 
@@ -76,6 +77,18 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedProgramm = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Do Nothing
+            }
+        });
+
+        studentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedStudent = position;
             }
 
             @Override

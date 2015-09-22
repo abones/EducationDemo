@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import ru.sibhtc.educationdemo.adapters.StepAdapter;
+import ru.sibhtc.educationdemo.mock.LearningMock;
 import ru.sibhtc.educationdemo.mock.Program;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
 import ru.sibhtc.educationdemo.mock.Step;
+import ru.sibhtc.educationdemo.mock.Student;
 import ru.sibhtc.educationdemo.mock.StudentMock;
 
 /**
@@ -32,21 +35,39 @@ public class LearningFragment extends Fragment {
         }
 
         Integer programId = getArguments().getInt("programId", 0);
+        Integer studentID = getArguments().getInt("studentId", 0);
+        String date = getArguments().getString("date");
         Step[] steps = new Step[]{};
+        Student student = new Student();
+        String studName = StudentMock.Titles[studentID];
+        String programName = "";
 
         for (int index = 0; index < ProgrammsMock.Programs.length; index++){
             Program program = ProgrammsMock.Programs[index];
             if (program.ProgramId == programId){
                 steps = program.Steps;
+                programName = program.ProgramName;
             }
         }
 
+
+
         View view = inflater.inflate(R.layout.fragment_learning, container, false);
+        View header = inflater.inflate(R.layout.step_list_header, null);
+        TextView prName = (TextView) header.findViewById(R.id.headerNameText);
+        TextView stName = (TextView) header.findViewById(R.id.studText);
+        TextView timeTxt = (TextView) header.findViewById(R.id.timeText);
+
+        prName.setText(programName);
+        stName.setText(studName);
+        timeTxt.setText(date);
+
         ListView list = (ListView)view.findViewById(R.id.stepsList);
         StepAdapter adapter = new StepAdapter(getActivity(), R.layout.step_list_item_waiting, R.layout.step_list_item_success, R.layout.step_list_item_error, steps);
 
         //ArrayAdapter stepsAdapter =  new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_activated_1, ProgrammsMock.Steps);
         list.setAdapter(adapter);
+        list.addHeaderView(header);
 
         return view;
     }

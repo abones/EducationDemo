@@ -5,7 +5,7 @@
       <filter>
         <option name="logLevel" value="verbose" />
         <option name="logMessagePattern" value="" />
-        <option name="logTagPattern" value="myLogs" />
+        <option name="logTagPattern" value="MainActivity" />
         <option name="name" value="Unnamed-0" />
         <option name="packageNamePattern" value="" />
         <option name="pid" value="" />
@@ -15,6 +15,10 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
+        <devices>
+          <device id="wear_square" />
+          <device id="10.1in WXGA (Tablet)" />
+        </devices>
         <target>android-23</target>
       </config>
     </shared>
@@ -25,41 +29,60 @@
           <theme>@style/Theme.AppCompat.Light</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_error.xml">
+        <config>
+          <theme>@style/Theme.AppCompat.Light</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@android:style/Theme.DeviceDefault</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52fa0600-10f5-4a3d-bc01-ed44fee2066c" name="Default" comment="Добавил Activity для всех частей проекта">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/LearningMock.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Program.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/ProgrammsMock.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SettingsFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Step.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/adapters/StepAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/StepResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/listeners/SupportFragmentTabListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/drawable/circular.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/colors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_learning.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_error.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_success.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_waiting.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/helpers/BytesHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/helpers/BytesHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/InfoFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/constants/IntentTypes.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/Label.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/LabelMock.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/models/TestSendModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/models/TestSendModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/services/WearMessageListenerService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/res/layout/info_fragment.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/res/layout/progress_fragment.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/services.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/step_list_header.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/wear.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/res/values/wear.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragmentActivity.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragmentActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningActivity.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_learning.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_learning.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_students.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_students.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningFragment.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SettingsFragment.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SettingsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Student.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Student.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java" afterPath="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_one.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_one.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/wear.iml" afterPath="$PROJECT_DIR$/wear/wear.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EducationDemo.iws" />
@@ -88,83 +111,118 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="FirstFragmentActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragmentActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="114" column="40" selection-start-line="114" selection-start-column="40" selection-end-line="114" selection-end-column="40" />
+              <folding>
+                <element signature="e#2142#2457#0" expanded="true" />
+                <element signature="e#2456#2457#0" expanded="true" />
+                <element signature="e#3121#3806#0" expanded="true" />
+                <element signature="e#3805#3806#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33203125">
+              <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3542#4116#0" expanded="true" />
+                <element signature="e#4115#4116#0" expanded="true" />
+                <element signature="e#6220#6418#0" expanded="true" />
+                <element signature="e#6417#6418#0" expanded="true" />
+                <element signature="e#6552#6834#0" expanded="true" />
+                <element signature="e#6833#6834#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoObject.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="17" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoObject.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/InfoFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WearMessageListenerService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WearMessageListenerService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/services/WearMessageListenerService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="19" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntentTypes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/constants/IntentTypes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LearningFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LearningActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+              <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="66" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LearningFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5860869">
-              <caret line="45" column="165" selection-start-line="45" selection-start-column="165" selection-end-line="45" selection-end-column="165" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_students.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_students.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProgrammsMock.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/ProgrammsMock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LearningMock.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/LearningMock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="95" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="95" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Program.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Program.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SettingsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SettingsFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="73" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="73" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1809#1817#0" expanded="true" />
-                <element signature="e#2833#3084#0" expanded="true" />
-                <element signature="e#3083#3084#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2544,28 +2602,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/MessageHelper.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/res/layout/list_item.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragment.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_one.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SecondFragmentActivity.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/MyTabListener.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragmentActivity.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_exam.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/res/menu/menu_main.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/StudentsActivity.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/ExamActivity.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Students.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Student.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/StudentMock.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/TitlesFragment.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/details_fragment.xml" />
@@ -2585,12 +2621,46 @@
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_success.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_error.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_students.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningActivity.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Program.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/ProgrammsMock.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/Label.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningActivity.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SettingsFragment.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Student.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/step_list_header.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningFragment.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/values/services.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/LabelMock.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/services/WearMessageListenerService.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/values/wear.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/values/wear.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/helpers/BytesHelper.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/helpers/BytesHelper.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/models/TestSendModel.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/models/TestSendModel.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_one.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/layout/info_fragment.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/layout/progress_fragment.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/constants/IntentTypes.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/InfoFragment.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragmentActivity.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="NamedScopeManager">
@@ -2599,7 +2669,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1924" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -2625,9 +2695,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2645,48 +2714,6 @@
               <option name="myItemId" value="wear" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EducationDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="educationdemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EducationDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EducationDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
@@ -2702,7 +2729,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
+              <option name="myItemId" value="wear" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2716,7 +2743,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
+              <option name="myItemId" value="wear" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2734,16 +2761,58 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
+              <option name="myItemId" value="wear" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+              <option name="myItemId" value="educationdemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EducationDemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="educationdemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EducationDemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EducationDemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2796,7 +2865,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mock" />
+              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2810,25 +2879,34 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="educationdemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="F6AZFG17K870" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_One_API_23" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Android_Wear_Square_API_22" />
     <property name="FullScreen" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
   </component>
-  <component name="RunManager" selected="Android Application.mobile">
+  <component name="RunManager" selected="Android Application.wear">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -2965,35 +3043,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="wear" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="wear" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
-      <method />
-    </configuration>
     <configuration default="false" name="mobile" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="mobile" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -3023,9 +3072,38 @@
       <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
       <method />
     </configuration>
+    <configuration default="false" name="wear" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="wear" />
+      <option name="ACTIVITY_CLASS" value="ru.sibhtc.educationdemo.MainActivity" />
+      <option name="MODE" value="specific_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="Please select a project..." />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="Please select a project..." />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="Cloud configuration not specified" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="Cloud configuration not specified" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <method />
+    </configuration>
     <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.wear" />
-      <item index="1" class="java.lang.String" itemvalue="Android Application.mobile" />
+      <item index="0" class="java.lang.String" itemvalue="Android Application.mobile" />
+      <item index="1" class="java.lang.String" itemvalue="Android Application.wear" />
     </list>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
@@ -3063,50 +3141,50 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.48507464" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2607296" sideWeight="0.5074074" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.527897" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.46190986" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32925472" sideWeight="0.472103" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.472103" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.4978678" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26172706" sideWeight="0.4925926" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2607296" sideWeight="0.5074074" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.47014925" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.4978678" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2607296" sideWeight="0.5074074" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32925472" sideWeight="0.527897" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.527897" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.47014925" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.47014925" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.48507464" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3116,12 +3194,12 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.46190986" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32925472" sideWeight="0.472103" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.472103" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2607296" sideWeight="0.4925926" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.4978678" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2607296" sideWeight="0.5074074" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3143,300 +3221,361 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/adapters/StepAdapter.java</url>
           <line>36</line>
           <properties />
           <option name="timeStamp" value="65" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>145</line>
+          <properties />
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>140</line>
+          <properties />
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>192</line>
+          <properties />
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>125</line>
+          <properties />
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>196</line>
+          <properties />
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>60</line>
+          <properties />
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>224</line>
+          <properties />
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/InfoFragment.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/InfoFragment.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java</url>
+          <line>35</line>
+          <properties />
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="66" />
+      <option name="time" value="123" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="wear">
+        <watch expression="nodeId" language="JAVA" custom="" />
+        <watch expression="apiClient.isConnected()" language="JAVA" custom="" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/StepResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-          <folding />
+        <state vertical-scroll-proportion="0.23652174">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragmentActivity.java">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/adapters/StepAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_one.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.448276">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3448277">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7011719">
-          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+        <state vertical-scroll-proportion="1.5321739">
+          <caret line="65" column="46" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
           <folding>
-            <element signature="e#1200#1239#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/drawable/circular.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46484375">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.11826087">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_exam.xml">
-      <provider editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/LearningMock.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="6" column="95" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="95" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Program.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.9259257">
+          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/Label.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/ProgrammsMock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_error.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5555553">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-          <folding />
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="21" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/menu/menu_main.xml">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_success.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.379311">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_waiting.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding>
-            <element signature="e#308#331#0" expanded="true" />
-            <element signature="e#450#473#0" expanded="true" />
-            <element signature="e#588#607#0" expanded="true" />
-          </folding>
+          <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Student.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/android/app/Activity.java">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_header.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6896553">
+          <caret line="8" column="66" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/LabelMock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2921" column="0" selection-start-line="2921" selection-start-column="0" selection-end-line="2921" selection-end-column="0" />
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SettingsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="85" column="9" selection-start-line="75" selection-start-column="49" selection-end-line="85" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/android/os/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="733" column="0" selection-start-line="733" selection-start-column="0" selection-end-line="733" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.8.0/jars/classes.jar!/com/google/android/gms/wearable/Wearable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21030928">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53125">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <caret line="56" column="50" selection-start-line="56" selection-start-column="50" selection-end-line="56" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/android/app/ActivityThread.java">
+    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2413" column="0" selection-start-line="2413" selection-start-column="0" selection-end-line="2413" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/android/app/Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2219" column="0" selection-start-line="2219" selection-start-column="0" selection-end-line="2219" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="840" column="0" selection-start-line="840" selection-start-column="0" selection-end-line="840" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/details_fragment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57326007">
-          <caret line="65" column="29" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/StudentsActivity.java">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="39" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="121" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/ExamActivity.java">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/services.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/listeners/SupportFragmentTabListener.java">
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/values/wear.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029513888">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/wear.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local.properties">
+    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/android/app/Instrumentation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/DetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="53" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/TitlesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="26" selection-end-column="84" />
+          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#76910#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#9114#9115#0" expanded="false" />
+            <element signature="e#9150#9151#0" expanded="false" />
+            <element signature="e#9362#9363#0" expanded="false" />
+            <element signature="e#9395#9396#0" expanded="false" />
+            <element signature="e#9922#9923#0" expanded="false" />
+            <element signature="e#9956#9957#0" expanded="false" />
+            <element signature="e#10174#10175#0" expanded="false" />
+            <element signature="e#10218#10219#0" expanded="false" />
+            <element signature="e#18260#18261#0" expanded="false" />
+            <element signature="e#18297#18298#0" expanded="false" />
+            <element signature="e#18471#18472#0" expanded="false" />
+            <element signature="e#18509#18510#0" expanded="false" />
+            <element signature="e#18730#18731#0" expanded="false" />
+            <element signature="e#18767#18768#0" expanded="false" />
+            <element signature="e#18902#18903#0" expanded="false" />
+            <element signature="e#18938#18939#0" expanded="false" />
+            <element signature="e#19108#19109#0" expanded="false" />
+            <element signature="e#19152#19153#0" expanded="false" />
+            <element signature="e#38172#38173#0" expanded="false" />
+            <element signature="e#38202#38203#0" expanded="false" />
+            <element signature="e#47433#47434#0" expanded="false" />
+            <element signature="e#47467#47468#0" expanded="false" />
+            <element signature="e#47751#47752#0" expanded="false" />
+            <element signature="e#47787#47788#0" expanded="false" />
+            <element signature="e#48782#48783#0" expanded="false" />
+            <element signature="e#48815#48816#0" expanded="false" />
+            <element signature="e#50092#50093#0" expanded="false" />
+            <element signature="e#50131#50132#0" expanded="false" />
+            <element signature="e#50459#50460#0" expanded="false" />
+            <element signature="e#50504#50505#0" expanded="false" />
+            <element signature="e#54171#54172#0" expanded="false" />
+            <element signature="e#54213#54214#0" expanded="false" />
+            <element signature="e#54333#54334#0" expanded="false" />
+            <element signature="e#54375#54376#0" expanded="false" />
+            <element signature="e#73998#73999#0" expanded="false" />
+            <element signature="e#74033#74034#0" expanded="false" />
+            <element signature="e#74919#74920#0" expanded="false" />
+            <element signature="e#74959#74960#0" expanded="false" />
+            <element signature="e#75599#75600#0" expanded="false" />
+            <element signature="e#75639#75640#0" expanded="false" />
+            <element signature="e#75823#75824#0" expanded="false" />
+            <element signature="e#75863#75864#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_learning.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_learning.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/android/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5198" column="0" selection-start-line="5198" selection-start-column="0" selection-end-line="5198" selection-end-column="0" />
+          <caret line="4780" column="0" selection-start-line="4780" selection-start-column="0" selection-end-line="4780" selection-end-column="0" />
           <folding>
             <element signature="e#0#876728#0" expanded="false" />
             <element signature="imports" expanded="false" />
@@ -3878,284 +4017,236 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Android/Android Studio/SDK/extras/android/m2repository/com/android/support/support-v4/23.0.0/support-v4-23.0.0-sources.jar!/android/support/v4/app/Fragment.java">
+    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53125">
+          <caret line="428" column="35" selection-start-line="428" selection-start-column="35" selection-end-line="428" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1961" column="0" selection-start-line="1961" selection-start-column="0" selection-end-line="1961" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#85868#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#4155#4156#0" expanded="false" />
-            <element signature="e#4179#4180#0" expanded="false" />
-            <element signature="e#4821#4822#0" expanded="false" />
-            <element signature="e#4873#4874#0" expanded="false" />
-            <element signature="e#4934#4935#0" expanded="false" />
-            <element signature="e#4988#4989#0" expanded="false" />
-            <element signature="e#11341#11342#0" expanded="false" />
-            <element signature="e#11379#11380#0" expanded="false" />
-            <element signature="e#11652#11653#0" expanded="false" />
-            <element signature="e#11684#11685#0" expanded="false" />
-            <element signature="e#11763#11764#0" expanded="false" />
-            <element signature="e#11811#11812#0" expanded="false" />
-            <element signature="e#12018#12019#0" expanded="false" />
-            <element signature="e#12081#12082#0" expanded="false" />
-            <element signature="e#12157#12158#0" expanded="false" />
-            <element signature="e#12216#12217#0" expanded="false" />
-            <element signature="e#12511#12512#0" expanded="false" />
-            <element signature="e#12552#12553#0" expanded="false" />
-            <element signature="e#17735#17736#0" expanded="false" />
-            <element signature="e#17779#17780#0" expanded="false" />
-            <element signature="e#17895#17896#0" expanded="false" />
-            <element signature="e#17933#17934#0" expanded="false" />
-            <element signature="e#18041#18042#0" expanded="false" />
-            <element signature="e#18080#18081#0" expanded="false" />
-            <element signature="e#18854#18855#0" expanded="false" />
-            <element signature="e#18888#18889#0" expanded="false" />
-            <element signature="e#18999#19000#0" expanded="false" />
-            <element signature="e#19026#19027#0" expanded="false" />
-            <element signature="e#19704#19705#0" expanded="false" />
-            <element signature="e#19737#19738#0" expanded="false" />
-            <element signature="e#21209#21210#0" expanded="false" />
-            <element signature="e#21239#21240#0" expanded="false" />
-            <element signature="e#21375#21376#0" expanded="false" />
-            <element signature="e#21416#21417#0" expanded="false" />
-            <element signature="e#21545#21546#0" expanded="false" />
-            <element signature="e#21609#21610#0" expanded="false" />
-            <element signature="e#22125#22126#0" expanded="false" />
-            <element signature="e#22188#22189#0" expanded="false" />
-            <element signature="e#23025#23026#0" expanded="false" />
-            <element signature="e#23079#23080#0" expanded="false" />
-            <element signature="e#24190#24191#0" expanded="false" />
-            <element signature="e#24229#24230#0" expanded="false" />
-            <element signature="e#25186#25187#0" expanded="false" />
-            <element signature="e#25224#25225#0" expanded="false" />
-            <element signature="e#25349#25350#0" expanded="false" />
-            <element signature="e#25395#25396#0" expanded="false" />
-            <element signature="e#25655#25656#0" expanded="false" />
-            <element signature="e#25687#25688#0" expanded="false" />
-            <element signature="e#25974#25975#0" expanded="false" />
-            <element signature="e#26006#26007#0" expanded="false" />
-            <element signature="e#26438#26439#0" expanded="false" />
-            <element signature="e#26470#26471#0" expanded="false" />
-            <element signature="e#26679#26680#0" expanded="false" />
-            <element signature="e#26710#26711#0" expanded="false" />
-            <element signature="e#27503#27504#0" expanded="false" />
-            <element signature="e#27533#27534#0" expanded="false" />
-            <element signature="e#27595#27596#0" expanded="false" />
-            <element signature="e#27626#27627#0" expanded="false" />
-            <element signature="e#27687#27688#0" expanded="false" />
-            <element signature="e#27722#27723#0" expanded="false" />
-            <element signature="e#29162#29163#0" expanded="false" />
-            <element signature="e#29200#29201#0" expanded="false" />
-            <element signature="e#31615#31616#0" expanded="false" />
-            <element signature="e#31654#31655#0" expanded="false" />
-            <element signature="e#43809#43810#0" expanded="false" />
-            <element signature="e#43839#43840#0" expanded="false" />
-            <element signature="e#43989#43990#0" expanded="false" />
-            <element signature="e#44016#44017#0" expanded="false" />
-            <element signature="e#44775#44776#0" expanded="false" />
-            <element signature="e#44805#44806#0" expanded="false" />
-            <element signature="e#46968#46969#0" expanded="false" />
-            <element signature="e#46996#46997#0" expanded="false" />
-            <element signature="e#47792#47793#0" expanded="false" />
-            <element signature="e#47822#47823#0" expanded="false" />
-            <element signature="e#48433#48434#0" expanded="false" />
-            <element signature="e#48463#48464#0" expanded="false" />
-            <element signature="e#49347#49348#0" expanded="false" />
-            <element signature="e#49377#49378#0" expanded="false" />
-            <element signature="e#50587#50588#0" expanded="false" />
-            <element signature="e#50617#50618#0" expanded="false" />
-            <element signature="e#50845#50846#0" expanded="false" />
-            <element signature="e#50875#50876#0" expanded="false" />
-            <element signature="e#51100#51101#0" expanded="false" />
-            <element signature="e#51130#51131#0" expanded="false" />
-            <element signature="e#51167#51168#0" expanded="false" />
-            <element signature="e#51197#51198#0" expanded="false" />
-            <element signature="e#51759#51760#0" expanded="false" />
-            <element signature="e#51789#51790#0" expanded="false" />
-            <element signature="e#53499#53500#0" expanded="false" />
-            <element signature="e#53529#53530#0" expanded="false" />
-            <element signature="e#56034#56035#0" expanded="false" />
-            <element signature="e#56062#56063#0" expanded="false" />
-            <element signature="e#57960#57961#0" expanded="false" />
-            <element signature="e#58017#58018#0" expanded="false" />
-            <element signature="e#58358#58359#0" expanded="false" />
-            <element signature="e#58415#58416#0" expanded="false" />
-            <element signature="e#59324#59325#0" expanded="false" />
-            <element signature="e#59352#59353#0" expanded="false" />
-            <element signature="e#60982#60983#0" expanded="false" />
-            <element signature="e#61027#61028#0" expanded="false" />
-            <element signature="e#61580#61581#0" expanded="false" />
-            <element signature="e#61619#61620#0" expanded="false" />
-            <element signature="e#62642#62643#0" expanded="false" />
-            <element signature="e#62688#62689#0" expanded="false" />
-            <element signature="e#64495#64496#0" expanded="false" />
-            <element signature="e#64539#64540#0" expanded="false" />
-            <element signature="e#65313#65314#0" expanded="false" />
-            <element signature="e#65351#65352#0" expanded="false" />
-            <element signature="e#66298#66299#0" expanded="false" />
-            <element signature="e#66345#66346#0" expanded="false" />
-            <element signature="e#68462#68463#0" expanded="false" />
-            <element signature="e#68514#68515#0" expanded="false" />
-            <element signature="e#77711#77712#0" expanded="false" />
-            <element signature="e#77765#77766#0" expanded="false" />
-          </folding>
+          <caret line="22" column="121" selection-start-line="22" selection-start-column="121" selection-end-line="22" selection-end-column="121" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/StudentMock.java">
+    <entry file="file://D:/Android/Android Studio/SDK/sources/android-23/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.059130434">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="30" />
+          <caret line="5990" column="0" selection-start-line="5990" selection-start-column="0" selection-end-line="5990" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Step.java">
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/helpers/BytesHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3252174">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/StepResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23652174">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/adapters/StepAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5321739">
-          <caret line="65" column="46" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/drawable/circular.xml">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/models/TestSendModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11826087">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="51" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_waiting.xml">
-      <provider editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/models/TestSendModel.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_success.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="e#869#890#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/step_list_item_error.xml">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/helpers/BytesHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31135532">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="11" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#867#888#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_one.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/LearningMock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="95" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="95" />
+        <state vertical-scroll-proportion="-13.724138">
+          <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/Program.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_settings.xml">
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/mock/ProgrammsMock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+        <state vertical-scroll-proportion="-16.655172">
+          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_students.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_learning.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5172415">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="11" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/info_fragment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/progress_fragment.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.551724">
+          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/services/WearMessageListenerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="19" selection-end-column="27" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="66" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/SettingsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="73" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1809#1817#0" expanded="true" />
-            <element signature="e#2833#3084#0" expanded="true" />
-            <element signature="e#3083#3084#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/LearningFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5860869">
-          <caret line="45" column="165" selection-start-line="45" selection-start-column="165" selection-end-line="45" selection-end-column="165" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/constants/IntentTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/ru/sibhtc/educationdemo/FirstFragmentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="114" column="40" selection-start-line="114" selection-start-column="40" selection-end-line="114" selection-end-column="40" />
+          <folding>
+            <element signature="e#2142#2457#0" expanded="true" />
+            <element signature="e#2456#2457#0" expanded="true" />
+            <element signature="e#3121#3806#0" expanded="true" />
+            <element signature="e#3805#3806#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/models/InfoObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="17" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/WearMessageListenerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/InfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/ru/sibhtc/educationdemo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33203125">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3542#4116#0" expanded="true" />
+            <element signature="e#4115#4116#0" expanded="true" />
+            <element signature="e#6220#6418#0" expanded="true" />
+            <element signature="e#6417#6418#0" expanded="true" />
+            <element signature="e#6552#6834#0" expanded="true" />
+            <element signature="e#6833#6834#0" expanded="true" />
           </folding>
         </state>
       </provider>

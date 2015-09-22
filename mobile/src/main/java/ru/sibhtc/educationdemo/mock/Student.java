@@ -17,4 +17,8 @@ public class Student {
         Qualification = qualification;
         Age = age;
     }
+
+    public Student(){
+
+    }
 }

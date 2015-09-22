@@ -16,6 +16,10 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import ru.sibhtc.educationdemo.helpers.BytesHelper;
+import ru.sibhtc.educationdemo.models.InfoObject;
+import ru.sibhtc.educationdemo.models.TestSendModel;
+
 import static com.google.android.gms.internal.zzhu.runOnUiThread;
 
 /**
@@ -23,15 +27,19 @@ import static com.google.android.gms.internal.zzhu.runOnUiThread;
  **/
 public class FirstFragmentActivity extends Activity implements GoogleApiClient.ConnectionCallbacks {
     private final String TEST_MESSAGE_PATH = "/message";
+    private final String OBJECT_MESSAGE_PATH = "/object";
+    private final String ERROR_MESSAGE_PATH = "/error";
+    private final String INFO_MESSAGE_PATH = "/info";
     private static final String START_ACTIVITY = "/start_activity";
 
     private Button sendButton;
+    private Button sendObject;
+    private Button sendInfo;
     private TextView receivedMessagesTextView;
     private EditText sendMessage;
-    private ListView listView;
+
 
     private GoogleApiClient apiClient;
-    private ArrayAdapter<String> mAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,35 +59,73 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
 
     private void init(){
         sendButton = (Button) findViewById(R.id.test_btn);
+        sendObject = (Button) findViewById(R.id.object_btn);
+        sendInfo = (Button) findViewById(R.id.info_btn);
         sendMessage = (EditText) findViewById(R.id.editText);
-        listView = (ListView) findViewById(R.id.listView);
 
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 );
-        listView.setAdapter(mAdapter);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = sendMessage.getText().toString();
                 if (!TextUtils.isEmpty(text)) {
-                    mAdapter.add(text);
-                    mAdapter.notifyDataSetChanged();
-
-                    sendMessage(TEST_MESSAGE_PATH, text);
+                    sendMessage(TEST_MESSAGE_PATH, text.getBytes());
                 }
+            }
+        });
+
+        sendObject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TestSendModel test = new TestSendModel(1, "Object");
+                byte[] data;
+                String path;
+
+                try
+                {
+                    data = BytesHelper.toByteArray(test);
+                    path = OBJECT_MESSAGE_PATH;
+                }
+                catch (Exception ex)
+                {
+                    data = ex.getMessage().getBytes();
+                    path = ERROR_MESSAGE_PATH;
+                }
+
+            }
+        });
+
+        sendInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InfoObject info = new InfoObject("Lorem Ipsum", "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem");
+                byte[] data;
+                String path;
+
+                try
+                {
+                    data = BytesHelper.toByteArray(info);
+                    path = INFO_MESSAGE_PATH;
+                }
+                catch (Exception ex)
+                {
+                    data = ex.getMessage().getBytes();
+                    path = ERROR_MESSAGE_PATH;
+                }
+                sendMessage(path, data);
             }
         });
 
     }
 
-    private void sendMessage( final String path, final String text ) {
+    private void sendMessage( final String path, final byte[] data ) {
         new Thread( new Runnable() {
             @Override
             public void run() {
                 NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes( apiClient ).await();
                 for(Node node : nodes.getNodes()) {
                     MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
-                            apiClient, node.getId(), path, text.getBytes() ).await();
+                            apiClient, node.getId(), path, data ).await();
                 }
 
                 runOnUiThread( new Runnable() {
@@ -94,7 +140,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
 
     @Override
     public void onConnected(Bundle bundle) {
-        sendMessage(START_ACTIVITY, "");
+        sendMessage(START_ACTIVITY, "".getBytes());
     }
 
     @Override

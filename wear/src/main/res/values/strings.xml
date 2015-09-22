@@ -9,4 +9,5 @@
     <string name="peer_connected">Подключение установлено.</string>
     <string name="peer_disconnected">Подключение разорвано.</string>
     <string name="message_content">Содержимое тестового сообщения</string>
+    <string name="send_nfc_label_button">Send NFC</string>
 </resources>
