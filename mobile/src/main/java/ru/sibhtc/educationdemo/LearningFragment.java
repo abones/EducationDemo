@@ -53,6 +53,7 @@ public class LearningFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_learning, container, false);
+
         View header = inflater.inflate(R.layout.step_list_header, null);
         TextView prName = (TextView) header.findViewById(R.id.headerNameText);
         TextView stName = (TextView) header.findViewById(R.id.studText);

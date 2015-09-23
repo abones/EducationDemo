@@ -6,16 +6,16 @@
     <TextView
         android:id="@+id/EditText01"
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="30dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/progressBar"
         android:textAlignment="center"
-        android:textSize="@dimen/abc_dialog_padding_material">
+        android:textSize="30sp">
     </TextView>
     <ProgressBar
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/progressBar"
         android:max="500"
         android:progress="0"
