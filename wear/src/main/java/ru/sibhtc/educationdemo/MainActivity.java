@@ -80,6 +80,26 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                             fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
                         }
                         fragmentTransaction.commit();
+                        break;
+                    }
+                    case IntentTypes.Progress:{
+                        Fragment fragment = new ProgressFragment();
+                        Bundle bundle = intent.getExtras();
+                        byte[] bytes = bundle.getByteArray("infoArray");
+                        Bundle fragBundle = new Bundle();
+                        fragBundle.putByteArray("info", bytes);
+                        fragment.setArguments(fragBundle);
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "PROGRESS");
+                        } else {
+                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "PROGRESS");
+                        }
+                        fragmentTransaction.commit();
+                        break;
                     }
                 }
             }

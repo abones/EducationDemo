@@ -18,6 +18,7 @@ import com.google.android.gms.wearable.Wearable;
 
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.models.InfoObject;
+import ru.sibhtc.educationdemo.models.ProgressObject;
 import ru.sibhtc.educationdemo.models.TestSendModel;
 
 import static com.google.android.gms.internal.zzhu.runOnUiThread;
@@ -30,11 +31,13 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
     private final String OBJECT_MESSAGE_PATH = "/object";
     private final String ERROR_MESSAGE_PATH = "/error";
     private final String INFO_MESSAGE_PATH = "/info";
+    private final String PROGRESS_MESSAGE_PATH = "/progress";
     private static final String START_ACTIVITY = "/start_activity";
 
     private Button sendButton;
     private Button sendObject;
     private Button sendInfo;
+    private Button sendProgress;
     private TextView receivedMessagesTextView;
     private EditText sendMessage;
 
@@ -61,6 +64,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
         sendButton = (Button) findViewById(R.id.test_btn);
         sendObject = (Button) findViewById(R.id.object_btn);
         sendInfo = (Button) findViewById(R.id.info_btn);
+        sendProgress = (Button)findViewById(R.id.progress_btn);
         sendMessage = (EditText) findViewById(R.id.editText);
 
 
@@ -106,6 +110,27 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 {
                     data = BytesHelper.toByteArray(info);
                     path = INFO_MESSAGE_PATH;
+                }
+                catch (Exception ex)
+                {
+                    data = ex.getMessage().getBytes();
+                    path = ERROR_MESSAGE_PATH;
+                }
+                sendMessage(path, data);
+            }
+        });
+
+        sendProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressObject progress = new ProgressObject("Lorem Ipsum", "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem", 80, 100, "кг");
+                byte[] data;
+                String path;
+
+                try
+                {
+                    data = BytesHelper.toByteArray(progress);
+                    path = PROGRESS_MESSAGE_PATH;
                 }
                 catch (Exception ex)
                 {
