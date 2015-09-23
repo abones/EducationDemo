@@ -54,10 +54,9 @@ public class LearningFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_learning, container, false);
 
-        View header = inflater.inflate(R.layout.step_list_header, null);
-        TextView prName = (TextView) header.findViewById(R.id.headerNameText);
-        TextView stName = (TextView) header.findViewById(R.id.studText);
-        TextView timeTxt = (TextView) header.findViewById(R.id.timeText);
+        TextView prName = (TextView) view.findViewById(R.id.headerNameText);
+        TextView stName = (TextView) view.findViewById(R.id.studText);
+        TextView timeTxt = (TextView) view.findViewById(R.id.timeText);
 
         prName.setText(programName);
         stName.setText(studName);
@@ -68,7 +67,7 @@ public class LearningFragment extends Fragment {
 
         //ArrayAdapter stepsAdapter =  new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_activated_1, ProgrammsMock.Steps);
         list.setAdapter(adapter);
-        list.addHeaderView(header);
+
 
         return view;
     }
