@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity implements ActionBar.OnNavigationListener {
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView imageView = (ImageView) findViewById(R.id.start_background);
+        imageView.setImageResource(R.mipmap.ic_main_logo);
 
         ActionBar bar = getSupportActionBar();
         bar.setTitle(R.string.application_name);
