@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -20,8 +18,7 @@ import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
 import ru.sibhtc.educationdemo.models.TestSendModel;
-
-import static com.google.android.gms.internal.zzhu.runOnUiThread;
+import ru.sibhtc.educationdemo.services.SiteData;
 
 /**
  * Created by Антон on 15.09.2015.
@@ -40,12 +37,13 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
     private Button sendProgress;
     private TextView receivedMessagesTextView;
     private EditText sendMessage;
-
+    private Button getInfoFromServerButton;
 
     private GoogleApiClient apiClient;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.fragment_one);
 
         init();
@@ -60,13 +58,32 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
         apiClient.connect();
     }
 
+    private void writeParameters(String parameters){
+        String str = parameters;
+    }
+
     private void init(){
+        //тестовые кнопули
         sendButton = (Button) findViewById(R.id.test_btn);
         sendObject = (Button) findViewById(R.id.object_btn);
         sendInfo = (Button) findViewById(R.id.info_btn);
         sendProgress = (Button)findViewById(R.id.progress_btn);
         sendMessage = (EditText) findViewById(R.id.editText);
+        getInfoFromServerButton = (Button) findViewById(R.id.get_info_from_server_btn);
 
+        getInfoFromServerButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                SiteData SiteData = new SiteData(){
+                    @Override
+                    public void callbackFunction(String result){
+                        writeParameters(result);
+                    }
+                };
+                SiteData.execute(getString(R.string.url_parameters));
+            }
+        });
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
