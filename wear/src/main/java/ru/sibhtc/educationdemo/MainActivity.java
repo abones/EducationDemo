@@ -27,6 +27,7 @@ import java.util.Set;
 
 import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
 
 public class MainActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks {
@@ -50,7 +51,6 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        initGoogleApiClient();
         init();
     }
 
@@ -114,78 +114,30 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                             fragmentTransaction.add(R.id.watchDataFrame, fragment, "LOGICAL");
                         }
                         fragmentTransaction.commit();
+                        break;
                     }
+                    case IntentTypes.Exam:{
+                        Fragment fragment = new ExamFragment();
+                        Bundle bundle = intent.getExtras();
+                        byte[] bytes = bundle.getByteArray("infoArray");
+                        Bundle fragBundle = new Bundle();
+                        fragBundle.putByteArray("info", bytes);
+                        fragment.setArguments(fragBundle);
+
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LOGICAL");
+                        } else {
+                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "LOGICAL");
+                        }
+                        fragmentTransaction.commit();
+                        break;
+                    }
+
                 }
             }
 
         }
-    }
-
-    private void initGoogleApiClient() {
-        apiClient = getGoogleApiClient(this);
-        apiClient.connect();
-        retrieveDeviceNode();
-    }
-
-    private GoogleApiClient getGoogleApiClient(Context context) {
-        return new GoogleApiClient.Builder(context)
-                .addApi(Wearable.API)
-                .build();
-
-    }
-
-    private void retrieveDeviceNode() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                NodeApi.GetConnectedNodesResult result =
-                        Wearable.NodeApi.getConnectedNodes(apiClient).await();
-
-                List<Node> nodes = result.getNodes();
-
-                if (nodes.size() > 0)
-                    nodeId = nodes.get(0).getId();
-
-                if (nodeId.equals("cloud") && nodes.size() > 1){
-                    nodeId = nodes.get(1).getId();
-                }
-
-                Log.v(LOG_TAG, "Node ID of phone: " + nodeId);
-            }
-        }).start();
-
-       /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                CapabilityApi.GetCapabilityResult result =
-                        Wearable.CapabilityApi.getCapability(
-                                apiClient, EDUCATION_DEMO_CAPABILITY_NAME,
-                                CapabilityApi.FILTER_REACHABLE).await();
-
-                updateTranscriptionCapability(result.getCapability());
-
-                Log.d(LOG_TAG, "Node ID of phone: " + nodeId);
-            }
-        }).start();*/
-
-
-    }
-
-    private void updateTranscriptionCapability(CapabilityInfo capability) {
-        Set<Node> connectedNodes = capability.getNodes();
-        nodeId = pickBestNodeId(connectedNodes);
-    }
-
-    private String pickBestNodeId(Set<Node> nodes) {
-        String bestNodeId = null;
-        // Find a nearby node or pick one arbitrarily
-        for (Node node : nodes) {
-            if (node.isNearby()) {
-                return node.getId();
-            }
-            bestNodeId = node.getId();
-        }
-        return bestNodeId;
     }
 
     private void init(){
@@ -219,21 +171,10 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
             public void onClick(View v) {
                 String code = LabelsMock.getCodeById(selectedLabel);
 
-                sendMessage(MessagePaths.LABEL_MESSAGE_PATH, code.getBytes());
+                GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, code.getBytes());
 
             }
         });
-    }
-
-    private void sendMessage( final String path, final byte[] data) {
-        if (nodeId != null) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                        Wearable.MessageApi.sendMessage(apiClient, nodeId, path, data).await();
-                }
-            }).start();
-        }
     }
 
     @Override

@@ -76,6 +76,16 @@ public class WearMessageListenerService extends WearableListenerService {
                 startActivity(intent);
                 break;
             }
+            case MessagePaths.EXAM_MESSAGE_PATH:{
+                Intent intent = new Intent(this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("type", IntentTypes.Exam);
+                bundle.putByteArray("infoArray", data);
+                intent.putExtras(bundle);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+            }
         }
     }
 

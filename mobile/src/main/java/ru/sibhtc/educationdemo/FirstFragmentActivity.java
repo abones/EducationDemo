@@ -18,6 +18,7 @@ import com.google.android.gms.wearable.Wearable;
 
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
+import ru.sibhtc.educationdemo.models.Exam;
 import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
 import ru.sibhtc.educationdemo.models.TestSendModel;
@@ -32,6 +33,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
     private Button sendObject;
     private Button sendInfo;
     private Button sendProgress;
+    private Button sendExam;
     private TextView receivedMessagesTextView;
     private EditText sendMessage;
 
@@ -60,6 +62,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
         sendInfo = (Button) findViewById(R.id.info_btn);
         sendProgress = (Button)findViewById(R.id.progress_btn);
         sendMessage = (EditText) findViewById(R.id.editText);
+        sendExam  = (Button)findViewById(R.id.exam_start_btn);
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +92,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                     data = ex.getMessage().getBytes();
                     path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
-
+                sendMessage(path, data);
             }
         });
 
@@ -125,6 +128,27 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 {
                     data = BytesHelper.toByteArray(progress);
                     path = MessagePaths.PROGRESS_MESSAGE_PATH;
+                }
+                catch (Exception ex)
+                {
+                    data = ex.getMessage().getBytes();
+                    path = MessagePaths.ERROR_MESSAGE_PATH;
+                }
+                sendMessage(path, data);
+            }
+        });
+
+        sendExam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Exam exam = new Exam("Иванов", "Вывод на режим");
+                byte[] data;
+                String path;
+
+                try
+                {
+                    data = BytesHelper.toByteArray(exam);
+                    path = MessagePaths.EXAM_MESSAGE_PATH;
                 }
                 catch (Exception ex)
                 {
