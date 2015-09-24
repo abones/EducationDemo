@@ -11,11 +11,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import ru.sibhtc.educationdemo.mock.LearningMock;
-import ru.sibhtc.educationdemo.mock.Program;
+import ru.sibhtc.educationdemo.models.Program;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
 import ru.sibhtc.educationdemo.mock.StudentMock;
 

@@ -5,16 +5,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import ru.sibhtc.educationdemo.adapters.StepAdapter;
-import ru.sibhtc.educationdemo.mock.LearningMock;
-import ru.sibhtc.educationdemo.mock.Program;
+import ru.sibhtc.educationdemo.models.Program;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
-import ru.sibhtc.educationdemo.mock.Step;
-import ru.sibhtc.educationdemo.mock.Student;
+import ru.sibhtc.educationdemo.models.Step;
+import ru.sibhtc.educationdemo.models.Student;
 import ru.sibhtc.educationdemo.mock.StudentMock;
 
 /**

@@ -1,7 +1,8 @@
 package ru.sibhtc.educationdemo.mock;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import ru.sibhtc.educationdemo.models.Student;
 
 /**
  * Created by Антон on 17.09.2015.

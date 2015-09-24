@@ -1,4 +1,6 @@
-package ru.sibhtc.educationdemo.mock;
+package ru.sibhtc.educationdemo.models;
+
+import ru.sibhtc.educationdemo.mock.StepResult;
 
 /**
  * Created by Антон on 18.09.2015.
