@@ -2,7 +2,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/headerNameText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#FFFFFF"
+        android:background="#336699"
+        android:paddingLeft="10sp"
+        >
+    </TextView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+        <TextView
+            android:id="@+id/studText"
+            android:layout_width="fill_parent"
+            android:layout_height="25sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/timeText"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:background="#336699"
+            android:paddingLeft="10sp"/>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="25sp"
+            android:id="@+id/timeText"
+            android:layout_alignParentRight="true"
+            android:textAlignment="textEnd"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:background="#336699"
+            android:paddingLeft="10sp"/>
+    </RelativeLayout>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

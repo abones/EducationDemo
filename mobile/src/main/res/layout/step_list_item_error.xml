@@ -6,20 +6,22 @@
     <TextView
         android:id="@+id/EditText01"
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/steps_list_layout_height"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/imageView"
         android:textAlignment="center"
-        android:textSize="@dimen/abc_dialog_padding_material">
+        android:textSize="20sp"
+        android:paddingLeft="10sp">
     </TextView>
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/steps_list_layout_height"
+        android:layout_height="@dimen/steps_list_layout_height"
         android:id="@+id/imageView"
         android:layout_alignParentRight="true"
         android:src="@android:drawable/presence_busy"
-        android:contentDescription="@string/successDesc" />
+        android:contentDescription="@string/successDesc"
+        android:paddingRight="10sp"/>
 
 
 </RelativeLayout>

@@ -23,7 +23,16 @@ public class ProgrammsMock {
                 new Step("Надеть каску", StepResult.SUCCESS),
                 new Step("Запустить скважину", StepResult.ERROR),
                 new Step("Установить дебит", StepResult.SUCCESS),
-                new Step("Снять каску", StepResult.WAITING)
+                new Step("Снять каску", StepResult.WAITING),
+                new Step("Установить дебит", StepResult.SUCCESS),
+                new Step("Установить дебит", StepResult.SUCCESS),
+                new Step("Установить дебит", StepResult.SUCCESS),
+                new Step("Установить дебит", StepResult.SUCCESS),
+                new Step("Установить дебит", StepResult.SUCCESS),
+                new Step("Установить дебит", StepResult.SUCCESS),
+                new Step("Установить дебит", StepResult.SUCCESS),
+                new Step("Установить дебит", StepResult.SUCCESS)
+
         }),
         new Program(1, "Остановка", new Step[]
         {
