@@ -5,6 +5,7 @@ package ru.sibhtc.educationdemo.constants;
  **/
 public class IntentTypes {
     public static final String Info = "showInfo";
-    public static final String Progress = "progress";
+    public static final String Progress = "showProgress";
+    public static final String Logical = "showLogical";
 
 }

@@ -2,16 +2,14 @@ package ru.sibhtc.educationdemo;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ru.sibhtc.educationdemo.mock.Student;
+import ru.sibhtc.educationdemo.models.Student;
 import ru.sibhtc.educationdemo.mock.StudentMock;
 
 /**

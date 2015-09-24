@@ -1,6 +1,5 @@
 package ru.sibhtc.educationdemo;
 
-import android.annotation.SuppressLint;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -27,10 +26,10 @@ import java.util.List;
 import java.util.Set;
 
 import ru.sibhtc.educationdemo.constants.IntentTypes;
+import ru.sibhtc.educationdemo.constants.MessagePaths;
+import ru.sibhtc.educationdemo.mock.LabelsMock;
 
 public class MainActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks {
-
-    private static final String WEAR_MESSAGE_PATH = "/message";
     private static final String EDUCATION_DEMO_CAPABILITY_NAME = "EDUCATION_DEMO";
     private int selectedLabel;
 
@@ -40,6 +39,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     private Spinner spinner;
     private Button button;
     private String nodeId;
+    private FragmentManager fragmentManager;
 
     private static final long CONNECTION_TIME_OUT_MS = 100;
     private static final String MOBILE_PATH = "/mobile";
@@ -48,7 +48,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        fragmentManager = getSupportFragmentManager();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         initGoogleApiClient();
         init();
@@ -71,7 +71,6 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         fragBundle.putByteArray("info", bytes);
                         fragment.setArguments(fragBundle);
 
-                        FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                         if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
@@ -90,7 +89,6 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         fragBundle.putByteArray("info", bytes);
                         fragment.setArguments(fragBundle);
 
-                        FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                         if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
@@ -100,6 +98,22 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         }
                         fragmentTransaction.commit();
                         break;
+                    }
+                    case IntentTypes.Logical:{
+                        Fragment fragment = new LogicalFragment();
+                        Bundle bundle = intent.getExtras();
+                        byte[] bytes = bundle.getByteArray("infoArray");
+                        Bundle fragBundle = new Bundle();
+                        fragBundle.putByteArray("info", bytes);
+                        fragment.setArguments(fragBundle);
+
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LOGICAL");
+                        } else {
+                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "LOGICAL");
+                        }
+                        fragmentTransaction.commit();
                     }
                 }
             }
@@ -178,10 +192,10 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         spinner = (Spinner)findViewById(R.id.spinner);
         button = (Button)findViewById(R.id.button);
 
-        String[] data = new String[LabelMock.labels.length];
+        String[] data = new String[LabelsMock.labels.length];
 
-        for (int index = 0; index < LabelMock.labels.length; index++){
-            data[index] = LabelMock.labels[index].Name;
+        for (int index = 0; index < LabelsMock.labels.length; index++){
+            data[index] = LabelsMock.labels[index].LabelName;
         }
 
         ArrayAdapter labelsAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data);
@@ -203,19 +217,20 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMessage(WEAR_MESSAGE_PATH, Integer.toString(selectedLabel));
+                String code = LabelsMock.getCodeById(selectedLabel);
+
+                sendMessage(MessagePaths.LABEL_MESSAGE_PATH, code.getBytes());
 
             }
         });
     }
 
-    private void sendMessage( final String path, final String text ) {
+    private void sendMessage( final String path, final byte[] data) {
         if (nodeId != null) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                        String message = "My message";
-                        Wearable.MessageApi.sendMessage(apiClient, nodeId, MOBILE_PATH, message.getBytes()).await();
+                        Wearable.MessageApi.sendMessage(apiClient, nodeId, path, data).await();
                 }
             }).start();
         }

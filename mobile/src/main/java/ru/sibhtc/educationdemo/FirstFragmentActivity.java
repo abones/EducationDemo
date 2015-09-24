@@ -16,6 +16,7 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
@@ -27,13 +28,6 @@ import static com.google.android.gms.internal.zzhu.runOnUiThread;
  * Created by Антон on 15.09.2015.
  **/
 public class FirstFragmentActivity extends Activity implements GoogleApiClient.ConnectionCallbacks {
-    private final String TEST_MESSAGE_PATH = "/message";
-    private final String OBJECT_MESSAGE_PATH = "/object";
-    private final String ERROR_MESSAGE_PATH = "/error";
-    private final String INFO_MESSAGE_PATH = "/info";
-    private final String PROGRESS_MESSAGE_PATH = "/progress";
-    private static final String START_ACTIVITY = "/start_activity";
-
     private Button sendButton;
     private Button sendObject;
     private Button sendInfo;
@@ -73,7 +67,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
             public void onClick(View v) {
                 String text = sendMessage.getText().toString();
                 if (!TextUtils.isEmpty(text)) {
-                    sendMessage(TEST_MESSAGE_PATH, text.getBytes());
+                    sendMessage(MessagePaths.TEST_MESSAGE_PATH, text.getBytes());
                 }
             }
         });
@@ -88,12 +82,12 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 try
                 {
                     data = BytesHelper.toByteArray(test);
-                    path = OBJECT_MESSAGE_PATH;
+                    path = MessagePaths.OBJECT_MESSAGE_PATH;
                 }
                 catch (Exception ex)
                 {
                     data = ex.getMessage().getBytes();
-                    path = ERROR_MESSAGE_PATH;
+                    path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
 
             }
@@ -109,12 +103,12 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 try
                 {
                     data = BytesHelper.toByteArray(info);
-                    path = INFO_MESSAGE_PATH;
+                    path = MessagePaths.INFO_MESSAGE_PATH;
                 }
                 catch (Exception ex)
                 {
                     data = ex.getMessage().getBytes();
-                    path = ERROR_MESSAGE_PATH;
+                    path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
                 sendMessage(path, data);
             }
@@ -130,12 +124,12 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 try
                 {
                     data = BytesHelper.toByteArray(progress);
-                    path = PROGRESS_MESSAGE_PATH;
+                    path = MessagePaths.PROGRESS_MESSAGE_PATH;
                 }
                 catch (Exception ex)
                 {
                     data = ex.getMessage().getBytes();
-                    path = ERROR_MESSAGE_PATH;
+                    path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
                 sendMessage(path, data);
             }
@@ -165,7 +159,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
 
     @Override
     public void onConnected(Bundle bundle) {
-        sendMessage(START_ACTIVITY, "".getBytes());
+        sendMessage(MessagePaths.START_ACTIVITY, "".getBytes());
     }
 
     @Override

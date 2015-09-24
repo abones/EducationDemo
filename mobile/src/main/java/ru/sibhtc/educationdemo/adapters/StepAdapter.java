@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import ru.sibhtc.educationdemo.R;
-import ru.sibhtc.educationdemo.mock.Step;
+import ru.sibhtc.educationdemo.models.Step;
 
 /**
  * Created by Антон on 18.09.2015.
