@@ -16,22 +16,18 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.CapabilityInfo;
 
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
 import java.util.List;
-import java.util.Set;
-
 import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
 
 public class MainActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks {
-    private static final String EDUCATION_DEMO_CAPABILITY_NAME = "EDUCATION_DEMO";
     private int selectedLabel;
 
     String LOG_TAG = MainActivity.class.getSimpleName();
@@ -51,6 +47,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        initGoogleApiClient();
         init();
     }
 
@@ -140,6 +137,40 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         }
     }
 
+    private void initGoogleApiClient() {
+        apiClient = getGoogleApiClient(this);
+        apiClient.connect();
+        retrieveDeviceNode();
+    }
+
+    private GoogleApiClient getGoogleApiClient(Context context) {
+        return new GoogleApiClient.Builder(context)
+                .addApi(Wearable.API)
+                .build();
+
+    }
+
+    private void retrieveDeviceNode() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NodeApi.GetConnectedNodesResult result =
+                        Wearable.NodeApi.getConnectedNodes(apiClient).await();
+
+                List<Node> nodes = result.getNodes();
+
+                if (nodes.size() > 0)
+                    nodeId = nodes.get(0).getId();
+
+                if (nodeId.equals("cloud") && nodes.size() > 1){
+                    nodeId = nodes.get(1).getId();
+                }
+
+                Log.v(LOG_TAG, "Node ID of phone: " + nodeId);
+            }
+        }).start();
+    }
+
     private void init(){
         spinner = (Spinner)findViewById(R.id.spinner);
         button = (Button)findViewById(R.id.button);
@@ -170,11 +201,20 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
             @Override
             public void onClick(View v) {
                 String code = LabelsMock.getCodeById(selectedLabel);
-
-                GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, code.getBytes());
-
+                sendMessage(MessagePaths.LABEL_MESSAGE_PATH, code.getBytes());
             }
         });
+    }
+
+    private void sendMessage( final String path, final byte[] data) {
+        if (nodeId != null) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Wearable.MessageApi.sendMessage(apiClient, nodeId, path, data).await();
+                }
+            }).start();
+        }
     }
 
     @Override
