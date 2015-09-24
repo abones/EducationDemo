@@ -7,7 +7,8 @@
     <string name="peer_connected">Устройство подключено!</string>
     <string name="peer_disconnected">Устройство отключено!</string>
     <string name="wearable_api_unavailable">API носимых устройств не доступно!</string>
-    <string name="application_name">Газпром трансгаз Томск(demo v1)</string>
+    <string name="application_name">Газпром трансгаз Томск</string>
+    <string name="application_name_demo">demo v1</string>
     <string name="exam_item">Экзамен</string>
     <string name="learning_item">Обучение</string>
     <string name="students_item">Студенты</string>
