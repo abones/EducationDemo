@@ -20,7 +20,7 @@ import ru.sibhtc.educationdemo.models.Exam;
 import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
 import ru.sibhtc.educationdemo.models.TestSendModel;
-import ru.sibhtc.educationdemo.services.SiteData;
+import ru.sibhtc.educationdemo.services.SiteDataService;
 
 /**
  * Created by Антон on 15.09.2015.
@@ -72,7 +72,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
             @Override
             public void onClick(View v) {
 
-                SiteData SiteData = new SiteData(){
+                SiteDataService SiteData = new SiteDataService(){
                     @Override
                     public void callbackFunction(String result){
                         writeParameters(result);

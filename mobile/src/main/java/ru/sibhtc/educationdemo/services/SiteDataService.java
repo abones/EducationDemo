@@ -13,7 +13,7 @@ import java.net.URLConnection;
 /**
  * Created by AbdrashitovNI on 24.09.2015.
  */
-public class SiteData extends AsyncTask<String, Void, String> implements ISiteData {
+public class SiteDataService extends AsyncTask<String, Void, String> implements ISiteData {
 
     @Override
     public void callbackFunction(String result){
