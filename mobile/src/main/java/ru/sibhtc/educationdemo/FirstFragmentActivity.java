@@ -16,6 +16,7 @@ import com.google.android.gms.wearable.Wearable;
 
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.models.Exam;
 import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
@@ -54,10 +55,6 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
         apiClient.connect();
     }
 
-    private void writeParameters(String parameters){
-        String str = parameters;
-    }
-
     private void init(){
         //тестовые кнопули
         sendButton = (Button) findViewById(R.id.test_btn);
@@ -71,14 +68,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
         getInfoFromServerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                SiteDataService SiteData = new SiteDataService(){
-                    @Override
-                    public void callbackFunction(String result){
-                        writeParameters(result);
-                    }
-                };
-                SiteData.execute(getString(R.string.url_parameters));
+                GlobalHelper.getServerInfo();
             }
         });
 
