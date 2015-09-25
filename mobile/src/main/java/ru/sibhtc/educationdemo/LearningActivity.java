@@ -34,6 +34,7 @@ public class LearningActivity extends AppCompatActivity {
 
         ActionBar bar = getSupportActionBar();
         bar.setTitle(R.string.application_name);
+        bar.setSubtitle(R.string.application_name_demo);
         bar.setDisplayHomeAsUpEnabled(true);
 
         settingsFragment = new SettingsFragment();

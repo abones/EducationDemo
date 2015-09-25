@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
         ActionBar bar = getSupportActionBar();
         bar.setTitle(R.string.application_name);
         bar.setSubtitle(R.string.application_name_demo);
-        bar.setDisplayHomeAsUpEnabled(true);
+        bar.setDisplayHomeAsUpEnabled(false);
     }
 
     //NEW

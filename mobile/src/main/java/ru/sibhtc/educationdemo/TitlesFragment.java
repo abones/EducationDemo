@@ -24,7 +24,7 @@ public class TitlesFragment extends ListFragment {
 
         // Populate list with our static array of titles.
         setListAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, StudentMock.Titles));
+                android.R.layout.simple_list_item_activated_1, StudentMock.getStudents()));
 
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
