@@ -37,7 +37,7 @@ public class LearningFragment extends Fragment {
         String date = getArguments().getString("date");
         Step[] steps = new Step[]{};
         Student student = new Student();
-        String studName = StudentMock.Titles[studentID];
+        String studName = StudentMock.getStudentById(studentID).GetShortName();
         String programName = "";
 
         for (int index = 0; index < ProgrammsMock.Programs.length; index++){

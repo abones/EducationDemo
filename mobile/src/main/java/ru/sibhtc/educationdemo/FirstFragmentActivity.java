@@ -17,11 +17,10 @@ import com.google.android.gms.wearable.Wearable;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
-import ru.sibhtc.educationdemo.models.Exam;
+import ru.sibhtc.educationdemo.models.EventModel;
 import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
 import ru.sibhtc.educationdemo.models.TestSendModel;
-import ru.sibhtc.educationdemo.services.SiteDataService;
 
 /**
  * Created by Антон on 15.09.2015.
@@ -148,7 +147,7 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
         sendExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Exam exam = new Exam("Иванов", "Вывод на режим");
+                EventModel exam = new EventModel("Иванов", "Вывод на режим");
                 byte[] data;
                 String path;
 

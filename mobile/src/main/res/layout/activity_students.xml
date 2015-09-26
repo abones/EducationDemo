@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
     <LinearLayout
         android:id="@+id/fragment_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:weightSum="3">
-    <fragment class="ru.sibhtc.educationdemo.TitlesFragment"
-        android:id="@+id/titles"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="1.3"
-        tools:layout="@android:layout/simple_list_item_1"   />
+        android:weightSum="3"
+        >
 
-    <FrameLayout android:id="@+id/details"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="1.7"
-        android:background="?android:attr/detailsElementBackground"/>
+        <fragment
+            android:id="@+id/titles"
+            class="ru.sibhtc.educationdemo.TitlesFragment"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            tools:layout="@android:layout/simple_list_item_1" />
+
+        <FrameLayout
+            android:id="@+id/details"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="?android:attr/detailsElementBackground" />
+
+        <FrameLayout
+            android:id="@+id/last_result"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="?android:attr/detailsElementBackground" />
     </LinearLayout>
 
 </RelativeLayout>

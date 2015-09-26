@@ -2,7 +2,6 @@ package ru.sibhtc.educationdemo;
 
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,7 +23,7 @@ public class TitlesFragment extends ListFragment {
 
         // Populate list with our static array of titles.
         setListAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, StudentMock.getStudents()));
+                android.R.layout.simple_list_item_activated_1, StudentMock.getStudentNameList()));
 
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.

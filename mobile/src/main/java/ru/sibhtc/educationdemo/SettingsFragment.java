@@ -52,7 +52,7 @@ public class SettingsFragment extends Fragment {
         String[] programs = new String[programList.size()];
         programList.toArray(programs);
 
-        ArrayAdapter studentsAdapter =  new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, StudentMock.Titles);
+        ArrayAdapter studentsAdapter =  new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, StudentMock.getStudentNameList());
         ArrayAdapter programsAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, programs);
 // Specify the layout to use when the list of choices appears
         studentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

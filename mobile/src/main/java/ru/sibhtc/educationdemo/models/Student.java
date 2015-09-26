@@ -18,6 +18,10 @@ public class Student {
         Age = age;
     }
 
+    public String GetShortName(){
+        return Surname + " " + Name.toCharArray()[0] + "." + Patronimity.toCharArray()[0] + ".";
+    }
+
     public Student(){
 
     }

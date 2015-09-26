@@ -58,7 +58,7 @@ public class DetailsFragment extends Fragment {
         TextView qualText       = (TextView)view.findViewById(R.id.qualText);
         TextView ageText        = (TextView)view.findViewById(R.id.ageText);
 
-        ArrayList<Student> students = StudentMock.GetStudentList();
+        ArrayList<Student> students = StudentMock.getStudentList();
         nameText.setText(students.get(getShownIndex()).Name);
         surnameText.setText(students.get(getShownIndex()).Surname);
         patrText.setText(students.get(getShownIndex()).Patronimity);

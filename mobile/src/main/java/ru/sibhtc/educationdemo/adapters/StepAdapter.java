@@ -37,7 +37,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
         StepHolder holder = null;
         int layoutId = 0;
 
-        switch (data[position].StepState){
+        switch (data[position].getStepState()){
             case SUCCESS:
                 layoutId = successLayoutResourceId;
                 break;
@@ -66,7 +66,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
         }
 
         Step step = data[position];
-        holder.txtTitle.setText(step.StepTitle);
+        holder.txtTitle.setText(step.getStepTitle());
 
         return row;
     }
