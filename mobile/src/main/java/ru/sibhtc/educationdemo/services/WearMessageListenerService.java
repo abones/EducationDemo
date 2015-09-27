@@ -79,13 +79,13 @@ public class WearMessageListenerService extends WearableListenerService {
                         GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
-                                studyAnswer();
+                                examAnswer();
                             }
                         });
 
                     }else
                     {
-                        studyAnswer();
+                        examAnswer();
                     }
 
                 }

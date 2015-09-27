@@ -120,7 +120,7 @@ public class ExamFragment extends Fragment {
     public void wearAnswer(MessageModel messageModel) {
 
         if (checkAnswer(messageModel)) {
-
+            GlobalHelper.sendMessage(MessagePaths.ERROR_MESSAGE_PATH, MessageStrings.EXAM_ANSWER_APPLIED.getBytes());
             if (completeSteps.size() != steps.size()) {
                 final Activity act = getActivity(); //only neccessary if you use fragments
                 if (act != null)
@@ -145,8 +145,16 @@ public class ExamFragment extends Fragment {
                     });
             }
         } else {
-            GlobalHelper.showToast(getContext(), MessageStrings.LEARNING_INCORRECT_ANSWER);
-            GlobalHelper.sendMessage(MessagePaths.ERROR_MESSAGE_PATH, MessageStrings.LEARNING_INCORRECT_ANSWER.getBytes());
+            final Activity act = getActivity(); //only neccessary if you use fragments
+            if (act != null)
+                act.runOnUiThread(new Runnable() {
+                    public void run() {
+                        completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
+                        completeSteps.get(completeSteps.size() - 1).setStepEnd(new Date());
+                        currentStep = steps.get(completeSteps.size());
+                        adapter.refreshAdapter(steps.get(completeSteps.size()));
+                    }
+                });
         }
     }
 }

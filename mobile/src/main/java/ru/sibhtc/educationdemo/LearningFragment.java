@@ -129,7 +129,7 @@ public class LearningFragment extends Fragment {
     public void wearAnswer(MessageModel messageModel) {
 
         if (checkAnswer(messageModel)) {
-
+            GlobalHelper.sendMessage(MessagePaths.INFO_MESSAGE_PATH, MessageStrings.LEARNING_CORRECT_ANSWER.getBytes());
             if (completeSteps.size() != steps.size()) {
                 final Activity act = getActivity(); //only neccessary if you use fragments
                 if (act != null)

@@ -87,7 +87,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
                 holder.imageView.setImageResource(R.mipmap.error);
                 holder.imageView.setVisibility(View.VISIBLE);
                 holder.progressBar.setVisibility(View.INVISIBLE);
-                holder.stepTime.setText("(" +
+                holder.stepTime.setText("(+" +
                         getDiffDate(data.get(position).getStepStart(),
                                 data.get(position).getStepEnd()) + ")");
                 break;
