@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <Spinner
         android:layout_width="match_parent"
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="@string/send_nfc_label_button"
         android:id="@+id/button"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom"
+        android:background="@color/gp_blue"/>
     <FrameLayout
         android:id="@+id/watchDataFrame"
         android:layout_width="match_parent"

@@ -10,4 +10,7 @@
     <string name="peer_disconnected">Подключение разорвано.</string>
     <string name="message_content">Содержимое тестового сообщения</string>
     <string name="send_nfc_label_button">Send NFC</string>
+    <string name="exam_fragment_title">Экзамен</string>
+    <string name="test_title">Lorem Ipsum</string>
+    <string name="test_info">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</string>
 </resources>
