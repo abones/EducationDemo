@@ -41,7 +41,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
         lastStep = false;
     }
 
-    private long getDiffDate(Date startDate, Date endDate) {
+    private String getDiffDate(Date startDate, Date endDate) {
         long diff = endDate.getTime() - startDate.getTime();
         long diffSeconds = diff / 1000 % 60;
         long diffMinutes = diff / (60 * 1000) % 60;
@@ -49,7 +49,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
         int diffInDays = (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
 
-        return diffMinutes;
+        return String.valueOf(diffSeconds % 60) + ":" + String.valueOf(diffSeconds - diffSeconds % 60) ;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
                 holder.imageView.setImageResource(R.mipmap.error);
                 holder.imageView.setVisibility(View.VISIBLE);
                 holder.progressBar.setVisibility(View.INVISIBLE);
-                holder.stepTime.setText("(+" +
+                holder.stepTime.setText("(" +
                         getDiffDate(data.get(position).getStepStart(),
                                 data.get(position).getStepEnd()) + ")");
                 break;
