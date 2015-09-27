@@ -1,5 +1,8 @@
 package ru.sibhtc.educationdemo.mock;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ru.sibhtc.educationdemo.models.Program;
 import ru.sibhtc.educationdemo.models.Step;
 
@@ -7,20 +10,31 @@ import ru.sibhtc.educationdemo.models.Step;
  * Created by Антон on 17.09.2015.
  **/
 public class ProgrammsMock {
+    private static ArrayList<Program> programs;
 
-    public static Program[] Programs = new Program[]
-            {
-                    new Program(0, "Оператор котельной", new Step[]
-                            {
-                                    new Step(0, "Надеть каску", StepResult.WAITING),
-                                    new Step(1, "Проверка загазованности ", StepResult.SUCCESS),
-                                    new Step(2, "Открытие крана 1", StepResult.ERROR),
-                                    new Step(3, "Открытие крана 2", StepResult.SUCCESS),
-                                    new Step(4, "Взвод пусковой пробки РД", StepResult.WAITING),
-                                    new Step(5, "Выбор инструмента регулировки давления", StepResult.SUCCESS),
-                                    new Step(6, "Настройка регулятора", StepResult.SUCCESS)
+    public static ArrayList<Program> getPrograms() {
+        if (programs == null) {
+            programs = new ArrayList<Program>();
 
-                            }),
+            //программа 1 начало
+            ArrayList<Step> steps = new ArrayList<Step>();
+            steps.add(new Step(0, "Надеть каску", StepResult.WAITING));
+            steps.add(new Step(1, "Проверка загазованности ", StepResult.WAITING));
+            steps.add(new Step(2, "Открытие крана 1", StepResult.WAITING));
+            steps.add(new Step(3, "Открытие крана 2", StepResult.WAITING));
+            steps.add(new Step(4, "Взвод пусковой пробки РД", StepResult.WAITING));
+            steps.add(new Step(5, "Выбор инструмента регулировки давления", StepResult.WAITING));
+            steps.add(new Step(6, "Настройка регулятора", StepResult.WAITING));
+
+            programs.add(new Program(0, "Оператор котельной",steps));
+            //программа 1 конец
+        }
+
+
+        return programs;
+    }
+
+
 
                     /*new Program(1, "Вывод на режим", new Step[]
                             {
@@ -52,7 +66,7 @@ public class ProgrammsMock {
                                     new Step("Проверить манометр", StepResult.SUCCESS),
                                     new Step("Снять каску", StepResult.WAITING)
                             })*/
-            };
+
 
 
 }

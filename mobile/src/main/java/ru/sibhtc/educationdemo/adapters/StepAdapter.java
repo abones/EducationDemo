@@ -6,9 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ru.sibhtc.educationdemo.R;
+import ru.sibhtc.educationdemo.mock.StepResult;
 import ru.sibhtc.educationdemo.models.Step;
 
 /**
@@ -16,17 +22,13 @@ import ru.sibhtc.educationdemo.models.Step;
  **/
 public class StepAdapter extends ArrayAdapter<Step> {
 
-    Context context;
-    int waitLayoutResourceId;
-    int successLayoutResourceId;
-    int errorLayoutResourceId;
-    Step data[] = null;
+    private Context context;
+    private int waitLayoutResourceId;
+    private ArrayList<Step> data = null;
 
-    public StepAdapter(Context context, int waitingLayoutResource, int successLayoutResource, int errorLayoutResource, Step[] data) {
-        super(context, successLayoutResource, data);
+    public StepAdapter(Context context, int waitingLayoutResource, ArrayList<Step> data) {
+        super(context, waitingLayoutResource, data);
         this.waitLayoutResourceId = waitingLayoutResource;
-        this.successLayoutResourceId = successLayoutResource;
-        this.errorLayoutResourceId = errorLayoutResource;
         this.context = context;
         this.data = data;
     }
@@ -37,27 +39,15 @@ public class StepAdapter extends ArrayAdapter<Step> {
         StepHolder holder = null;
         int layoutId = 0;
 
-        switch (data[position].getStepState()){
-            case SUCCESS:
-                layoutId = successLayoutResourceId;
-                break;
-            case ERROR:
-                layoutId = errorLayoutResourceId;
-                break;
-            case WAITING:
-                layoutId = waitLayoutResourceId;
-                break;
-        }
-
-
         if(row == null)
         {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            row = inflater.inflate(layoutId, parent, false);
+            row = inflater.inflate(waitLayoutResourceId, parent, false);
 
             holder = new StepHolder();
             holder.txtTitle = (TextView)row.findViewById(R.id.EditText01);
-
+            holder.imageView = (ImageView)row.findViewById(R.id.imageView);
+            holder.progressBar = (ProgressBar)row.findViewById(R.id.progressBar);
             row.setTag(holder);
         }
         else
@@ -65,14 +55,40 @@ public class StepAdapter extends ArrayAdapter<Step> {
             holder = (StepHolder)row.getTag();
         }
 
-        Step step = data[position];
+
+        switch (data.get(position).getStepState()){
+            case SUCCESS:
+                holder.imageView.setImageResource(R.mipmap.success);
+                holder.imageView.setVisibility(View.VISIBLE);
+                holder.progressBar.setVisibility(View.INVISIBLE);
+                break;
+            case ERROR:
+                holder.imageView.setImageResource(R.mipmap.error);
+                holder.imageView.setVisibility(View.VISIBLE);
+                holder.progressBar.setVisibility(View.INVISIBLE);
+                break;
+            case WAITING:
+                holder.imageView.setVisibility(View.INVISIBLE);
+                holder.progressBar.setVisibility(View.VISIBLE);
+                break;
+        }
+
+        Step step = data.get(position);
         holder.txtTitle.setText(step.getStepTitle());
 
         return row;
     }
 
+
+    public synchronized void refreshAdapter(Step step) {
+        data.add(step);
+        notifyDataSetChanged();
+    }
+
     static class StepHolder
     {
         TextView txtTitle;
+        ImageView imageView;
+        ProgressBar progressBar;
     }
 }

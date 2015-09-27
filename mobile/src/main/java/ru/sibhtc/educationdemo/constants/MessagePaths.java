@@ -12,5 +12,7 @@ public class MessagePaths {
     public static final String LOGICAL_MESSAGE_PATH = "/logical";
     public static final String START_ACTIVITY = "/start_activity";
     public static final String LABEL_MESSAGE_PATH = "/label";
+
     public static final String EXAM_MESSAGE_PATH = "/exam";
+    public static final String STUDY_MESSAGE_PATH = "/study";
 }

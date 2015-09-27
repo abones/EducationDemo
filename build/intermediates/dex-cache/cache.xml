@@ -2,39 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
-        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-5f36d4f0cbaddf47917a6a0a64806dac8b93b254.jar" />
-    </item>
-    <item
         jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
         <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-4c3b94a716599603a963f4e3a663258a6144fc5b.jar" />
-    </item>
-    <item
-        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-034704537fe7420a985cb21de6c9826beec24250.jar" />
-    </item>
-    <item
-        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="c6d79137693d494dee16372d3921f919eb724ced">
-        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-29b113e741b290ceab19b97dd980de1fd8986d60.jar" />
-    </item>
-    <item
-        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="58b928ccbaf9090c632f278d6bd31e1ae42f2457">
-        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-24f5ec12b227a8567e03110108474b8c90e6e270.jar" />
     </item>
     <item
         jar="/Volumes/work &amp; study/Applications/AndroidSDK/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
@@ -44,11 +16,39 @@
         <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-55ff59ba9681216823259d814ccf97ba01563b74.jar" />
     </item>
     <item
+        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c6d79137693d494dee16372d3921f919eb724ced">
+        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-29b113e741b290ceab19b97dd980de1fd8986d60.jar" />
+    </item>
+    <item
         jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.8.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
         <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-d39a9f069f24847d5b64fd93866d166a4fac3695.jar" />
+    </item>
+    <item
+        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-034704537fe7420a985cb21de6c9826beec24250.jar" />
+    </item>
+    <item
+        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-5f36d4f0cbaddf47917a6a0a64806dac8b93b254.jar" />
+    </item>
+    <item
+        jar="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="58b928ccbaf9090c632f278d6bd31e1ae42f2457">
+        <dex dex="/Volumes/work &amp; study/Repositories/AndroidPhone/EducationDemo/wear/build/intermediates/pre-dexed/debug/classes-24f5ec12b227a8567e03110108474b8c90e6e270.jar" />
     </item>
 
 </items>

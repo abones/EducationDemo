@@ -15,6 +15,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.mock.AppMode;
+
 
 /**
  * Created by Антон on 16.09.2015.
@@ -23,9 +26,9 @@ public class LearningActivity extends AppCompatActivity {
     final String LOG_TAG = "myLogs";
     private static final String TAG = "junk";
     private Date learningStartDate;
-    SettingsFragment settingsFragment;
-    LearningFragment learningFragment;
-    FragmentTransaction fTrans;
+    private SettingsFragment settingsFragment;
+    private LearningFragment learningFragment;
+    private FragmentTransaction fTrans;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,7 +89,10 @@ public class LearningActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fTrans = fragmentManager.beginTransaction();
+        GlobalHelper.CurrentAppMode = AppMode.LEARNING;
+        GlobalHelper.setLearningFragment(learningFragment);
         fTrans.replace(R.id.learningTabFrame, learningFragment, "LEARNING");
         fTrans.commit();
+
     }
 }

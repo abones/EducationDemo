@@ -13,6 +13,10 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.sibhtc.educationdemo.constants.MessagePaths;
+import ru.sibhtc.educationdemo.helpers.BytesHelper;
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.models.EventModel;
 import ru.sibhtc.educationdemo.models.Program;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
 import ru.sibhtc.educationdemo.mock.StudentMock;
@@ -43,10 +47,10 @@ public class SettingsFragment extends Fragment {
 
         List<String> programList = new ArrayList<String>();
 
-        for(int index = 0; index < ProgrammsMock.Programs.length; index++) {
+        for(int index = 0; index < ProgrammsMock.getPrograms().size(); index++) {
 
-            Program program = ProgrammsMock.Programs[index];
-            programList.add(program.ProgramName);
+            Program program = ProgrammsMock.getPrograms().get(index);
+            programList.add(program.programName);
         }
 
         String[] programs = new String[programList.size()];
@@ -66,7 +70,25 @@ public class SettingsFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //отправляю сообщение на часы
+                EventModel exam = new EventModel("Иванов", "Вывод на режим");
+                byte[] data;
+                String path;
+
+                try
+                {
+                    data = BytesHelper.toByteArray(exam);
+                    path = MessagePaths.STUDY_MESSAGE_PATH;
+                }
+                catch (Exception ex)
+                {
+                    data = ex.getMessage().getBytes();
+                    path = MessagePaths.ERROR_MESSAGE_PATH;
+                }
+                GlobalHelper.sendMessage(path, data);
+
                 LearningActivity activity = (LearningActivity)getActivity();
+
                 activity.startLearning(selectedProgramm, selectedStudent);
             }
         });

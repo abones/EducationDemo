@@ -9,10 +9,10 @@ public class Step {
 
     private String stepTitle;
     private StepResult stepState;
-    private int id;
-    private Boolean needCheckValue;
-    private String checkValue;
-    private String linkToParam;
+    private int id;//идентификатор шага
+    private Boolean needCheckValue;//нужно ли проверять параметр на контрольное значение
+    private String checkValue;//контрольное значение которое должен достичь студент
+    private String linkToParam;//ссылка на параметр с сервера, обычная строка с ид параметра
 
     private Step(int id, Boolean needCheckValue, String checkValue, String linkToParam, String stepTitle, StepResult stepState){
         setId(id);
