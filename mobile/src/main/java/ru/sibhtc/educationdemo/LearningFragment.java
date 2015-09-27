@@ -12,7 +12,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ru.sibhtc.educationdemo.adapters.StepAdapter;
+import ru.sibhtc.educationdemo.constants.MessageStrings;
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.StepResult;
+import ru.sibhtc.educationdemo.models.MessageModel;
 import ru.sibhtc.educationdemo.models.Program;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
 import ru.sibhtc.educationdemo.models.Step;
@@ -23,8 +26,10 @@ import ru.sibhtc.educationdemo.mock.StudentMock;
  **/
 public class LearningFragment extends Fragment {
     private ArrayList<Step> steps = new ArrayList<Step>();
-    public ArrayList<Step> completeSteps = new ArrayList<Step>();
-    public ArrayList<Step> adapterSteps = new ArrayList<Step>();
+    private ArrayList<Step> completeSteps = new ArrayList<Step>();
+    private ArrayList<Step> adapterSteps = new ArrayList<Step>();
+    private Step currentStep;
+
 
     private View view;
     private ListView listSteps;
@@ -56,6 +61,7 @@ public class LearningFragment extends Fragment {
             if (program.programId == programId) {
                 steps = program.steps;
                 completeSteps.add(program.steps.get(0));
+                currentStep = completeSteps.get(0);
                 programName = program.programName;
                 break;
             }
@@ -75,7 +81,6 @@ public class LearningFragment extends Fragment {
         listSteps = (ListView) view.findViewById(R.id.stepsList);
 
 
-
         return view;
     }
 
@@ -91,20 +96,62 @@ public class LearningFragment extends Fragment {
 
     }
 
+    private Boolean checkAnswer(MessageModel messageModel) {
+        Boolean result = false;
+        if (currentStep.getNeedCheckValue()) {
 
-    public void wearAnswer(String answer) {
+                String serverValue = GlobalHelper.getModelParameterByLink(currentStep.getLinkToParam());
 
-        if (completeSteps.size() != steps.size()) {
-            final Activity act = getActivity(); //only neccessary if you use fragments
-            if (act != null)
-                act.runOnUiThread(new Runnable() {
-                    public void run() {
-                        completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
-
-                        adapter.refreshAdapter(steps.get(completeSteps.size()));
+            if (currentStep.getLabelCode().equals(messageModel.labelCode) ){
+                if (currentStep.getCheckValueInterval() == null)
+                {
+                    if (currentStep.getCheckValue().equals(serverValue))
+                        result = true;
+                }else
+                {
+                    if (Double.parseDouble(currentStep.getCheckValue()) <= Double.parseDouble(serverValue) &&
+                            Double.parseDouble(currentStep.getCheckValueInterval()) >= Double.parseDouble(serverValue) )
+                    {
+                        result = true;
                     }
-                });
+                }
+            }
+        } else {
+            if (currentStep.getLabelCode().equals(messageModel.labelCode)) {
+                result = true;
+            }
         }
+        return  result;
+    }
 
+    public void wearAnswer(MessageModel messageModel) {
+
+        if (checkAnswer(messageModel)) {
+
+            if (completeSteps.size() != steps.size()) {
+                final Activity act = getActivity(); //only neccessary if you use fragments
+                if (act != null)
+                    act.runOnUiThread(new Runnable() {
+                        public void run() {
+                            completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
+                            currentStep = steps.get(completeSteps.size());
+                            adapter.refreshAdapter(steps.get(completeSteps.size()));
+                        }
+                    });
+            }
+            else
+            {
+                final Activity act = getActivity(); //only neccessary if you use fragments
+                if (act != null)
+                    act.runOnUiThread(new Runnable() {
+                        public void run() {
+                            completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+            }
+        } else {
+            GlobalHelper.showToast(getContext(), MessageStrings.LEARNING_INCORRECT_ANSWER);
+        }
     }
 }

@@ -10,14 +10,18 @@ import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
 
+import java.io.IOException;
+
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.helpers.ICallbackInterface;
 import ru.sibhtc.educationdemo.mock.AppMode;
 import ru.sibhtc.educationdemo.models.Label;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
 import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.LogicalObject;
+import ru.sibhtc.educationdemo.models.MessageModel;
 import ru.sibhtc.educationdemo.models.ProgressObject;
 
 import static com.google.android.gms.internal.zzhu.runOnUiThread;
@@ -27,7 +31,7 @@ import static com.google.android.gms.internal.zzhu.runOnUiThread;
  **/
 public class WearMessageListenerService extends WearableListenerService {
 
-
+    private MessageModel messageModel;
     private GoogleApiClient apiClient;
 
     @Override
@@ -41,19 +45,41 @@ public class WearMessageListenerService extends WearableListenerService {
             } else if (GlobalHelper.CurrentAppMode == AppMode.LEARNING) {
                 //если обучение, то просто смотрим верно ли прислонили метку
                 //если верно то помечаем и идем далее иначе продолжаем ждать верный ответ
-                String code = new String(messageEvent.getData());
-                GlobalHelper.getLearningFragment().wearAnswer(code);
+                try {
+                    byte[] object = messageEvent.getData();
+                    messageModel = (MessageModel) BytesHelper.toObject(object);
+                    if (messageModel.isValued) {
+                        GlobalHelper.getServerInfo(new ICallbackInterface() {
+                            @Override
+                            public void onDownloadFinished() {
+                                studyAnswer();
+                            }
+                        });
+
+                    }else
+                    {
+                        studyAnswer();
+                    }
+
+                }
+                catch (IOException e){
+                    GlobalHelper.showToast(this, e.getMessage());
+                }//
+                catch (ClassNotFoundException e){
+
+                }
             }
         } else {
             byte[] data = messageEvent.getData();
             String message = new String(data);
-            showToast(message);
+            GlobalHelper.showToast(this, message);
         }
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    private void studyAnswer(){
+        GlobalHelper.getLearningFragment().wearAnswer(messageModel);
     }
+
 
     private void sendInformationMessage(String code) {
         Label label = LabelsMock.getByCode(code);

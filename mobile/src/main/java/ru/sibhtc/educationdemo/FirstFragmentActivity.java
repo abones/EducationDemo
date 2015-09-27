@@ -64,13 +64,13 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
         sendExam  = (Button)findViewById(R.id.exam_start_btn);
         getInfoFromServerButton = (Button) findViewById(R.id.get_info_from_server_btn);
 
-        getInfoFromServerButton.setOnClickListener(new View.OnClickListener(){
+        /*getInfoFromServerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 GlobalHelper.getServerInfo();
             }
         });
-
+*/
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

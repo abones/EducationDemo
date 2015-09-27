@@ -6,6 +6,11 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
 import ru.sibhtc.educationdemo.models.AppState;
 
 /**
@@ -25,4 +30,5 @@ public class GlobalHelper {
             }
         }).start();
     }
+
 }
