@@ -18,13 +18,13 @@ public class ProgrammsMock {
 
             //программа 1 начало
             ArrayList<Step> steps = new ArrayList<Step>();
-            steps.add(new Step(0, "Надеть каску", StepResult.WAITING));
-            steps.add(new Step(1, "Проверка загазованности ", StepResult.WAITING));
-            steps.add(new Step(2, "Открытие крана 1", StepResult.WAITING));
-            steps.add(new Step(3, "Открытие крана 2", StepResult.WAITING));
-            steps.add(new Step(4, "Взвод пусковой пробки РД", StepResult.WAITING));
-            steps.add(new Step(5, "Выбор инструмента регулировки давления", StepResult.WAITING));
-            steps.add(new Step(6, "Настройка регулятора", StepResult.WAITING));
+            steps.add(new Step(0, "Надеть каску", StepResult.WAITING, "helmet"));
+            steps.add(new Step(1, "Проверка загазованности ", StepResult.WAITING, "gas"));
+            steps.add(new Step(2, "410", "450", "PressureRegulator", "Открытие крана 1", StepResult.WAITING, "tap1"));
+            steps.add(new Step(3, "1", "switchIn", "Открытие крана 2", StepResult.WAITING, "tap2"));
+            steps.add(new Step(4, "0.0", "PresureIn", "Взвод пусковой пробки РД", StepResult.WAITING, "tube"));
+            steps.add(new Step(5, "0.0", "PresureOut", "Выбор инструмента регулировки давления", StepResult.WAITING, "switch"));
+            steps.add(new Step(6, "Настройка регулятора", StepResult.WAITING, "nut"));
 
             programs.add(new Program(0, "Оператор котельной",steps));
             //программа 1 конец

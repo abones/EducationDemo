@@ -21,14 +21,19 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
+import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
+import ru.sibhtc.educationdemo.models.MessageModel;
 
 public class MainActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks {
-    private int selectedLabel;
+    private int selectedLabelId;
 
     String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -53,10 +58,10 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
-        if (intent != null){
+        if (intent != null) {
             String type = intent.getStringExtra("type");
             if (type != null) {
                 switch (type) {
@@ -78,7 +83,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         fragmentTransaction.commit();
                         break;
                     }
-                    case IntentTypes.Progress:{
+                    case IntentTypes.Progress: {
                         Fragment fragment = new ProgressFragment();
                         Bundle bundle = intent.getExtras();
                         byte[] bytes = bundle.getByteArray("infoArray");
@@ -96,7 +101,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         fragmentTransaction.commit();
                         break;
                     }
-                    case IntentTypes.Logical:{
+                    case IntentTypes.Logical: {
                         Fragment fragment = new LogicalFragment();
                         Bundle bundle = intent.getExtras();
                         byte[] bytes = bundle.getByteArray("infoArray");
@@ -113,7 +118,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         fragmentTransaction.commit();
                         break;
                     }
-                    case IntentTypes.Exam:{
+                    case IntentTypes.Exam: {
                         Fragment fragment = new ExamFragment();
                         Bundle bundle = intent.getExtras();
                         byte[] bytes = bundle.getByteArray("infoArray");
@@ -162,7 +167,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                 if (nodes.size() > 0)
                     nodeId = nodes.get(0).getId();
 
-                if (nodeId.equals("cloud") && nodes.size() > 1){
+                if (nodeId.equals("cloud") && nodes.size() > 1) {
                     nodeId = nodes.get(1).getId();
                 }
 
@@ -171,24 +176,25 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         }).start();
     }
 
-    private void init(){
-        spinner = (Spinner)findViewById(R.id.spinner);
-        button = (Button)findViewById(R.id.button);
+    private void init() {
+        spinner = (Spinner) findViewById(R.id.spinner);
+        button = (Button) findViewById(R.id.button);
 
-        String[] data = new String[LabelsMock.labels.length];
+        ArrayList<String> data;
+        data = new ArrayList<>();
 
-        for (int index = 0; index < LabelsMock.labels.length; index++){
-            data[index] = LabelsMock.labels[index].LabelName;
+        for (int index = 0; index < LabelsMock.labels.length; index++) {
+            data.add(LabelsMock.labels[index].LabelName);
         }
 
-        ArrayAdapter labelsAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data);
+        final ArrayAdapter labelsAdapter = new  ArrayAdapter(this, android.R.layout.simple_spinner_item, data);
         labelsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(labelsAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLabel = position;
+                selectedLabelId = position;
             }
 
             @Override
@@ -200,22 +206,20 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = LabelsMock.getCodeById(selectedLabel);
-                sendMessage(MessagePaths.LABEL_MESSAGE_PATH, code.getBytes());
+                MessageModel messageModel = new MessageModel(selectedLabelId, LabelsMock.getCodeById(selectedLabelId), null, LabelsMock.getById(selectedLabelId).IsValued);
+                try
+                {
+                    GlobalHelper.nodeId = nodeId;
+                    GlobalHelper.apiClient = apiClient;
+                    GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, BytesHelper.toByteArray(messageModel));
+                }
+                catch (IOException e){
+                    //
+                }
             }
         });
     }
 
-    private void sendMessage( final String path, final byte[] data) {
-        if (nodeId != null) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Wearable.MessageApi.sendMessage(apiClient, nodeId, path, data).await();
-                }
-            }).start();
-        }
-    }
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -235,8 +239,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
 
     @Override
-    protected void onNewIntent(Intent intent)
-    {
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
     }

@@ -13,7 +13,8 @@ public class LabelsMock {
                     new Label(2, "tap2", "Кран №2", "Открывает  кран №2.", true),
                     new Label(3, "tube", "Пусковая пробка", "Пусковая пробка регулятора давления", true),
                     new Label(4, "switch", "Ключ настройки", "Ключ настройки регулятора давления", false),
-                    new Label(5, "nut", "Регулировочная гайка", "Закручивается по часовой стрелке. Каждый оборот 0,2...0,4 кПа", true)
+                    new Label(5, "nut", "Регулировочная гайка", "Закручивается по часовой стрелке. Каждый оборот 0,2...0,4 кПа", true),
+                    new Label(6, "helmet", "Каска", "Одеть каску", false)
             };
 
     public static Label getByCode(String code){
@@ -22,6 +23,20 @@ public class LabelsMock {
 
         for (int index = 0; index < labels.length; index++){
             if (labels[index].LabelCode.equals(code)){
+                result = labels[index];
+                isFound = true;
+            }
+        }
+
+        return isFound ? result : null;
+    }
+
+    public static  Label getById(long id){
+        Label result = null;
+        boolean isFound = false;
+
+        for (int index = 0; index < labels.length; index++){
+            if (labels[index].LabelId == id){
                 result = labels[index];
                 isFound = true;
             }

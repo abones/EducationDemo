@@ -1,5 +1,8 @@
 package ru.sibhtc.educationdemo.helpers;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
@@ -23,14 +26,18 @@ import static com.google.android.gms.internal.zzhu.runOnUiThread;
  * Created by Антон on 23.09.2015.
  **/
 public class GlobalHelper {
+
+    static ICallbackInterface callbackInterface = null;
+
     public static AppMode CurrentAppMode;
     public static long CurrentProgramId;
     public static long CurrentStudentId;
     public static long CurrentStepId;
     public static String ExpectedLableId;
     public static GoogleApiClient apiClient;
-    private static Map<String, String> modelParameters;
 
+    private static Map<String, String> modelParameters;
+    private static Boolean modelParametersLoading;
 
 
     //ссылки на фрагменты для взаимодействия с сообщеними из часов
@@ -44,7 +51,16 @@ public class GlobalHelper {
         GlobalHelper.learningFragment = learningFragment;
     }
 
-
+    public static String getModelParameterByLink(String link){
+        String result = "";
+        if (modelParameters == null){
+            result = "";
+        }
+        else {
+            result = modelParameters.get(link);
+        }
+        return result == null ? "" :result ;
+    }
 
     public static void sendMessage( final String path, final byte[] data ) {
         new Thread( new Runnable() {
@@ -70,13 +86,15 @@ public class GlobalHelper {
      *Опрашивает сервак о данных стенда
      *
      * */
-    public static void getServerInfo(){
+    public static void getServerInfo(ICallbackInterface callbackInterfaceForFinished){
+        callbackInterface = callbackInterfaceForFinished;
         SiteDataService SiteData = new SiteDataService(){
             @Override
             public void callbackFunction(){
                 writeParameters(getServerParameters());
             }
         };
+        modelParametersLoading = true;
         SiteData.execute(ApplicationConfigs.SERVER_URL);
     }
     /**
@@ -94,6 +112,15 @@ public class GlobalHelper {
                 modelParameters.put(entry.getKey(), entry.getValue());
             }
         }
+        modelParametersLoading = false;
+        callbackInterface.onDownloadFinished();
     }
 
+    public static void showToast(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
+
+    public static Boolean getModelParametersLoading() {
+        return modelParametersLoading;
+    }
 }
