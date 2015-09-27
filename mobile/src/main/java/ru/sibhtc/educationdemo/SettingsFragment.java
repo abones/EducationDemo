@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.sibhtc.educationdemo.constants.MessagePaths;
+import ru.sibhtc.educationdemo.constants.MessageStrings;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.AppMode;
@@ -46,13 +47,19 @@ public class SettingsFragment extends Fragment {
             return null;
         }
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        Spinner studentSpinner  = (Spinner) view.findViewById(R.id.studentSpinner);
-        Spinner programSpinner  = (Spinner) view.findViewById(R.id.programSpinner);
-        Button button           = (Button) view.findViewById(R.id.startLearningButton);
+        Spinner studentSpinner = (Spinner) view.findViewById(R.id.studentSpinner);
+        Spinner programSpinner = (Spinner) view.findViewById(R.id.programSpinner);
+        Button startEventbutton = (Button) view.findViewById(R.id.startLearningButton);//запускает либо экзамен либо обучение
+
+        if (appMode == AppMode.EXAMINE) {
+            startEventbutton.setText(MessageStrings.START_EXAM);
+        } else if (appMode == AppMode.LEARNING) {
+            startEventbutton.setText(MessageStrings.START_LEARNING);
+        }
 
         List<String> programList = new ArrayList<String>();
 
-        for(int index = 0; index < ProgrammsMock.getPrograms().size(); index++) {
+        for (int index = 0; index < ProgrammsMock.getPrograms().size(); index++) {
 
             Program program = ProgrammsMock.getPrograms().get(index);
             programList.add(program.programName);
@@ -61,7 +68,7 @@ public class SettingsFragment extends Fragment {
         String[] programs = new String[programList.size()];
         programList.toArray(programs);
 
-        ArrayAdapter studentsAdapter =  new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, StudentMock.getStudentNameList());
+        ArrayAdapter studentsAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, StudentMock.getStudentNameList());
         ArrayAdapter programsAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, programs);
 // Specify the layout to use when the list of choices appears
         studentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -72,7 +79,7 @@ public class SettingsFragment extends Fragment {
 
         selectedProgramm = 0;
 
-        button.setOnClickListener(new View.OnClickListener() {
+        startEventbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //отправляю сообщение на часы

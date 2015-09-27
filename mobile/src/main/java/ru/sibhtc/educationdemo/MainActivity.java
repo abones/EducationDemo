@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
                 break;
             }
             case R.id.itemExam:{
-                Intent intent =  new Intent(this, FirstFragmentActivity.class);
+                Intent intent =  new Intent(this, ExamActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 break;
