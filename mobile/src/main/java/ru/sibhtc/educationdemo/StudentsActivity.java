@@ -11,6 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.mock.AppMode;
+
 /**
  * Created by Антон on 16.09.2015.
  **/
@@ -35,6 +38,12 @@ public class StudentsActivity extends AppCompatActivity implements ActionBar.OnN
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalHelper.CurrentAppMode = AppMode.INFORMATION_SENDER;
     }
 
     @Override

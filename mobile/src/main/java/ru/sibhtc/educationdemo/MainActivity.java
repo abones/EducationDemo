@@ -11,6 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.mock.AppMode;
+
 
 public class MainActivity extends AppCompatActivity implements ActionBar.OnNavigationListener {
     final String LOG_TAG = "myLogs";
@@ -27,6 +30,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
         bar.setTitle(R.string.application_name);
         bar.setSubtitle(R.string.application_name_demo);
         bar.setDisplayHomeAsUpEnabled(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalHelper.CurrentAppMode = AppMode.INFORMATION_SENDER;
     }
 
     //NEW
