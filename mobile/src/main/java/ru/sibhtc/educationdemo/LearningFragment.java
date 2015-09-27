@@ -10,8 +10,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import ru.sibhtc.educationdemo.adapters.StepAdapter;
+import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.constants.MessageStrings;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.StepResult;
@@ -27,7 +29,6 @@ import ru.sibhtc.educationdemo.mock.StudentMock;
 public class LearningFragment extends Fragment {
     private ArrayList<Step> steps = new ArrayList<Step>();
     private ArrayList<Step> completeSteps = new ArrayList<Step>();
-    private ArrayList<Step> adapterSteps = new ArrayList<Step>();
     private Step currentStep;
 
 
@@ -62,6 +63,7 @@ public class LearningFragment extends Fragment {
                 steps = program.steps;
                 completeSteps.add(program.steps.get(0));
                 currentStep = completeSteps.get(0);
+                completeSteps.get(0).setStepStart(new Date());
                 programName = program.programName;
                 break;
             }
@@ -134,6 +136,7 @@ public class LearningFragment extends Fragment {
                     act.runOnUiThread(new Runnable() {
                         public void run() {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
+                            completeSteps.get(completeSteps.size() - 1).setStepEnd(new Date());
                             currentStep = steps.get(completeSteps.size());
                             adapter.refreshAdapter(steps.get(completeSteps.size()));
                         }
@@ -146,12 +149,13 @@ public class LearningFragment extends Fragment {
                     act.runOnUiThread(new Runnable() {
                         public void run() {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
-                            adapter.notifyDataSetChanged();
+                            adapter.refreshFinishedAdapter();
                         }
                     });
             }
         } else {
             GlobalHelper.showToast(getContext(), MessageStrings.LEARNING_INCORRECT_ANSWER);
+            GlobalHelper.sendMessage(MessagePaths.ERROR_MESSAGE_PATH, MessageStrings.LEARNING_INCORRECT_ANSWER.getBytes());
         }
     }
 }

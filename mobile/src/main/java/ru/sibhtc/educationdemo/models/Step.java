@@ -1,5 +1,7 @@
 package ru.sibhtc.educationdemo.models;
 
+import java.util.Date;
+
 import ru.sibhtc.educationdemo.mock.StepResult;
 
 /**
@@ -13,9 +15,12 @@ public class Step {
     private String checkValue;//контрольное значение которое должен достичь студент
     private String checkValueInterval;//если не null, то значение из интервала
     private String linkToParam;//ссылка на параметр с сервера, обычная строка с ид параметра
-    private String stepTitle;
-    private StepResult stepState;
+    private String stepTitle;//название шага
+    private StepResult stepState;//состояние шага
     private String labelCode;//код метки
+
+    private Date stepStart;
+    private Date stepEnd;
 
     public String getLabelCode() {
         return labelCode;
@@ -104,5 +109,21 @@ public class Step {
 
     public void setCheckValueInterval(String checkValueInterval) {
         this.checkValueInterval = checkValueInterval;
+    }
+
+    public Date getStepEnd() {
+        return stepEnd;
+    }
+
+    public void setStepEnd(Date stepEnd) {
+        this.stepEnd = stepEnd;
+    }
+
+    public Date getStepStart() {
+        return stepStart;
+    }
+
+    public void setStepStart(Date stepStart) {
+        this.stepStart = stepStart;
     }
 }

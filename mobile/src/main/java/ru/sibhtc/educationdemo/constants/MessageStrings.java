@@ -5,4 +5,5 @@ package ru.sibhtc.educationdemo.constants;
  */
 public class MessageStrings {
     public static final String LEARNING_INCORRECT_ANSWER = "Ответ не верный! Попробуйте еще раз";
+    public static final String LEARNING_FINISHED = "Обучение окончено!";
 }
