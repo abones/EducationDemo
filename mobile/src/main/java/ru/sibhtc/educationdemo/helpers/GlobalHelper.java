@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
+import ru.sibhtc.educationdemo.ExamFragment;
 import ru.sibhtc.educationdemo.LearningFragment;
 import ru.sibhtc.educationdemo.constants.ApplicationConfigs;
 import ru.sibhtc.educationdemo.mock.AppMode;
@@ -42,8 +43,18 @@ public class GlobalHelper {
 
     //ссылки на фрагменты для взаимодействия с сообщеними из часов
     private static LearningFragment learningFragment;
+    private static ExamFragment examFragment;
+
+    public static ExamFragment getExamFragment() {
+        return examFragment;
+    }
+
+    public static void setExamFragment(ExamFragment examFragment) {
+        GlobalHelper.examFragment = examFragment;
+    }
 
     public static LearningFragment getLearningFragment() {
+
         return learningFragment;
     }
 

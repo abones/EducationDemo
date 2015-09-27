@@ -41,6 +41,7 @@ public class LearningActivity extends AppCompatActivity {
         bar.setDisplayHomeAsUpEnabled(true);
 
         settingsFragment = new SettingsFragment();
+        settingsFragment.setAppMode(AppMode.LEARNING);
         learningFragment = new LearningFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fTrans = fragmentManager.beginTransaction();

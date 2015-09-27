@@ -69,6 +69,33 @@ public class WearMessageListenerService extends WearableListenerService {
 
                 }
             }
+            else if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE) {
+                //если экзамен, то всегда продолжаем выполнять задание
+                //
+                try {
+                    byte[] object = messageEvent.getData();
+                    messageModel = (MessageModel) BytesHelper.toObject(object);
+                    if (messageModel.isValued) {
+                        GlobalHelper.getServerInfo(new ICallbackInterface() {
+                            @Override
+                            public void onDownloadFinished() {
+                                studyAnswer();
+                            }
+                        });
+
+                    }else
+                    {
+                        studyAnswer();
+                    }
+
+                }
+                catch (IOException e){
+                    GlobalHelper.showToast(this, e.getMessage());
+                }//
+                catch (ClassNotFoundException e){
+
+                }
+            }
         } else {
             byte[] data = messageEvent.getData();
             String message = new String(data);
@@ -76,10 +103,14 @@ public class WearMessageListenerService extends WearableListenerService {
         }
     }
 
+    //для ассинхронных запросов к сайту при обучении
     private void studyAnswer(){
         GlobalHelper.getLearningFragment().wearAnswer(messageModel);
     }
-
+    //для ассинхронных запросов к сайту при обучении
+    private void examAnswer(){
+        GlobalHelper.getExamFragment().wearAnswer(messageModel);
+    }
 
     private void sendInformationMessage(String code) {
         Label label = LabelsMock.getByCode(code);

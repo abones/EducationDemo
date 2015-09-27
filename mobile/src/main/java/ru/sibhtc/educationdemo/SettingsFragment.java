@@ -16,6 +16,7 @@ import java.util.List;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.mock.AppMode;
 import ru.sibhtc.educationdemo.models.EventModel;
 import ru.sibhtc.educationdemo.models.Program;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
@@ -28,16 +29,20 @@ public class SettingsFragment extends Fragment {
     private int selectedProgramm;
     private int selectedStudent;
 
+    private AppMode appMode;
+
+    public AppMode getAppMode() {
+        return appMode;
+    }
+
+    public void setAppMode(AppMode appMode) {
+        this.appMode = appMode;
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (container == null) {
-            // We have different layouts, and in one of them this
-            // fragment's containing frame doesn't exist.  The fragment
-            // may still be created from its saved state, but there is
-            // no reason to try to create its view hierarchy because it
-            // won't be displayed.  Note this is not needed -- we could
-            // just run the code below, where we would create and return
-            // the view hierarchy; it would just never be used.
+
             return null;
         }
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -73,23 +78,28 @@ public class SettingsFragment extends Fragment {
                 //отправляю сообщение на часы
                 EventModel exam = new EventModel("Иванов", "Вывод на режим");
                 byte[] data;
-                String path;
+                String path = "";
 
-                try
-                {
+                try {
                     data = BytesHelper.toByteArray(exam);
-                    path = MessagePaths.STUDY_MESSAGE_PATH;
-                }
-                catch (Exception ex)
-                {
+                    if (appMode == AppMode.LEARNING) {
+                        path = MessagePaths.STUDY_MESSAGE_PATH;
+                    } else if (appMode == AppMode.EXAMINE) {
+                        path = MessagePaths.EXAM_MESSAGE_PATH;
+                    }
+                } catch (Exception ex) {
                     data = ex.getMessage().getBytes();
                     path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
                 GlobalHelper.sendMessage(path, data);
 
-                LearningActivity activity = (LearningActivity)getActivity();
-
-                activity.startLearning(selectedProgramm, selectedStudent);
+                if (appMode == AppMode.LEARNING) {
+                    LearningActivity activity = (LearningActivity) getActivity();
+                    activity.startLearning(selectedProgramm, selectedStudent);
+                } else if (appMode == AppMode.EXAMINE) {
+                    ExamActivity activity = (ExamActivity) getActivity();
+                    activity.startExam(selectedProgramm, selectedStudent);
+                }
             }
         });
 
