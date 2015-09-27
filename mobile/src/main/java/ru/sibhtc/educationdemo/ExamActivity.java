@@ -1,27 +1,26 @@
 package ru.sibhtc.educationdemo;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ru.sibhtc.educationdemo.constants.MessageStrings;
+import ru.sibhtc.educationdemo.fragments.ExamFragment;
+import ru.sibhtc.educationdemo.fragments.SettingsFragment;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.AppMode;
 
@@ -60,29 +59,26 @@ public class ExamActivity extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(MessageStrings.EXAM_PROCESSED)
-                .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
-                .setCancelable(false)
-                .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-                        dialog.cancel();
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(MessageStrings.EXAM_PROCESSED)
+                    .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
+                    .setCancelable(false)
+                    .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            ExamActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton(MessageStrings.MAIN_NO, null);
+            AlertDialog alert = builder.create();
+            alert.show();
 
-                    }
-                })
-                .setNegativeButton(MessageStrings.MAIN_NO,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-
-                            }
-                        });
-        AlertDialog alert = builder.create();
-        alert.show();
-
+            return true;
+        } else{
+            return super.onKeyDown(keyCode,event);
+        }
     }
 
 
@@ -95,23 +91,61 @@ public class ExamActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        final Context that = getApplicationContext();
         switch (item.getItemId()) {
             case R.id.itemStudents: {
-                Intent intent = new Intent(this, StudentsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(MessageStrings.EXAM_PROCESSED)
+                        .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
+                        .setCancelable(false)
+                        .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(that, StudentsActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(MessageStrings.MAIN_NO, null);
+                AlertDialog alert = builder.create();
+                alert.show();
                 break;
             }
-            case R.id.itemExam: {
-                Intent intent = new Intent(this, ExamActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+            case R.id.itemLearning: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(MessageStrings.EXAM_PROCESSED)
+                        .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
+                        .setCancelable(false)
+                        .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(that, LearningActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(MessageStrings.MAIN_NO, null);
+                AlertDialog alert = builder.create();
+                alert.show();
+                break;
+            }
+            case android.R.id.home:{
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(MessageStrings.EXAM_PROCESSED)
+                        .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
+                        .setCancelable(false)
+                        .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                ExamActivity.this.finish();
+                            }
+                        })
+                        .setNegativeButton(MessageStrings.MAIN_NO, null);
+                AlertDialog alert = builder.create();
+                alert.show();
                 break;
             }
             default:
                 return super.onOptionsItemSelected(item);
         }
-        return false;
+        return true;
     }
 
     public void startExam(int programId, int studentId) {

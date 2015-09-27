@@ -14,7 +14,7 @@
 
         <fragment
             android:id="@+id/titles"
-            class="ru.sibhtc.educationdemo.TitlesFragment"
+            class="ru.sibhtc.educationdemo.fragments.TitlesFragment"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"

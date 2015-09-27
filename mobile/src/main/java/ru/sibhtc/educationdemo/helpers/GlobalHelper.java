@@ -9,14 +9,11 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.StringTokenizer;
 
-import ru.sibhtc.educationdemo.ExamFragment;
-import ru.sibhtc.educationdemo.LearningFragment;
+import ru.sibhtc.educationdemo.fragments.ExamFragment;
+import ru.sibhtc.educationdemo.fragments.LearningFragment;
 import ru.sibhtc.educationdemo.constants.ApplicationConfigs;
 import ru.sibhtc.educationdemo.mock.AppMode;
 import ru.sibhtc.educationdemo.services.SiteDataService;
