@@ -1,4 +1,4 @@
-package ru.sibhtc.educationdemo;
+package ru.sibhtc.educationdemo.activities;
 
 
 import android.app.AlertDialog;
@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.constants.MessageStrings;
 import ru.sibhtc.educationdemo.fragments.LearningFragment;
 import ru.sibhtc.educationdemo.fragments.SettingsFragment;

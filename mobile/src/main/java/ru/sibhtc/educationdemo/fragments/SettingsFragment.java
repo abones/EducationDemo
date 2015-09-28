@@ -13,8 +13,8 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.sibhtc.educationdemo.ExamActivity;
-import ru.sibhtc.educationdemo.LearningActivity;
+import ru.sibhtc.educationdemo.activities.ExamActivity;
+import ru.sibhtc.educationdemo.activities.LearningActivity;
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.constants.MessageStrings;

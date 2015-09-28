@@ -1,7 +1,9 @@
-package ru.sibhtc.educationdemo;
+package ru.sibhtc.educationdemo.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import ru.sibhtc.educationdemo.R;
 
 /**
  * Created by Антон on 15.09.2015.

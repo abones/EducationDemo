@@ -1,5 +1,4 @@
-package ru.sibhtc.educationdemo;
-
+package ru.sibhtc.educationdemo.activities;
 
 
 import android.content.Intent;
@@ -9,33 +8,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
+import ru.sibhtc.educationdemo.R;
+import ru.sibhtc.educationdemo.activities.ExamActivity;
+import ru.sibhtc.educationdemo.activities.LearningActivity;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.AppMode;
 
-
-public class MainActivity extends AppCompatActivity implements ActionBar.OnNavigationListener {
+/**
+ * Created by Антон on 16.09.2015.
+ **/
+public class StudentsActivity extends AppCompatActivity implements ActionBar.OnNavigationListener{
     final String LOG_TAG = "myLogs";
     private static final String TAG = "junk";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ImageView imageView = (ImageView) findViewById(R.id.start_background);
-        imageView.setImageResource(R.mipmap.ic_main_logo);
+        setContentView(R.layout.activity_students);
 
         ActionBar bar = getSupportActionBar();
         bar.setTitle(R.string.application_name);
         bar.setSubtitle(R.string.application_name_demo);
-        bar.setDisplayHomeAsUpEnabled(false);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        GlobalHelper.CurrentAppMode = AppMode.INFORMATION_SENDER;
+        bar.setDisplayHomeAsUpEnabled(true);
     }
 
     //NEW
@@ -47,6 +42,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalHelper.CurrentAppMode = AppMode.INFORMATION_SENDER;
+    }
+
+    @Override
     public boolean onNavigationItemSelected(int itemPosition, long itemId) {
         return false;
     }
@@ -54,12 +55,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
-            case R.id.itemStudents:{
-                Intent intent =  new Intent(this, StudentsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                break;
-            }
             case R.id.itemLearning:{
                 Intent intent =  new Intent(this, LearningActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

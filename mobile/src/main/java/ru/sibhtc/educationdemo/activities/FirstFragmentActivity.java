@@ -1,4 +1,4 @@
-package ru.sibhtc.educationdemo;
+package ru.sibhtc.educationdemo.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
