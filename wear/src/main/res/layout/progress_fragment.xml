@@ -24,6 +24,7 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
+        android:paddingBottom="5dp"
         android:textColor="@color/gp_blue"/>
 
     <ProgressBar

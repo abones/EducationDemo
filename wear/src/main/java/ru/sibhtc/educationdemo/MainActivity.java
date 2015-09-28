@@ -27,6 +27,12 @@ import java.util.List;
 
 import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
+import ru.sibhtc.educationdemo.fragments.ExamWearFragment;
+import ru.sibhtc.educationdemo.fragments.InfoFragment;
+import ru.sibhtc.educationdemo.fragments.LearningWearFragment;
+import ru.sibhtc.educationdemo.fragments.LogicalFragment;
+import ru.sibhtc.educationdemo.fragments.ProgressFragment;
+import ru.sibhtc.educationdemo.fragments.WaitingFragment;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
@@ -51,6 +57,16 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
+
+
+        Fragment fragment = new WaitingFragment();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
+        } else {
+            fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
+        }
+        fragmentTransaction.commit();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         initGoogleApiClient();
         init();
@@ -119,7 +135,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         break;
                     }
                     case IntentTypes.Exam: {
-                        Fragment fragment = new ExamFragment();
+                        Fragment fragment = new ExamWearFragment();
                         Bundle bundle = intent.getExtras();
                         byte[] bytes = bundle.getByteArray("infoArray");
                         Bundle fragBundle = new Bundle();
@@ -128,9 +144,26 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LOGICAL");
+                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "EXAM");
                         } else {
-                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "LOGICAL");
+                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "EXAM");
+                        }
+                        fragmentTransaction.commit();
+                        break;
+                    }
+                    case IntentTypes.Learning:{
+                        Fragment fragment = new LearningWearFragment();
+                        Bundle bundle = intent.getExtras();
+                        byte[] bytes = bundle.getByteArray("infoArray");
+                        Bundle fragBundle = new Bundle();
+                        fragBundle.putByteArray("info", bytes);
+                        fragment.setArguments(fragBundle);
+
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LEARNING");
+                        } else {
+                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "LEARNING");
                         }
                         fragmentTransaction.commit();
                         break;
@@ -167,7 +200,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                 if (nodes.size() > 0)
                     nodeId = nodes.get(0).getId();
 
-                if (nodeId.equals("cloud") && nodes.size() > 1) {
+                if (nodeId != null && nodeId.equals("cloud") && nodes.size() > 1) {
                     nodeId = nodes.get(1).getId();
                 }
 
