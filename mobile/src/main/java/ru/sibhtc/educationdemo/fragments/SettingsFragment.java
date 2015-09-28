@@ -85,6 +85,8 @@ public class SettingsFragment extends Fragment {
         startEventbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //обновляю все моки
+                ProgrammsMock.resetProgramm();
                 //отправляю сообщение на часы
                 EventModel exam = new EventModel("Иванов", "Вывод на режим");
                 byte[] data;

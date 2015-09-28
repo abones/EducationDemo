@@ -12,6 +12,10 @@ import ru.sibhtc.educationdemo.models.Step;
 public class ProgrammsMock {
     private static ArrayList<Program> programs;
 
+    public static void resetProgramm(){
+        programs = null;
+    }
+
     public static ArrayList<Program> getPrograms() {
         if (programs == null) {
             programs = new ArrayList<Program>();
