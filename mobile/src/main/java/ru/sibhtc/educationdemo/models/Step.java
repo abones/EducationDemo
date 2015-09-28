@@ -21,6 +21,7 @@ public class Step {
 
     private Date stepStart;
     private Date stepEnd;
+    private String enteredValue; //значение,которое студентик ввел
 
     public String getLabelCode() {
         return labelCode;
@@ -125,5 +126,13 @@ public class Step {
 
     public void setStepStart(Date stepStart) {
         this.stepStart = stepStart;
+    }
+
+    public String getEnteredValue() {
+        return enteredValue;
+    }
+
+    public void setEnteredValue(String enteredValue) {
+        this.enteredValue = enteredValue;
     }
 }

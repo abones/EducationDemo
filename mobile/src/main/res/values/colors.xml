@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="progress_gray">#A9A9A9</color>
+    <color name="step_value_error">#FF4500</color>
+    <color name="step_value_success">#000000</color>
 </resources>

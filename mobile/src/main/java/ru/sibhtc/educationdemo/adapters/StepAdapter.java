@@ -2,6 +2,8 @@ package ru.sibhtc.educationdemo.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +51,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
         int diffInDays = (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
 
-        return String.valueOf(diffSeconds % 60) + ":" + String.valueOf(diffSeconds - diffSeconds % 60) ;
+        return String.valueOf(diffSeconds % 60) + ":" + String.valueOf(diffSeconds - diffSeconds % 60);
     }
 
     @Override
@@ -67,11 +69,11 @@ public class StepAdapter extends ArrayAdapter<Step> {
             holder.imageView = (ImageView) row.findViewById(R.id.imageView);
             holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
             holder.stepTime = (TextView) row.findViewById(R.id.stepTime);
+            holder.stepValue = (TextView) row.findViewById(R.id.stepValue);
             row.setTag(holder);
         } else {
             holder = (StepHolder) row.getTag();
         }
-
 
         switch (data.get(position).getStepState()) {
             case SUCCESS:
@@ -82,6 +84,8 @@ public class StepAdapter extends ArrayAdapter<Step> {
                 holder.stepTime.setText("(" +
                         getDiffDate(data.get(position).getStepStart(),
                                 data.get(position).getStepEnd()) + ")");
+                holder.stepValue.setText(data.get(position).getEnteredValue());
+                holder.stepValue.setTextColor(Color.BLACK);
                 break;
             case ERROR:
                 holder.imageView.setImageResource(R.mipmap.error);
@@ -90,11 +94,15 @@ public class StepAdapter extends ArrayAdapter<Step> {
                 holder.stepTime.setText("(" +
                         getDiffDate(data.get(position).getStepStart(),
                                 data.get(position).getStepEnd()) + ")");
+                holder.stepValue.setText(data.get(position).getEnteredValue());
+                holder.stepValue.setTextColor(Color.RED);
+
                 break;
             case WAITING:
                 holder.imageView.setVisibility(View.INVISIBLE);
                 holder.progressBar.setVisibility(View.VISIBLE);
                 holder.stepTime.setText("");
+                holder.stepValue.setText("");
                 break;
         }
 
@@ -111,7 +119,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
         notifyDataSetChanged();
     }
 
-    public synchronized void refreshFinishedAdapter(){
+    public synchronized void refreshFinishedAdapter() {
         data.get(data.size() - 1).setStepEnd(new Date());
         lastStep = true;
         notifyDataSetChanged();
@@ -123,5 +131,6 @@ public class StepAdapter extends ArrayAdapter<Step> {
         TextView stepTime;
         ImageView imageView;
         ProgressBar progressBar;
+        TextView stepValue;
     }
 }

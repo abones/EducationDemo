@@ -27,15 +27,8 @@ import ru.sibhtc.educationdemo.models.Step;
 /**
  * Created by Антон on 17.09.2015.
  **/
-public class ExamFragment extends Fragment {
-    private ArrayList<Step> steps = new ArrayList<Step>();
-    private ArrayList<Step> completeSteps = new ArrayList<Step>();
-    private Step currentStep;
+public class ExamFragment extends EventFragment {
 
-
-    private View view;
-    private ListView listSteps;
-    private StepAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,33 +83,7 @@ public class ExamFragment extends Fragment {
 
     }
 
-    private Boolean checkAnswer(MessageModel messageModel) {
-        Boolean result = false;
-        if (currentStep.getNeedCheckValue()) {
 
-                String serverValue = GlobalHelper.getModelParameterByLink(currentStep.getLinkToParam());
-
-            if (currentStep.getLabelCode().equals(messageModel.labelCode) ){
-                if (currentStep.getCheckValueInterval() == null)
-                {
-                    if (currentStep.getCheckValue().equals(serverValue))
-                        result = true;
-                }else
-                {
-                    if (Double.parseDouble(currentStep.getCheckValue()) <= Double.parseDouble(serverValue) &&
-                            Double.parseDouble(currentStep.getCheckValueInterval()) >= Double.parseDouble(serverValue) )
-                    {
-                        result = true;
-                    }
-                }
-            }
-        } else {
-            if (currentStep.getLabelCode().equals(messageModel.labelCode)) {
-                result = true;
-            }
-        }
-        return  result;
-    }
 
     public void wearAnswer(MessageModel messageModel) {
 
@@ -133,9 +100,7 @@ public class ExamFragment extends Fragment {
                             adapter.refreshAdapter(steps.get(completeSteps.size()));
                         }
                     });
-            }
-            else
-            {
+            } else {
                 final Activity act = getActivity(); //only neccessary if you use fragments
                 if (act != null)
                     act.runOnUiThread(new Runnable() {
