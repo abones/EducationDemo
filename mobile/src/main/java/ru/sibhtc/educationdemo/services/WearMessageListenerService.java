@@ -49,12 +49,15 @@ public class WearMessageListenerService extends WearableListenerService {
                     byte[] object = messageEvent.getData();
                     messageModel = (MessageModel) BytesHelper.toObject(object);
                     if (messageModel.isValued) {
-                        GlobalHelper.getServerInfo(new ICallbackInterface() {
+                        //TODO заглушка для локальной сети
+                        GlobalHelper.setMockModelParameters();
+                        studyAnswer();
+                        /*GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
                                 studyAnswer();
                             }
-                        });
+                        });*/
 
                     }else
                     {

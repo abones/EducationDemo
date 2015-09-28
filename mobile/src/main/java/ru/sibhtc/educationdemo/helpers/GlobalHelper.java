@@ -42,6 +42,18 @@ public class GlobalHelper {
     private static LearningFragment learningFragment;
     private static ExamFragment examFragment;
 
+
+    public static void setMockModelParameters(){
+        if (modelParameters == null)
+            modelParameters = new HashMap<String, String>();
+        modelParameters.clear();
+
+        modelParameters.put("SwitchIn", "0");
+        modelParameters.put("SwitchOut", "0");
+        modelParameters.put("PresureOut", "2.0");
+
+    }
+
     public static ExamFragment getExamFragment() {
         return examFragment;
     }
@@ -116,9 +128,9 @@ public class GlobalHelper {
             modelParameters = new HashMap<String, String>();
 
         for (Map.Entry<String, String> entry: parameters.entrySet()){
-            if (modelParameters.get(entry.getKey()) == null){
+            //if (modelParameters.get(entry.getKey()) != null){
                 modelParameters.put(entry.getKey(), entry.getValue());
-            }
+            //}
         }
         modelParametersLoading = false;
         callbackInterface.onDownloadFinished();

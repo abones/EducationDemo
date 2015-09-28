@@ -109,3 +109,7 @@ local.properties
 mobile/mobile.iml
 
 wear/wear.iml
+
+.idea/vcs.xml
+
+.idea/libraries/play_services_wearable_7_8_0.xml
