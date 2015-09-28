@@ -16,4 +16,9 @@
 
 
     <string name="url_parameters">http://109.123.141.47/</string>
+    <string name="detail_result_date_event">Дата сдачи</string>
+    <string name="detail_result_time_result">Время</string>
+    <string name="detail_result_error_count">Ошибок</string>
+    <string name="detail_result_result_rating">Оценка</string>
+    <string name="details_result_caption">Результаты студента</string>
 </resources>

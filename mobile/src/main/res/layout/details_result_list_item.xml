@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/date_event"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="@string/detail_result_date_event"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/date_event_value"
+        android:background="#87CEEB"/>
+    <TextView
+        android:id="@+id/date_event_value"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="#87CEEB"/>
+
+
+    <TextView
+        android:id="@+id/time_result_value"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text=""
+        android:layout_below="@+id/date_event"
+        android:layout_toEndOf="@+id/date_event" />
+
+
+    <TextView
+        android:id="@+id/time_result"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="@string/detail_result_time_result"
+        android:layout_below="@+id/date_event"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/time_result_value" />
+    <TextView
+        android:id="@+id/error_count_value"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text=""
+        android:layout_below="@+id/time_result"
+        android:layout_toEndOf="@+id/time_result" />
+
+
+    <TextView
+        android:id="@+id/error_count"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="@string/detail_result_error_count"
+        android:layout_below="@+id/time_result"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/error_count_value" />
+
+    <TextView
+        android:id="@+id/result_rating_value"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/error_count"
+        android:layout_toEndOf="@+id/error_count"
+
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/result_rating"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="@string/detail_result_result_rating"
+        android:layout_below="@+id/error_count"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/result_rating_value" />
+    <ImageView
+        android:id="@+id/result_rating_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/error_count_value"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="" />
+</RelativeLayout>
