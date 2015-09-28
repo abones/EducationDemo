@@ -66,44 +66,54 @@ public class LearningActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (GlobalHelper.CurrentAppMode == AppMode.LEARNING) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(MessageStrings.LEARNING_PROCESSED)
+                    .setMessage(MessageStrings.LEARNING_ARE_SURE_FINISHED)
+                    .setCancelable(false)
+                    .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            changeActivityByMenu(item);
+                        }
+                    })
+                    .setNegativeButton(MessageStrings.MAIN_NO, null);
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            changeActivityByMenu(item);
+        }
+        return true;
+    }
+
+    private void changeActivityByMenu(MenuItem item) {
         final Context that = getApplicationContext();
-        switch(item.getItemId()){
-            case R.id.itemStudents:{
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(MessageStrings.LEARNING_PROCESSED)
-                        .setMessage(MessageStrings.LEARNING_ARE_SURE_FINISHED)
-                        .setCancelable(false)
-                        .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(that, StudentsActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(MessageStrings.MAIN_NO, null);
-                AlertDialog alert = builder.create();
-                alert.show();
+        switch (item.getItemId()) {
+            case R.id.itemStudents: {
+                Intent intent = new Intent(that, StudentsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             }
-            case R.id.itemExam:{
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(MessageStrings.LEARNING_PROCESSED)
-                        .setMessage(MessageStrings.LEARNING_ARE_SURE_FINISHED)
-                        .setCancelable(false)
-                        .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(that, ExamActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(MessageStrings.MAIN_NO, null);
-                AlertDialog alert = builder.create();
-                alert.show();
+            case R.id.itemExam: {
+                Intent intent = new Intent(that, ExamActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             }
-            case android.R.id.home:{
+            case android.R.id.home: {
+                LearningActivity.this.finish();
+                break;
+            }
+            //default:
+                //return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (GlobalHelper.CurrentAppMode == AppMode.LEARNING) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(MessageStrings.LEARNING_PROCESSED)
                         .setMessage(MessageStrings.LEARNING_ARE_SURE_FINISHED)
@@ -116,40 +126,18 @@ public class LearningActivity extends AppCompatActivity {
                         .setNegativeButton(MessageStrings.MAIN_NO, null);
                 AlertDialog alert = builder.create();
                 alert.show();
-                break;
+
+                return true;
+            } else {
+                return super.onKeyDown(keyCode, event);
             }
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(MessageStrings.LEARNING_PROCESSED)
-                    .setMessage(MessageStrings.LEARNING_ARE_SURE_FINISHED)
-                    .setCancelable(false)
-                    .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            LearningActivity.this.finish();
-                        }
-                    })
-                    .setNegativeButton(MessageStrings.MAIN_NO, null);
-            AlertDialog alert = builder.create();
-            alert.show();
-
-            return true;
-        } else{
-            return super.onKeyDown(keyCode,event);
+        } else {
+            return super.onKeyDown(keyCode, event);
         }
     }
 
 
-
-    public void startLearning(int programId, int studentId){
+    public void startLearning(int programId, int studentId) {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
         Bundle bundle = new Bundle();

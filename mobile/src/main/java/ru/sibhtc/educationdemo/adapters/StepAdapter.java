@@ -45,13 +45,13 @@ public class StepAdapter extends ArrayAdapter<Step> {
 
     private String getDiffDate(Date startDate, Date endDate) {
         long diff = endDate.getTime() - startDate.getTime();
-        long diffSeconds = diff / 1000 % 60;
+        long diffSeconds = diff / 1000;
         long diffMinutes = diff / (60 * 1000) % 60;
         long diffHours = diff / (60 * 60 * 1000);
         int diffInDays = (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
 
-        return String.valueOf(diffSeconds % 60) + ":" + String.valueOf(diffSeconds - diffSeconds % 60);
+        return String.valueOf(diffSeconds / 60) + ":" + String.valueOf(diffSeconds - (diffSeconds / 60) * 60);
     }
 
     @Override

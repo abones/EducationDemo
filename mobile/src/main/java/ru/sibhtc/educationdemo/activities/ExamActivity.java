@@ -61,74 +61,8 @@ public class ExamActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(MessageStrings.EXAM_PROCESSED)
-                    .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
-                    .setCancelable(false)
-                    .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            ExamActivity.this.finish();
-                        }
-                    })
-                    .setNegativeButton(MessageStrings.MAIN_NO, null);
-            AlertDialog alert = builder.create();
-            alert.show();
-
-            return true;
-        } else{
-            return super.onKeyDown(keyCode,event);
-        }
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        final Context that = getApplicationContext();
-        switch (item.getItemId()) {
-            case R.id.itemStudents: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(MessageStrings.EXAM_PROCESSED)
-                        .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
-                        .setCancelable(false)
-                        .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(that, StudentsActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(MessageStrings.MAIN_NO, null);
-                AlertDialog alert = builder.create();
-                alert.show();
-                break;
-            }
-            case R.id.itemLearning: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(MessageStrings.EXAM_PROCESSED)
-                        .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
-                        .setCancelable(false)
-                        .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(that, LearningActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(MessageStrings.MAIN_NO, null);
-                AlertDialog alert = builder.create();
-                alert.show();
-                break;
-            }
-            case android.R.id.home:{
+        if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(MessageStrings.EXAM_PROCESSED)
                         .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
@@ -141,12 +75,69 @@ public class ExamActivity extends AppCompatActivity {
                         .setNegativeButton(MessageStrings.MAIN_NO, null);
                 AlertDialog alert = builder.create();
                 alert.show();
+
+                return true;
+            } else {
+                return super.onKeyDown(keyCode, event);
+            }
+        }else
+        {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(MessageStrings.EXAM_PROCESSED)
+                    .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)
+                    .setCancelable(false)
+                    .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            changeActivityByMenu(item);
+                        }
+                    })
+                    .setNegativeButton(MessageStrings.MAIN_NO, null);
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            changeActivityByMenu(item);
+        }
+
+        return true;
+    }
+
+    private void changeActivityByMenu(MenuItem item) {
+        final Context that = getApplicationContext();
+        switch (item.getItemId()) {
+            case R.id.itemStudents: {
+                Intent intent = new Intent(that, StudentsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             }
-            default:
-                return super.onOptionsItemSelected(item);
+            case R.id.itemLearning: {
+                Intent intent = new Intent(that, LearningActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+            }
+            case android.R.id.home: {
+                ExamActivity.this.finish();
+                break;
+            }
+            //default:
+            //return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     public void startExam(int programId, int studentId) {
