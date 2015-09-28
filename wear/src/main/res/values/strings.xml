@@ -13,4 +13,6 @@
     <string name="exam_fragment_title">Экзамен</string>
     <string name="test_title">Lorem Ipsum</string>
     <string name="test_info">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</string>
+    <string name="waiting_screen_message">Поднесите устройство к метке!</string>
+    <string name="image_content">Поднесите к метке</string>
 </resources>
