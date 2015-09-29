@@ -31,6 +31,7 @@ import java.util.List;
 import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.fragments.ExamWearFragment;
+import ru.sibhtc.educationdemo.fragments.InfoFirstDescriptionFragment;
 import ru.sibhtc.educationdemo.fragments.InfoFragment;
 import ru.sibhtc.educationdemo.fragments.LearningWearFragment;
 import ru.sibhtc.educationdemo.fragments.LogicalFragment;
@@ -51,6 +52,11 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     private FrameLayout frameLayout;
     private String nodeId;
     private FragmentManager fragmentManager;
+    private String intentType;
+
+    public void setIntentType(String intentType) {
+        this.intentType = intentType;
+    }
 
     private static final long CONNECTION_TIME_OUT_MS = 100;
     private static final String MOBILE_PATH = "/mobile";
@@ -82,11 +88,11 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         super.onResume();
         Intent intent = getIntent();
         if (intent != null) {
-            String type = intent.getStringExtra("type");
-            if (type == null)
-                type = IntentTypes.Info;
+            intentType = intent.getStringExtra("type");
+            if (intentType == null)
+                intentType = IntentTypes.Info;
 
-            switch (type) {
+            switch (intentType) {
                 case IntentTypes.Info: {
                     Fragment fragment;
                     Bundle bundle = intent.getExtras();
@@ -263,23 +269,52 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     //метод будет заменять инфу в открытом фрагменте или же сменит фрагмент
     //если сменился режим приложения
     public void changeInformation(byte[] data) {
-        if (this.fragmentManager.getFragments().get(0) instanceof WaitingFragment) {
+        switch (intentType){
+            case IntentTypes.Info:{
+                if (this.fragmentManager.getFragments().get(0) instanceof WaitingFragment) {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", data);
+                    Fragment fragment = new InfoFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            Bundle fragBundle = new Bundle();
-            fragBundle.putByteArray("info", data);
-            Fragment fragment = new InfoFragment();
-            fragment.setArguments(fragBundle);
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
+                    Fragment fragment2 = new InfoFirstDescriptionFragment();
+                    fragmentTransaction.add(R.id.watchDataFrame2, fragment2, "INFODescription");
 
-            if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
-            } else {
-                fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
+                    fragmentTransaction.commit();
+                } else if (this.fragmentManager.getFragments().get(0) instanceof InfoFragment) {
+                    //вывод информации на фрайм
+                    ((InfoFragment) this.fragmentManager.getFragments().get(0)).changeInformation(data);
+                }
+
+                break;
+
+
             }
-            fragmentTransaction.commit();
-        } else if (this.fragmentManager.getFragments().get(0) instanceof InfoFragment) {
-            ((InfoFragment) this.fragmentManager.getFragments().get(0)).changeInformation(data);
+            case IntentTypes.Learning:{
+                if (this.fragmentManager.getFragments().get(0) instanceof LearningWearFragment) {
+                    //вывод информации на фрайм
+                    ((LearningWearFragment) this.fragmentManager.getFragments().get(0)).changeInformation(data);
+                } else {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", data);
+                    Fragment fragment = new LearningWearFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LearningModel");
+                    fragmentTransaction.commit();
+                }
+
+                break;
+            }
+            case IntentTypes.Exam:{
+                break;
+            }
         }
+
     }
 
 }

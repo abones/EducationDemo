@@ -71,7 +71,8 @@ public class InfoFragment extends Fragment {
     private void setInformation(final byte[] data) {
         LabelNFC labelNFC = getObjectByByteArray(data);
         infoTitle.setText(labelNFC.labelName);
-        infoControlValue.setText(labelNFC.controlValue + " " + labelNFC.valueMeasure);
+        infoControlValue.setText( labelNFC.controlValue ==null?"": labelNFC.controlValue +
+                " " + labelNFC.valueMeasure == null? "" : labelNFC.valueMeasure);
         infoText.setText(labelNFC.labelDescription);
     }
 }

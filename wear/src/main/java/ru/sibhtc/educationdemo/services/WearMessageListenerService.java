@@ -1,7 +1,10 @@
 package ru.sibhtc.educationdemo.services;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -22,85 +25,57 @@ public class WearMessageListenerService extends WearableListenerService {
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         byte[] data = messageEvent.getData();
-        String message = "";
-        switch (messageEvent.getPath()) {
-            case MessagePaths.OBJECT_MESSAGE_PATH: {
-                try {
-                    TestSendModel test = (TestSendModel) BytesHelper.toObject(data);
-                    message = "From object:" + test.Message;
-                } catch (Exception ex) {
-                    message = "Ошибка распаковки";
-                }
-                showToast(message);
-                break;
-            }
-            case MessagePaths.ERROR_MESSAGE_PATH: {
-                message = new String(data);
-                showToast(message);
-                break;
-            }
 
-            case MessagePaths.PROGRESS_MESSAGE_PATH: {
-                Intent intent = new Intent(this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("type", IntentTypes.Progress);
-                bundle.putByteArray("infoArray", data);
-                intent.putExtras(bundle);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                break;
-            }
-            case MessagePaths.LOGICAL_MESSAGE_PATH: {
-                Intent intent = new Intent(this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("type", IntentTypes.Logical);
-                bundle.putByteArray("infoArray", data);
-                intent.putExtras(bundle);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+        String intentType = null;
+
+        switch (messageEvent.getPath()) {
+            case MessagePaths.ERROR_MESSAGE_PATH: {
+                String message = new String(data);
+                Vibrator vibratorNFCCheck = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibratorNFCCheck.vibrate(100);
+                vibratorNFCCheck.vibrate(100);
+                showToast(message);
                 break;
             }
             case MessagePaths.EXAM_EVENT_MESSAGE_PATH: {
-                Intent intent = new Intent(this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("type", IntentTypes.Exam);
-                bundle.putByteArray("infoArray", data);
-                intent.putExtras(bundle);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                intentType = IntentTypes.Exam;
                 break;
             }
             case MessagePaths.STUDY_EVENT_MESSAGE_PATH: {
-                Intent intent = new Intent(this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("type", IntentTypes.Study);
-                bundle.putByteArray("infoArray", data);
-                intent.putExtras(bundle);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                intentType = IntentTypes.Learning;
                 break;
             }
             case MessagePaths.INFO_MESSAGE_PATH: {
-
-                if (GlobalHelper.mainActivity == null) {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("type", IntentTypes.Info);
-                    bundle.putByteArray("infoArray", data);
-                    intent.putExtras(bundle);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-                else{
-                    GlobalHelper.mainActivity.changeInformation(data);
-                }
+                intentType = IntentTypes.Info;
                 break;
+            }
+        }
+
+        if (intentType != null) {
+            if (GlobalHelper.mainActivity == null) {
+                prepareAndStartActivity(intentType, data);
+            } else {
+                GlobalHelper.mainActivity.setIntentType(intentType);
+                GlobalHelper.mainActivity.changeInformation(data);
             }
         }
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    private void prepareAndStartActivity(String intentType, byte[] data) {
+        Intent intent = new Intent(this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", intentType);
+        bundle.putByteArray("infoArray", data);
+        intent.putExtras(bundle);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
+
+    private void showToast(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 0 );
+        toast.show();
+    }
+
 
 }

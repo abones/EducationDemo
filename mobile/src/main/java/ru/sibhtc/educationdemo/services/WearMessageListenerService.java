@@ -117,6 +117,8 @@ public class WearMessageListenerService extends WearableListenerService {
         GlobalHelper.getExamFragment().wearAnswer(messageModel);
     }
 
+
+    //отправка сообщения с новой информацией об запрошенном объекте
     private void sendInformationMessage(String code) {
         LabelNFC labelNFC = LabelsMock.getByCode(code).makeNFCCopy();
         boolean isGeneratedArray;
@@ -136,6 +138,5 @@ public class WearMessageListenerService extends WearableListenerService {
             }
         }
     }
-
 
 }
