@@ -13,6 +13,7 @@ public class LabelNFC implements Serializable{
     public boolean isValued;
     public String valueMeasure;//единицы измерения
     public String   controlValue;//ожидаемое значение
+    public String enteredValue; //значение снятое со стенда
     public String value; //значение снятое со стенда
 
     public boolean isBool;

@@ -86,101 +86,70 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
             if (type == null)
                 type = IntentTypes.Info;
 
-            if (type != null) {
-                switch (type) {
-                    case IntentTypes.Info: {
-                        Fragment fragment = new InfoFragment();
-                        Bundle bundle = intent.getExtras();
-                        byte[] bytes = null;
-                        if (bundle != null)
-                            bytes = bundle.getByteArray("infoArray");
+            switch (type) {
+                case IntentTypes.Info: {
+                    Fragment fragment;
+                    Bundle bundle = intent.getExtras();
+                    byte[] bytes = null;
+                    if (bundle != null)
+                        bytes = bundle.getByteArray("infoArray");
 
-                        Bundle fragBundle = new Bundle();
-                        if (bundle != null)
-                            fragBundle.putByteArray("info", bytes);
-                        fragment.setArguments(fragBundle);
-
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
-                        } else {
-                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
-                        }
-                        fragmentTransaction.commit();
-                        break;
-                    }
-                    case IntentTypes.Progress: {
-                        Fragment fragment = new ProgressFragment();
-                        Bundle bundle = intent.getExtras();
-                        byte[] bytes = bundle.getByteArray("infoArray");
-                        Bundle fragBundle = new Bundle();
+                    Bundle fragBundle = new Bundle();
+                    if (bundle != null) {
                         fragBundle.putByteArray("info", bytes);
-                        fragment.setArguments(fragBundle);
-
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "PROGRESS");
-                        } else {
-                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "PROGRESS");
-                        }
-                        fragmentTransaction.commit();
-                        break;
-                    }
-                    case IntentTypes.Logical: {
-                        Fragment fragment = new LogicalFragment();
-                        Bundle bundle = intent.getExtras();
-                        byte[] bytes = bundle.getByteArray("infoArray");
-                        Bundle fragBundle = new Bundle();
-                        fragBundle.putByteArray("info", bytes);
-                        fragment.setArguments(fragBundle);
-
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LOGICAL");
-                        } else {
-                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "LOGICAL");
-                        }
-                        fragmentTransaction.commit();
-                        break;
-                    }
-                    case IntentTypes.Exam: {
-                        Fragment fragment = new ExamWearFragment();
-                        Bundle bundle = intent.getExtras();
-                        byte[] bytes = bundle.getByteArray("infoArray");
-                        Bundle fragBundle = new Bundle();
-                        fragBundle.putByteArray("info", bytes);
-                        fragment.setArguments(fragBundle);
-
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "EXAM");
-                        } else {
-                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "EXAM");
-                        }
-                        fragmentTransaction.commit();
-                        break;
-                    }
-                    case IntentTypes.Learning:{
-                        Fragment fragment = new LearningWearFragment();
-                        Bundle bundle = intent.getExtras();
-                        byte[] bytes = bundle.getByteArray("infoArray");
-                        Bundle fragBundle = new Bundle();
-                        fragBundle.putByteArray("info", bytes);
-                        fragment.setArguments(fragBundle);
-
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                            fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LEARNING");
-                        } else {
-                            fragmentTransaction.add(R.id.watchDataFrame, fragment, "LEARNING");
-                        }
-                        fragmentTransaction.commit();
-                        break;
+                        fragment = new InfoFragment();
+                    } else {
+                        //если первый запуск то окно ожидания сигнала метки
+                        fragment = new WaitingFragment();
                     }
 
+                    fragment.setArguments(fragBundle);
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
+                    } else {
+                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
+                    }
+                    fragmentTransaction.commit();
+                    break;
                 }
+                case IntentTypes.Exam: {
+                    Fragment fragment = new ExamWearFragment();
+                    Bundle bundle = intent.getExtras();
+                    byte[] bytes = bundle.getByteArray("infoArray");
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", bytes);
+                    fragment.setArguments(fragBundle);
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "EXAM");
+                    } else {
+                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "EXAM");
+                    }
+                    fragmentTransaction.commit();
+                    break;
+                }
+                case IntentTypes.Learning: {
+                    Fragment fragment = new LearningWearFragment();
+                    Bundle bundle = intent.getExtras();
+                    byte[] bytes = bundle.getByteArray("infoArray");
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", bytes);
+                    fragment.setArguments(fragBundle);
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LEARNING");
+                    } else {
+                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "LEARNING");
+                    }
+                    fragmentTransaction.commit();
+                    break;
+                }
+
             }
 
         }
@@ -232,7 +201,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
             data.add(LabelsMock.labels[index].LabelName);
         }
 
-        final ArrayAdapter labelsAdapter = new  ArrayAdapter(this, android.R.layout.simple_spinner_item, data);
+        final ArrayAdapter labelsAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data);
         labelsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(labelsAdapter);
 
@@ -293,8 +262,24 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
     //метод будет заменять инфу в открытом фрагменте или же сменит фрагмент
     //если сменился режим приложения
-    public void changeInformation(byte[] data){
-        ((InfoFragment) this.fragmentManager.getFragments().get(0)).changeInformation(data);
+    public void changeInformation(byte[] data) {
+        if (this.fragmentManager.getFragments().get(0) instanceof WaitingFragment) {
+
+            Bundle fragBundle = new Bundle();
+            fragBundle.putByteArray("info", data);
+            Fragment fragment = new InfoFragment();
+            fragment.setArguments(fragBundle);
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
+            } else {
+                fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
+            }
+            fragmentTransaction.commit();
+        } else if (this.fragmentManager.getFragments().get(0) instanceof InfoFragment) {
+            ((InfoFragment) this.fragmentManager.getFragments().get(0)).changeInformation(data);
+        }
     }
 
 }

@@ -11,23 +11,30 @@
         android:layout_height="30dp"
         android:textColor="@color/info_text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:singleLine="false"
+        android:maxLines="25"
+        android:textSize="15sp"
+        android:paddingLeft="5sp"/>
 
     <TextView
         android:id="@+id/infoSeparator"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/blue" />
+        android:background="@color/blue"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"/>
 
     <TextView
         android:id="@+id/infoControlValue"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:gravity="center"
-        android:text="0,16VG"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/info_text"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/infoText"
@@ -35,6 +42,12 @@
         android:layout_height="match_parent"
         android:background="@color/gp_blue"
         android:textColor="@color/info_text"
-        android:text="fsadfadfasfsafsadfasdf  asdf asdf asdf sdf sadf "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="false"
+        android:maxLines="25"
+        android:textSize="15sp"
+        android:paddingLeft="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"/>
 </LinearLayout>

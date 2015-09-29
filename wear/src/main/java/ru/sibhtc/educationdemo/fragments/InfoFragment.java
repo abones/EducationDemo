@@ -3,6 +3,7 @@ package ru.sibhtc.educationdemo.fragments;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,45 +32,46 @@ public class InfoFragment extends Fragment {
         }
         Bundle bundle = getArguments();
 
-        LabelNFC infoObject = getObjectByByteArray(bundle.getByteArray("info"));
-
         view = inflater.inflate(R.layout.info_fragment, container, false);
-        infoTitle = (TextView)view.findViewById(R.id.infoTitle);
-        infoText = (TextView)view.findViewById(R.id.infoText);
-        infoControlValue = (TextView)view.findViewById(R.id.infoControlValue);
+        infoTitle = (TextView) view.findViewById(R.id.infoTitle);
+        infoTitle.setMovementMethod(new ScrollingMovementMethod());
 
-        infoTitle.setText(infoObject.labelName);
-        infoControlValue.setText(infoObject.valueMeasure);
-        infoText.setText(infoObject.labelDescription);
+        infoText = (TextView) view.findViewById(R.id.infoText);
+        infoText.setMovementMethod(new ScrollingMovementMethod());
+
+        infoControlValue = (TextView) view.findViewById(R.id.infoControlValue);
+
+        setInformation(bundle.getByteArray("info"));
 
         return view;
     }
 
-    private LabelNFC getObjectByByteArray(byte[] data){
+    private LabelNFC getObjectByByteArray(byte[] data) {
         LabelNFC object = new LabelNFC();
-        try
-        {
+        try {
             object = (LabelNFC) BytesHelper.toObject(data);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             Log.d("MainActivity", "Ошибка перевода в объект");
         }
         return object;
     }
 
-    public void changeInformation(final byte[] data){
+    public void changeInformation(final byte[] data) {
 
         final Activity act = getActivity(); //если ответил верно на последний вопрос
         if (act != null)
             act.runOnUiThread(new Runnable() {
                 public void run() {
-                    LabelNFC infoObject = getObjectByByteArray(data);
-                    infoTitle.setText(infoObject.labelName);
-                    infoControlValue.setText(infoObject.valueMeasure);
-                    infoText.setText(infoObject.labelDescription);
+                    setInformation(data);
                 }
-        });
+            });
 
+    }
+
+    private void setInformation(final byte[] data) {
+        LabelNFC labelNFC = getObjectByByteArray(data);
+        infoTitle.setText(labelNFC.labelName);
+        infoControlValue.setText(labelNFC.controlValue + " " + labelNFC.valueMeasure);
+        infoText.setText(labelNFC.labelDescription);
     }
 }

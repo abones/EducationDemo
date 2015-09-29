@@ -118,14 +118,13 @@ public class WearMessageListenerService extends WearableListenerService {
     }
 
     private void sendInformationMessage(String code) {
-        LabelNFC label = new LabelNFC();
-        label.labelDescription = LabelsMock.getByCode(code).labelDescription;
+        LabelNFC labelNFC = LabelsMock.getByCode(code).makeNFCCopy();
         boolean isGeneratedArray;
         String path = "";
-        if (label != null) {
+        if (labelNFC != null) {
             byte[] data;
                 try {
-                    data = BytesHelper.toByteArray(label);
+                    data = BytesHelper.toByteArray(labelNFC);
                     isGeneratedArray = true;
                     path = MessagePaths.INFO_MESSAGE_PATH;
                 } catch (Exception ex) {
