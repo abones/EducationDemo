@@ -111,7 +111,13 @@ public class ExamFragment extends EventFragment {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
                             adapter.refreshFinishedAdapter();
 
+                            //показываем результаты экзамена
+                            LearningResultFragment learningResultFragment = new LearningResultFragment();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fTrans = fragmentManager.beginTransaction();
 
+                            fTrans.replace(R.id.examTabFrame, learningResultFragment, "LEARNING");
+                            fTrans.commit();
                         }
                     });
             }
@@ -137,7 +143,7 @@ public class ExamFragment extends EventFragment {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
                             adapter.refreshFinishedAdapter();
 
-                            //
+                            //показываем результаты экзамена
                             LearningResultFragment learningResultFragment = new LearningResultFragment();
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fTrans = fragmentManager.beginTransaction();

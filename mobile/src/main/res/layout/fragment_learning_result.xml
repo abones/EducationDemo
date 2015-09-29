@@ -4,6 +4,12 @@
     android:layout_height="match_parent">
     <ListView
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="450dp"
         android:id="@+id/fragment_learning_result_view"></ListView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Закончить"
+        android:id="@+id/finish_button"/>
 </LinearLayout>

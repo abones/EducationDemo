@@ -113,3 +113,5 @@ wear/wear.iml
 .idea/vcs.xml
 
 .idea/libraries/play_services_wearable_7_8_0.xml
+
+build/intermediates/dex-cache/cache.xml
