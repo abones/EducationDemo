@@ -1,5 +1,9 @@
 package ru.sibhtc.educationdemo.helpers;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Vibrator;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
@@ -11,6 +15,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
+import ru.sibhtc.educationdemo.MainActivity;
 import ru.sibhtc.educationdemo.models.AppState;
 
 /**
@@ -21,6 +26,8 @@ public class GlobalHelper {
     public static GoogleApiClient apiClient;
     public static String nodeId;
 
+    public static MainActivity mainActivity;
+
     public static void sendMessage( final String path, final byte[] data ) {
         new Thread( new Runnable() {
             @Override
@@ -30,5 +37,7 @@ public class GlobalHelper {
             }
         }).start();
     }
+
+
 
 }

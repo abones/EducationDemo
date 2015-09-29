@@ -11,6 +11,7 @@ import ru.sibhtc.educationdemo.MainActivity;
 import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.models.TestSendModel;
 
 /**
@@ -20,44 +21,27 @@ public class WearMessageListenerService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
-        byte[] data =  messageEvent.getData();
+        byte[] data = messageEvent.getData();
         String message = "";
-        switch (messageEvent.getPath()){
-            case MessagePaths.TEST_MESSAGE_PATH:{
-                message = new String(data);
-                showToast(message);
-                break;
-            }
-            case MessagePaths.OBJECT_MESSAGE_PATH:{
-                try
-                {
+        switch (messageEvent.getPath()) {
+            case MessagePaths.OBJECT_MESSAGE_PATH: {
+                try {
                     TestSendModel test = (TestSendModel) BytesHelper.toObject(data);
                     message = "From object:" + test.Message;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     message = "Ошибка распаковки";
                 }
                 showToast(message);
                 break;
             }
-            case MessagePaths.ERROR_MESSAGE_PATH:{
+            case MessagePaths.ERROR_MESSAGE_PATH: {
                 message = new String(data);
                 showToast(message);
                 break;
             }
-            case MessagePaths.INFO_MESSAGE_PATH:{
-                Intent intent =  new Intent(this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("type", IntentTypes.Info);
-                bundle.putByteArray("infoArray", data);
-                intent.putExtras(bundle);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                break;
-            }
-            case MessagePaths.PROGRESS_MESSAGE_PATH:{
-                Intent intent =  new Intent(this, MainActivity.class);
+
+            case MessagePaths.PROGRESS_MESSAGE_PATH: {
+                Intent intent = new Intent(this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("type", IntentTypes.Progress);
                 bundle.putByteArray("infoArray", data);
@@ -66,8 +50,8 @@ public class WearMessageListenerService extends WearableListenerService {
                 startActivity(intent);
                 break;
             }
-            case MessagePaths.LOGICAL_MESSAGE_PATH:{
-                Intent intent =  new Intent(this, MainActivity.class);
+            case MessagePaths.LOGICAL_MESSAGE_PATH: {
+                Intent intent = new Intent(this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("type", IntentTypes.Logical);
                 bundle.putByteArray("infoArray", data);
@@ -76,7 +60,7 @@ public class WearMessageListenerService extends WearableListenerService {
                 startActivity(intent);
                 break;
             }
-            case MessagePaths.EXAM_MESSAGE_PATH:{
+            case MessagePaths.EXAM_EVENT_MESSAGE_PATH: {
                 Intent intent = new Intent(this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("type", IntentTypes.Exam);
@@ -86,7 +70,7 @@ public class WearMessageListenerService extends WearableListenerService {
                 startActivity(intent);
                 break;
             }
-            case MessagePaths.STUDY_MESSAGE_PATH:{
+            case MessagePaths.STUDY_EVENT_MESSAGE_PATH: {
                 Intent intent = new Intent(this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("type", IntentTypes.Study);
@@ -94,6 +78,22 @@ public class WearMessageListenerService extends WearableListenerService {
                 intent.putExtras(bundle);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                break;
+            }
+            case MessagePaths.INFO_MESSAGE_PATH: {
+
+                if (GlobalHelper.mainActivity == null) {
+                    Intent intent = new Intent(this, MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("type", IntentTypes.Info);
+                    bundle.putByteArray("infoArray", data);
+                    intent.putExtras(bundle);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+                else{
+                    GlobalHelper.mainActivity.changeInformation(data);
+                }
                 break;
             }
         }

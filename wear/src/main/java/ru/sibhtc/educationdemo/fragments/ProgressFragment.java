@@ -10,11 +10,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
-import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
 
 /**

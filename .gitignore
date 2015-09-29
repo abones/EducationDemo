@@ -115,3 +115,5 @@ wear/wear.iml
 .idea/libraries/play_services_wearable_7_8_0.xml
 
 build/intermediates/dex-cache/cache.xml
+
+.gradle/2.4/taskArtifacts/outputFileStates.bin

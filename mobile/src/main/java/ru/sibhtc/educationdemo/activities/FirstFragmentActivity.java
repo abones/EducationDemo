@@ -17,9 +17,7 @@ import com.google.android.gms.wearable.Wearable;
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
-import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.models.EventModel;
-import ru.sibhtc.educationdemo.models.InfoObject;
 import ru.sibhtc.educationdemo.models.ProgressObject;
 import ru.sibhtc.educationdemo.models.TestSendModel;
 
@@ -93,27 +91,6 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 {
                     data = BytesHelper.toByteArray(test);
                     path = MessagePaths.OBJECT_MESSAGE_PATH;
-                }
-                catch (Exception ex)
-                {
-                    data = ex.getMessage().getBytes();
-                    path = MessagePaths.ERROR_MESSAGE_PATH;
-                }
-                sendMessage(path, data);
-            }
-        });
-
-        sendInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InfoObject info = new InfoObject("Lorem Ipsum", "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem");
-                byte[] data;
-                String path;
-
-                try
-                {
-                    data = BytesHelper.toByteArray(info);
-                    path = MessagePaths.INFO_MESSAGE_PATH;
                 }
                 catch (Exception ex)
                 {

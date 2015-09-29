@@ -11,17 +11,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:focusable="false" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/send_nfc_label_button"
-        android:id="@+id/button"
-        android:layout_gravity="bottom"
-        android:background="@color/gp_blue"/>
     <FrameLayout
         android:id="@+id/watchDataFrame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
 
     </FrameLayout>
 </LinearLayout>

@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
-import ru.sibhtc.educationdemo.models.InfoObject;
-import ru.sibhtc.educationdemo.models.LogicalObject;
+import ru.sibhtc.educationdemo.models.LabelNFC;
 
 
 /**
@@ -34,19 +33,19 @@ public class LogicalFragment extends Fragment {
         Bundle bundle = getArguments();
         byte[] data = bundle.getByteArray("info");
 
-        LogicalObject object = new LogicalObject();
+        LabelNFC object = new LabelNFC();
         try
         {
-            object = (LogicalObject) BytesHelper.toObject(data);
+            object = (LabelNFC) BytesHelper.toObject(data);
         }
         catch (Exception ex)
         {
             Log.d("MainActivity", "Ошибка перевода в объект");
         }
 
-        String logicalTitle = object.Title;
-        String logicalInfo = object.Text;
-        String logicalValue = object.Value ? object.TrueText : object.FalseText;
+        String logicalTitle = object.labelName;
+        String logicalInfo = object.labelDescription;
+        String logicalValue = object.value == "0" ? object.trueValue : object.falseValue;
 
         View view = inflater.inflate(R.layout.logical_fragment, container, false);
         TextView lgcTtl = (TextView)view.findViewById(R.id.logicalTitle);

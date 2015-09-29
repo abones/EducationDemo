@@ -89,9 +89,8 @@ public class ExamFragment extends EventFragment {
 
 
     public void wearAnswer(MessageModel messageModel) {
-
+        GlobalHelper.sendMessage(MessagePaths.ERROR_MESSAGE_PATH, MessageStrings.EXAM_ANSWER_APPLIED.getBytes());
         if (checkAnswer(messageModel)) {
-            GlobalHelper.sendMessage(MessagePaths.ERROR_MESSAGE_PATH, MessageStrings.EXAM_ANSWER_APPLIED.getBytes());
             if (completeSteps.size() != steps.size()) {
                 final Activity act = getActivity(); //only neccessary if you use fragments
                 if (act != null)
@@ -116,7 +115,7 @@ public class ExamFragment extends EventFragment {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fTrans = fragmentManager.beginTransaction();
 
-                            fTrans.replace(R.id.examTabFrame, learningResultFragment, "LEARNING");
+                            fTrans.replace(R.id.examTabFrame, learningResultFragment, "EXAM");
                             fTrans.commit();
                         }
                     });
@@ -148,7 +147,7 @@ public class ExamFragment extends EventFragment {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fTrans = fragmentManager.beginTransaction();
 
-                            fTrans.replace(R.id.examTabFrame, learningResultFragment, "LEARNING");
+                            fTrans.replace(R.id.examTabFrame, learningResultFragment, "EXAM");
                             fTrans.commit();
                         }
                     });

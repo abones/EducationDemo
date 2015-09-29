@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.models.Exam;
-import ru.sibhtc.educationdemo.models.InfoObject;
 
 /**
  * Created by Антон on 24.09.2015.

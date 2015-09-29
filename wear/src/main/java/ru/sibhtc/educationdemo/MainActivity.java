@@ -1,5 +1,6 @@
 package ru.sibhtc.educationdemo;
 
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,9 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -45,7 +48,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
     private GoogleApiClient apiClient;
     private Spinner spinner;
-    private Button button;
+    private FrameLayout frameLayout;
     private String nodeId;
     private FragmentManager fragmentManager;
 
@@ -69,6 +72,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         fragmentTransaction.commit();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         initGoogleApiClient();
+        GlobalHelper.mainActivity = this;
         init();
     }
 
@@ -79,14 +83,21 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         Intent intent = getIntent();
         if (intent != null) {
             String type = intent.getStringExtra("type");
+            if (type == null)
+                type = IntentTypes.Info;
+
             if (type != null) {
                 switch (type) {
                     case IntentTypes.Info: {
                         Fragment fragment = new InfoFragment();
                         Bundle bundle = intent.getExtras();
-                        byte[] bytes = bundle.getByteArray("infoArray");
+                        byte[] bytes = null;
+                        if (bundle != null)
+                            bytes = bundle.getByteArray("infoArray");
+
                         Bundle fragBundle = new Bundle();
-                        fragBundle.putByteArray("info", bytes);
+                        if (bundle != null)
+                            fragBundle.putByteArray("info", bytes);
                         fragment.setArguments(fragBundle);
 
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -211,7 +222,8 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
     private void init() {
         spinner = (Spinner) findViewById(R.id.spinner);
-        button = (Button) findViewById(R.id.button);
+
+        frameLayout = (FrameLayout) findViewById(R.id.watchDataFrame);
 
         ArrayList<String> data;
         data = new ArrayList<>();
@@ -236,17 +248,19 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MessageModel messageModel = new MessageModel(selectedLabelId, LabelsMock.getCodeById(selectedLabelId), null, LabelsMock.getById(selectedLabelId).IsValued);
-                try
-                {
+                try {
+                    //провибрировать на приложенную метку
+                    Vibrator vibratorNFCCheck = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibratorNFCCheck.vibrate(100);
+
                     GlobalHelper.nodeId = nodeId;
                     GlobalHelper.apiClient = apiClient;
                     GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, BytesHelper.toByteArray(messageModel));
-                }
-                catch (IOException e){
+                } catch (IOException e) {
                     //
                 }
             }
@@ -276,4 +290,11 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         super.onNewIntent(intent);
         setIntent(intent);
     }
+
+    //метод будет заменять инфу в открытом фрагменте или же сменит фрагмент
+    //если сменился режим приложения
+    public void changeInformation(byte[] data){
+        ((InfoFragment) this.fragmentManager.getFragments().get(0)).changeInformation(data);
+    }
+
 }

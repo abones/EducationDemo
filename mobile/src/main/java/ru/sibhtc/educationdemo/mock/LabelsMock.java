@@ -13,7 +13,8 @@ public class LabelsMock {
         new Label(2, "tap2", "Кран №2", "Открывает  кран №2.", true, true,  null, "Открыт", "Закрыт"),
         new Label(3, "tube", "Пусковая пробка", "Пусковая пробка регулятора давления", true, true, null, "Взведена", "Не взведена"),
         new Label(4, "switch", "Ключ настройки", "Ключ настройки регулятора давления", false, false, null, null, null),
-        new Label(5, "nut", "Регулировочная гайка", "Закручивается по часовой стрелке. Каждый оборот 0,2...0,4 кПа", true, false, "кПа", null, null)
+        new Label(5, "nut", "Регулировочная гайка", "Закручивается по часовой стрелке. Каждый оборот 0,2...0,4 кПа", true, false, "кПа", null, null),
+        new Label(6, "helmet", "Каска", "Надевается на голову", false, false, null, null, null)
     };
 
     public static Label getByCode(String code){
@@ -21,7 +22,7 @@ public class LabelsMock {
         boolean isFound = false;
 
         for (int index = 0; index < labels.length; index++){
-            if (labels[index].LabelCode.equals(code)){
+            if (labels[index].labelCode.equals(code)){
                 result = labels[index];
                 isFound = true;
             }
@@ -35,8 +36,8 @@ public class LabelsMock {
         boolean isFound = false;
 
         for (int index = 0; index < labels.length; index++){
-            if (labels[index].LabelId == id){
-                result = labels[index].LabelCode;
+            if (labels[index].labelId == id){
+                result = labels[index].labelCode;
                 isFound = true;
             }
         }

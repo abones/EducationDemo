@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Антон on 23.09.2015.
  **/
-public class Label {
+public class LabelNFC implements Serializable{
     public long labelId;
     public String labelCode;
     public String labelName;
@@ -20,7 +20,7 @@ public class Label {
     public String falseValue;
 
 
-    public Label(long labelId, String labelCode, String labelName, String labelDescription, boolean isValued, boolean isBool, String valueMeasure, String trueValue, String falseValue){
+    public LabelNFC(long labelId, String labelCode, String labelName, String labelDescription, boolean isValued, boolean isBool, String valueMeasure, String trueValue, String falseValue){
         this.labelId = labelId;
         this.labelCode = labelCode;
         this.labelName = labelName;
@@ -32,5 +32,5 @@ public class Label {
         this.falseValue = falseValue;
     }
 
-    public Label(){}
+    public LabelNFC(){}
 }
