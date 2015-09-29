@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -45,7 +46,7 @@ public class LearningActivity extends AppCompatActivity {
 
         ActionBar bar = getSupportActionBar();
         bar.setTitle(R.string.application_name);
-        bar.setSubtitle(R.string.application_name_demo);
+        bar.setSubtitle(Html.fromHtml("<font color='#ff0000'>" + getString(R.string.application_name_demo) + "</font>"));
         bar.setDisplayHomeAsUpEnabled(true);
 
         settingsFragment = new SettingsFragment();

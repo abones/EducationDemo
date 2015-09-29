@@ -3,4 +3,5 @@
     <color name="progress_gray">#A9A9A9</color>
     <color name="step_value_error">#FF4500</color>
     <color name="step_value_success">#000000</color>
+    <color name="demo_color">#FFFF000A</color>
 </resources>
