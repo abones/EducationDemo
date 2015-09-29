@@ -60,7 +60,7 @@ public class SettingsFragment extends Fragment {
             startEventbutton.setText(MessageStrings.START_LEARNING);
         }
 
-        List<String> programList = new ArrayList<String>();
+        final List<String> programList = new ArrayList<String>();
 
         for (int index = 0; index < ProgrammsMock.getPrograms().size(); index++) {
 
@@ -68,7 +68,7 @@ public class SettingsFragment extends Fragment {
             programList.add(program.programName);
         }
 
-        String[] programs = new String[programList.size()];
+        final String[] programs = new String[programList.size()];
         programList.toArray(programs);
 
         ArrayAdapter studentsAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, StudentMock.getStudentNameList());
@@ -88,7 +88,7 @@ public class SettingsFragment extends Fragment {
                 //обновляю все моки
                 ProgrammsMock.resetProgramm();
                 //отправляю сообщение на часы
-                EventModel exam = new EventModel("Иванов", "Вывод на режим");
+                EventModel exam = new EventModel(StudentMock.getStudentNameList().get(selectedStudent), programList.get(selectedProgramm));
                 byte[] data;
                 String path = "";
 
@@ -98,12 +98,13 @@ public class SettingsFragment extends Fragment {
                         path = MessagePaths.STUDY_MESSAGE_PATH;
                     } else if (appMode == AppMode.EXAMINE) {
                         path = MessagePaths.EXAM_MESSAGE_PATH;
+                        GlobalHelper.sendMessage(path, data);
                     }
                 } catch (Exception ex) {
                     data = ex.getMessage().getBytes();
                     path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
-                GlobalHelper.sendMessage(path, data);
+
 
                 if (appMode == AppMode.LEARNING) {
                     LearningActivity activity = (LearningActivity) getActivity();

@@ -13,10 +13,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -31,11 +29,10 @@ import java.util.List;
 import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.fragments.ExamWearFragment;
+import ru.sibhtc.educationdemo.fragments.ExamWearResultFragment;
 import ru.sibhtc.educationdemo.fragments.InfoFirstDescriptionFragment;
 import ru.sibhtc.educationdemo.fragments.InfoFragment;
 import ru.sibhtc.educationdemo.fragments.LearningWearFragment;
-import ru.sibhtc.educationdemo.fragments.LogicalFragment;
-import ru.sibhtc.educationdemo.fragments.ProgressFragment;
 import ru.sibhtc.educationdemo.fragments.WaitingFragment;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
@@ -60,6 +57,8 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
     private static final long CONNECTION_TIME_OUT_MS = 100;
     private static final String MOBILE_PATH = "/mobile";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -269,6 +268,8 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     //метод будет заменять инфу в открытом фрагменте или же сменит фрагмент
     //если сменился режим приложения
     public void changeInformation(byte[] data) {
+
+
         switch (intentType){
             case IntentTypes.Info:{
                 if (this.fragmentManager.getFragments().get(0) instanceof WaitingFragment) {
@@ -280,8 +281,6 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                     fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
-                    Fragment fragment2 = new InfoFirstDescriptionFragment();
-                    fragmentTransaction.add(R.id.watchDataFrame2, fragment2, "INFODescription");
 
                     fragmentTransaction.commit();
                 } else if (this.fragmentManager.getFragments().get(0) instanceof InfoFragment) {
@@ -311,6 +310,25 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                 break;
             }
             case IntentTypes.Exam:{
+                if (this.fragmentManager.getFragments().get(0) instanceof ExamWearFragment) {
+                    //вывод информации на фрайм
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", data);
+                    Fragment fragment = new ExamWearResultFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.watchDataFrame, fragment, "ExamModelResult");
+                    fragmentTransaction.commit();
+                } else {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", data);
+                    Fragment fragment = new ExamWearFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.watchDataFrame, fragment, "ExamModel");
+                    fragmentTransaction.commit();
+                }
                 break;
             }
         }

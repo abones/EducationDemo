@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="70"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/examTitle"
+            android:textAlignment="center"
+            android:textColor="@color/info_text"
+            android:text="Экзамен закончен"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="30"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/examTotalTime"
+            android:textColor="@color/info_text"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/infoSeparator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/blue"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="70"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/examErrorTitle"
+            android:textAlignment="center"
+            android:textColor="@color/info_text"
+            android:text="Ошибок"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="30"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/examErrorCount"
+            android:textColor="@color/info_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="60"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/examRatingTitle"
+            android:textAlignment="center"
+            android:textColor="@color/info_text"
+            android:text="Оценка"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="40"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/examRatingValue"
+            android:textColor="@color/info_text"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/examResultImage"/>
+</LinearLayout>

@@ -18,11 +18,14 @@ import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.adapters.StepAdapter;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.constants.MessageStrings;
+import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.AppMode;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
 import ru.sibhtc.educationdemo.mock.StepResult;
 import ru.sibhtc.educationdemo.mock.StudentMock;
+import ru.sibhtc.educationdemo.models.EventResultModel;
+import ru.sibhtc.educationdemo.models.LearningModel;
 import ru.sibhtc.educationdemo.models.MessageModel;
 import ru.sibhtc.educationdemo.models.Program;
 import ru.sibhtc.educationdemo.models.Step;
@@ -31,7 +34,7 @@ import ru.sibhtc.educationdemo.models.Step;
  * Created by Антон on 17.09.2015.
  **/
 public class ExamFragment extends EventFragment {
-
+    private EventResultModel eventResultModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,7 +61,12 @@ public class ExamFragment extends EventFragment {
                 break;
             }
         }
-
+        if (eventResultModel == null){
+            eventResultModel = new EventResultModel();
+            eventResultModel.setAnswerCount(steps.size());
+            eventResultModel.setDateEvent(new Date());
+            eventResultModel.setErrorCount(0);
+        }
 
         view = inflater.inflate(R.layout.fragment_exam, container, false);
 
@@ -89,7 +97,8 @@ public class ExamFragment extends EventFragment {
 
 
     public void wearAnswer(MessageModel messageModel) {
-        GlobalHelper.sendMessage(MessagePaths.ERROR_MESSAGE_PATH, MessageStrings.EXAM_ANSWER_APPLIED.getBytes());
+
+        //GlobalHelper.sendMessage(MessagePaths.ERROR_MESSAGE_PATH, MessageStrings.EXAM_ANSWER_APPLIED.getBytes());
         if (checkAnswer(messageModel)) {
             if (completeSteps.size() != steps.size()) {
                 final Activity act = getActivity(); //only neccessary if you use fragments
@@ -99,6 +108,7 @@ public class ExamFragment extends EventFragment {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
                             completeSteps.get(completeSteps.size() - 1).setStepEnd(new Date());
                             currentStep = steps.get(completeSteps.size());
+
                             adapter.refreshAdapter(steps.get(completeSteps.size()));
                         }
                     });
@@ -114,7 +124,7 @@ public class ExamFragment extends EventFragment {
                             LearningResultFragment learningResultFragment = new LearningResultFragment();
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fTrans = fragmentManager.beginTransaction();
-
+                            sendFinishExamMessage();
                             fTrans.replace(R.id.examTabFrame, learningResultFragment, "EXAM");
                             fTrans.commit();
                         }
@@ -126,6 +136,7 @@ public class ExamFragment extends EventFragment {
             if (act != null)
                 act.runOnUiThread(new Runnable() {
                     public void run() {
+                        eventResultModel.setErrorCount(eventResultModel.getErrorCount() + 1);
                         completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
                         completeSteps.get(completeSteps.size() - 1).setStepEnd(new Date());
                         currentStep = steps.get(completeSteps.size() - 1);
@@ -141,7 +152,8 @@ public class ExamFragment extends EventFragment {
                         public void run() {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
                             adapter.refreshFinishedAdapter();
-
+                            eventResultModel.setErrorCount(eventResultModel.getErrorCount() + 1);
+                            sendFinishExamMessage();
                             //показываем результаты экзамена
                             LearningResultFragment learningResultFragment = new LearningResultFragment();
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -151,6 +163,30 @@ public class ExamFragment extends EventFragment {
                             fTrans.commit();
                         }
                     });
+            }
+        }
+    }
+
+
+    //отправка сообщения с информацией о новом шаге
+    private void sendFinishExamMessage() {
+        long diff = (new Date()).getTime() - eventResultModel.getDateEvent().getTime();
+        long diffSeconds = diff / 1000;
+        eventResultModel.setTimeResult(diffSeconds);
+        boolean isGeneratedArray;
+        String path = "";
+        if (eventResultModel != null) {
+            byte[] data;
+            try {
+                data = BytesHelper.toByteArray(eventResultModel);
+                isGeneratedArray = true;
+                path = MessagePaths.EXAM_MESSAGE_PATH;
+            } catch (Exception ex) {
+                data = new byte[]{};
+                isGeneratedArray = false;
+            }
+            if (isGeneratedArray) {
+                GlobalHelper.sendMessage(path, data);
             }
         }
     }

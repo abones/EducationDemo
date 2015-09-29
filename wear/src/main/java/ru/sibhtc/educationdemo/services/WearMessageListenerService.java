@@ -52,7 +52,7 @@ public class WearMessageListenerService extends WearableListenerService {
         }
 
         if (intentType != null) {
-            if (GlobalHelper.mainActivity == null) {
+            if (GlobalHelper.mainActivity == null || GlobalHelper.mainActivity.isDestroyed()) {
                 prepareAndStartActivity(intentType, data);
             } else {
                 GlobalHelper.mainActivity.setIntentType(intentType);
