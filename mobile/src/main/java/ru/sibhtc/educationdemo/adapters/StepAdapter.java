@@ -96,7 +96,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
         }
 
         Step step = data.get(position);
-        holder.getTxtTitle().setText(step.getStepTitle());
+        holder.getTxtTitle().setText(String.valueOf(position + 1) + ". " + step.getStepTitle());
 
         return row;
     }

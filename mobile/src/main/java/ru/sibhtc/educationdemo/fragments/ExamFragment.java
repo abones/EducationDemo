@@ -3,6 +3,8 @@ package ru.sibhtc.educationdemo.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import ru.sibhtc.educationdemo.adapters.StepAdapter;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.constants.MessageStrings;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.mock.AppMode;
 import ru.sibhtc.educationdemo.mock.ProgrammsMock;
 import ru.sibhtc.educationdemo.mock.StepResult;
 import ru.sibhtc.educationdemo.mock.StudentMock;
@@ -101,26 +104,49 @@ public class ExamFragment extends EventFragment {
                         }
                     });
             } else {
-                final Activity act = getActivity(); //only neccessary if you use fragments
+                final Activity act = getActivity(); //если ответил верно на последний вопрос
                 if (act != null)
                     act.runOnUiThread(new Runnable() {
                         public void run() {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
                             adapter.refreshFinishedAdapter();
+
+
                         }
                     });
             }
         } else {
-            final Activity act = getActivity(); //only neccessary if you use fragments
+            if (completeSteps.size() != steps.size()) {
+            final Activity act = getActivity(); //если ответил с ошибкой
             if (act != null)
                 act.runOnUiThread(new Runnable() {
                     public void run() {
                         completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
                         completeSteps.get(completeSteps.size() - 1).setStepEnd(new Date());
-                        currentStep = steps.get(completeSteps.size());
+                        currentStep = steps.get(completeSteps.size() - 1);
                         adapter.refreshAdapter(steps.get(completeSteps.size()));
                     }
                 });
+            }
+            else
+            {
+                final Activity act = getActivity(); //only neccessary if you use fragments
+                if (act != null)
+                    act.runOnUiThread(new Runnable() {
+                        public void run() {
+                            completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
+                            adapter.refreshFinishedAdapter();
+
+                            //
+                            LearningResultFragment learningResultFragment = new LearningResultFragment();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fTrans = fragmentManager.beginTransaction();
+
+                            fTrans.replace(R.id.examTabFrame, learningResultFragment, "LEARNING");
+                            fTrans.commit();
+                        }
+                    });
+            }
         }
     }
 }

@@ -154,7 +154,7 @@ public class ExamActivity extends AppCompatActivity {
         FragmentTransaction fTrans = fragmentManager.beginTransaction();
         GlobalHelper.CurrentAppMode = AppMode.EXAMINE;
         GlobalHelper.setExamFragment(examFragment);
-        fTrans.replace(R.id.examTabFrame, examFragment, "LEARNING");
+        fTrans.replace(R.id.examTabFrame, examFragment, "EXAM");
         fTrans.commit();
 
     }
