@@ -109,6 +109,8 @@ public class LearningFragment extends EventFragment {
                             sendLearningMessage(completeSteps.size(), steps.size(),
                                     currentStep.getStepTitle(), true);
                             adapter.refreshFinishedAdapter();
+                            String str = "";
+                            GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
                         }
                     });
             }

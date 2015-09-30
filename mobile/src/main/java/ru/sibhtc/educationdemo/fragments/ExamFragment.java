@@ -139,7 +139,7 @@ public class ExamFragment extends EventFragment {
                         eventResultModel.setErrorCount(eventResultModel.getErrorCount() + 1);
                         completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
                         completeSteps.get(completeSteps.size() - 1).setStepEnd(new Date());
-                        currentStep = steps.get(completeSteps.size() - 1);
+                        currentStep = steps.get(completeSteps.size());
                         adapter.refreshAdapter(steps.get(completeSteps.size()));
                     }
                 });

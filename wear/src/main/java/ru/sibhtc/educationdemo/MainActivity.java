@@ -271,6 +271,27 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
 
         switch (intentType){
+            case IntentTypes.Waiting:{
+                if (this.fragmentManager.getFragments().get(this.fragmentManager.getFragments().size() - 1) instanceof WaitingFragment) {
+
+                } else {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", data);
+                    Fragment fragment = new WaitingFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "Waiting");
+
+                    fragmentTransaction.commit();
+                }
+
+                break;
+
+
+            }
+
             case IntentTypes.Info:{
                 if (this.fragmentManager.getFragments().get(0) instanceof WaitingFragment) {
                     //отображение фрагмента ожидания метки
@@ -310,14 +331,14 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                 break;
             }
             case IntentTypes.Exam:{
-                if (this.fragmentManager.getFragments().get(0) instanceof ExamWearFragment) {
+                if (this.fragmentManager.getFragments().get(this.fragmentManager.getFragments().size() - 1) instanceof ExamWearFragment) {
                     //вывод информации на фрайм
                     Bundle fragBundle = new Bundle();
                     fragBundle.putByteArray("info", data);
                     Fragment fragment = new ExamWearResultFragment();
                     fragment.setArguments(fragBundle);
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.watchDataFrame, fragment, "ExamModelResult");
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "ExamModelResult");
                     fragmentTransaction.commit();
                 } else {
                     //отображение фрагмента ожидания метки
@@ -326,7 +347,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                     Fragment fragment = new ExamWearFragment();
                     fragment.setArguments(fragBundle);
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.watchDataFrame, fragment, "ExamModel");
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "ExamModel");
                     fragmentTransaction.commit();
                 }
                 break;

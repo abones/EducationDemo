@@ -15,4 +15,5 @@ public class MessagePaths {
 
     public static final String EXAM_MESSAGE_PATH = "/exam";
     public static final String STUDY_MESSAGE_PATH = "/study";
+    public static final String INFO_START_MESSAGE_PATH ="/info_start";
 }

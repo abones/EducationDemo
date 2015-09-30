@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.adapters.DetailResultItemAdapter;
+import ru.sibhtc.educationdemo.constants.MessagePaths;
+import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.models.EventResultModel;
 
 /**
@@ -47,6 +49,8 @@ public class LearningResultFragment extends Fragment {
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String str = "";
+                GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
                 getActivity().finish();
             }
         });

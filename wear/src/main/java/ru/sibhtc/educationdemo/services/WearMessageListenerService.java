@@ -49,6 +49,9 @@ public class WearMessageListenerService extends WearableListenerService {
                 intentType = IntentTypes.Info;
                 break;
             }
+            case MessagePaths.INFO_START_MESSAGE_PATH:{
+                intentType = IntentTypes.Waiting;
+            }
         }
 
         if (intentType != null) {
