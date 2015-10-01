@@ -68,7 +68,7 @@ public class LearningActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (GlobalHelper.CurrentAppMode == AppMode.LEARNING) {
+        if (GlobalHelper.CurrentAppMode == AppMode.LEARNING && item.getTitle() != getString(R.string.learning_item)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(MessageStrings.LEARNING_PROCESSED)
                     .setMessage(MessageStrings.LEARNING_ARE_SURE_FINISHED)

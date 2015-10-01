@@ -97,7 +97,7 @@ public class ExamActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE) {
+        if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE && item.getTitle() != getString(R.string.exam_item)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(MessageStrings.EXAM_PROCESSED)
                     .setMessage(MessageStrings.EXAM_ARE_YOU_SHURE_FINISHED)

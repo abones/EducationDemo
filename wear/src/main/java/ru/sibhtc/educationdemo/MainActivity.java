@@ -77,6 +77,15 @@ public class MainActivity extends FragmentActivity {
     private FragmentManager fragmentManager;
     private String intentType;
 
+    private Boolean isIntentWasDestroid = false;
+
+    public Boolean getIsIntentWasDestroid() {
+        return isIntentWasDestroid;
+    }
+
+    public void setIsIntentWasDestroid(Boolean isIntentWasDestroid) {
+        this.isIntentWasDestroid = isIntentWasDestroid;
+    }
 
     public void setIntentType(String intentType) {
         this.intentType = intentType;
@@ -100,6 +109,9 @@ public class MainActivity extends FragmentActivity {
         fragmentTransaction.commit();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         initGoogleApiClient();
+        if (GlobalHelper.mainActivity != null)
+            this.setIsIntentWasDestroid(GlobalHelper.mainActivity.getIsIntentWasDestroid());
+
         GlobalHelper.mainActivity = this;
 
     }
@@ -148,6 +160,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //Все для nfc
         // creating pending intent:
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
         // creating intent receiver for NFC events:
@@ -155,9 +168,94 @@ public class MainActivity extends FragmentActivity {
         filter.addAction(NfcAdapter.ACTION_TAG_DISCOVERED);
         filter.addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
         filter.addAction(NfcAdapter.ACTION_TECH_DISCOVERED);
+
         // enabling foreground dispatch for getting intent from NFC event:
         NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{filter}, this.techList);
+
+        //если на часах приложение было закрыто, то открываем в нужном режиме
+        if (getIntent().getAction() == null && getIsIntentWasDestroid()) {
+            setIsIntentWasDestroid(false);
+            wakeUpIntent();
+        }
+
+    }
+
+    private void wakeUpIntent() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            intentType = intent.getStringExtra("type");
+            if (intentType == null)
+                intentType = IntentTypes.Info;
+
+            switch (intentType) {
+                case IntentTypes.Info: {
+                    Fragment fragment;
+                    Bundle bundle = intent.getExtras();
+                    byte[] bytes = null;
+                    if (bundle != null)
+                        bytes = bundle.getByteArray("infoArray");
+
+                    Bundle fragBundle = new Bundle();
+                    if (bundle != null) {
+                        fragBundle.putByteArray("info", bytes);
+                        fragment = new InfoFragment();
+                    } else {
+                        //если первый запуск то окно ожидания сигнала метки
+                        fragment = new WaitingFragment();
+                    }
+
+                    fragment.setArguments(fragBundle);
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
+                    } else {
+                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
+                    }
+                    fragmentTransaction.commit();
+                    break;
+                }
+
+                case IntentTypes.Learning: {
+                    Fragment fragment = new LearningWearFragment();
+                    Bundle bundle = intent.getExtras();
+                    byte[] bytes = bundle.getByteArray("infoArray");
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", bytes);
+                    fragment.setArguments(fragBundle);
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LEARNING");
+                    } else {
+                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "LEARNING");
+                    }
+                    fragmentTransaction.commit();
+                    break;
+                }
+
+
+                case IntentTypes.Exam: {
+                    Fragment fragment = new ExamWearFragment();
+                    Bundle bundle = intent.getExtras();
+                    byte[] bytes = bundle.getByteArray("infoArray");
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", bytes);
+                    fragment.setArguments(fragBundle);
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
+                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "EXAM");
+                    } else {
+                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "EXAM");
+                    }
+                    fragmentTransaction.commit();
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -170,7 +268,7 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
+        if (intent.getAction() != null && intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
             NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
             Parcelable mytag = intent.getParcelableExtra(nfcAdapter.EXTRA_TAG);  // get the detected tag
             String tagId = "";
@@ -181,6 +279,7 @@ public class MainActivity extends FragmentActivity {
             stringBuilder.deleteCharAt(0);
             nfcSendIdToPhone(stringBuilder.toString());
         }
+
     }
 
     private void nfcSendIdToPhone(String tagId) {

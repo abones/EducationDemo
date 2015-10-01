@@ -70,6 +70,7 @@ public class WearMessageListenerService extends WearableListenerService {
         bundle.putByteArray("infoArray", data);
         intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        GlobalHelper.mainActivity.setIsIntentWasDestroid(true);
         startActivity(intent);
     }
 
