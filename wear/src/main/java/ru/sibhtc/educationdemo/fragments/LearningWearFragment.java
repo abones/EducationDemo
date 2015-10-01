@@ -2,6 +2,7 @@ package ru.sibhtc.educationdemo.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.concurrent.TimeUnit;
 
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
@@ -24,6 +27,7 @@ public class LearningWearFragment extends Fragment {
     private TextView learningTitle;
     private ProgressBar learningStepPosition;
     private ImageView learningStepImage;
+    private TextView learningTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +44,23 @@ public class LearningWearFragment extends Fragment {
         learningStepInfo = (TextView) view.findViewById(R.id.learning_step_info);
         learningStepPosition = (ProgressBar) view.findViewById(R.id.learning_step_position);
         learningStepImage = (ImageView) view.findViewById(R.id.learning_step_image);
+        learningTime = (TextView) view.findViewById(R.id.learning_time);
 
+
+        new CountDownTimer(3600000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished));
+
+                learningTime.setText(String.format("%02d:%02d", minutes, seconds));
+            }
+
+            public void onFinish() {
+                learningTime.setText("done!");
+            }
+        }.start();
         changeInformation(data);
         return view;
     }
@@ -75,5 +95,6 @@ public class LearningWearFragment extends Fragment {
 
         learningStepPosition.setMax(learningModel.stepCount);
         learningStepPosition.setProgress(learningModel.currentStep - 1);
+
     }
 }
