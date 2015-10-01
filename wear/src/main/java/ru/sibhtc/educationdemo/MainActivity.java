@@ -1,5 +1,20 @@
 package ru.sibhtc.educationdemo;
 
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.IntentFilter;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
+import android.nfc.Tag;
+import android.nfc.tech.IsoDep;
+import android.nfc.tech.MifareClassic;
+import android.nfc.tech.MifareUltralight;
+import android.nfc.tech.Ndef;
+import android.nfc.tech.NfcA;
+import android.nfc.tech.NfcB;
+import android.nfc.tech.NfcF;
+import android.nfc.tech.NfcV;
+import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.content.Context;
@@ -9,12 +24,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -30,7 +48,6 @@ import ru.sibhtc.educationdemo.constants.IntentTypes;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.fragments.ExamWearFragment;
 import ru.sibhtc.educationdemo.fragments.ExamWearResultFragment;
-import ru.sibhtc.educationdemo.fragments.InfoFirstDescriptionFragment;
 import ru.sibhtc.educationdemo.fragments.InfoFragment;
 import ru.sibhtc.educationdemo.fragments.LearningWearFragment;
 import ru.sibhtc.educationdemo.fragments.WaitingFragment;
@@ -39,26 +56,31 @@ import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
 import ru.sibhtc.educationdemo.models.MessageModel;
 
-public class MainActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks {
-    private int selectedLabelId;
-
+public class MainActivity extends FragmentActivity {
     String LOG_TAG = MainActivity.class.getSimpleName();
+    // list of NFC technologies detected:
+    private final String[][] techList = new String[][]{
+            new String[]{
+                    NfcA.class.getName(),
+                    NfcB.class.getName(),
+                    NfcF.class.getName(),
+                    NfcV.class.getName(),
+                    IsoDep.class.getName(),
+                    MifareClassic.class.getName(),
+                    MifareUltralight.class.getName(), Ndef.class.getName()
+            }
+    };
 
     private GoogleApiClient apiClient;
-    private Spinner spinner;
     private FrameLayout frameLayout;
     private String nodeId;
     private FragmentManager fragmentManager;
     private String intentType;
 
+
     public void setIntentType(String intentType) {
         this.intentType = intentType;
     }
-
-    private static final long CONNECTION_TIME_OUT_MS = 100;
-    private static final String MOBILE_PATH = "/mobile";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +88,8 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
 
-
+        onNewIntent(getIntent());
+        frameLayout = (FrameLayout) findViewById(R.id.watchDataFrame);
         Fragment fragment = new WaitingFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
@@ -78,86 +101,13 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         initGoogleApiClient();
         GlobalHelper.mainActivity = this;
-        init();
+
     }
 
-
     @Override
-    protected void onResume() {
-        super.onResume();
-        Intent intent = getIntent();
-        if (intent != null) {
-            intentType = intent.getStringExtra("type");
-            if (intentType == null)
-                intentType = IntentTypes.Info;
-
-            switch (intentType) {
-                case IntentTypes.Info: {
-                    Fragment fragment;
-                    Bundle bundle = intent.getExtras();
-                    byte[] bytes = null;
-                    if (bundle != null)
-                        bytes = bundle.getByteArray("infoArray");
-
-                    Bundle fragBundle = new Bundle();
-                    if (bundle != null) {
-                        fragBundle.putByteArray("info", bytes);
-                        fragment = new InfoFragment();
-                    } else {
-                        //если первый запуск то окно ожидания сигнала метки
-                        fragment = new WaitingFragment();
-                    }
-
-                    fragment.setArguments(fragBundle);
-
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
-                    } else {
-                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "INFO");
-                    }
-                    fragmentTransaction.commit();
-                    break;
-                }
-                case IntentTypes.Exam: {
-                    Fragment fragment = new ExamWearFragment();
-                    Bundle bundle = intent.getExtras();
-                    byte[] bytes = bundle.getByteArray("infoArray");
-                    Bundle fragBundle = new Bundle();
-                    fragBundle.putByteArray("info", bytes);
-                    fragment.setArguments(fragBundle);
-
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "EXAM");
-                    } else {
-                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "EXAM");
-                    }
-                    fragmentTransaction.commit();
-                    break;
-                }
-                case IntentTypes.Learning: {
-                    Fragment fragment = new LearningWearFragment();
-                    Bundle bundle = intent.getExtras();
-                    byte[] bytes = bundle.getByteArray("infoArray");
-                    Bundle fragBundle = new Bundle();
-                    fragBundle.putByteArray("info", bytes);
-                    fragment.setArguments(fragBundle);
-
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
-                        fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LEARNING");
-                    } else {
-                        fragmentTransaction.add(R.id.watchDataFrame, fragment, "LEARNING");
-                    }
-                    fragmentTransaction.commit();
-                    break;
-                }
-
-            }
-
-        }
+    public void onDestroy() {
+        super.onDestroy();
+        apiClient.disconnect();
     }
 
     private void initGoogleApiClient() {
@@ -188,90 +138,71 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                 if (nodeId != null && nodeId.equals("cloud") && nodes.size() > 1) {
                     nodeId = nodes.get(1).getId();
                 }
-
+                GlobalHelper.nodeId = nodeId;
+                GlobalHelper.apiClient = apiClient;
                 Log.v(LOG_TAG, "Node ID of phone: " + nodeId);
             }
         }).start();
     }
 
-    private void init() {
-        spinner = (Spinner) findViewById(R.id.spinner);
-
-        frameLayout = (FrameLayout) findViewById(R.id.watchDataFrame);
-
-        ArrayList<String> data;
-        data = new ArrayList<>();
-
-        for (int index = 0; index < LabelsMock.labels.length; index++) {
-            data.add(LabelsMock.labels[index].LabelName);
-        }
-
-        final ArrayAdapter labelsAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data);
-        labelsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(labelsAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLabelId = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Do Nothing
-            }
-        });
-
-        frameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MessageModel messageModel = new MessageModel(selectedLabelId, LabelsMock.getCodeById(selectedLabelId), null, LabelsMock.getById(selectedLabelId).IsValued);
-                try {
-                    //провибрировать на приложенную метку
-                    Vibrator vibratorNFCCheck = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibratorNFCCheck.vibrate(100);
-
-                    GlobalHelper.nodeId = nodeId;
-                    GlobalHelper.apiClient = apiClient;
-                    GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, BytesHelper.toByteArray(messageModel));
-                } catch (IOException e) {
-                    //
-                }
-            }
-        });
-    }
-
-
     @Override
-    public void onConnected(Bundle bundle) {
-        //sendMessage(START_ACTIVITY, "");
+    protected void onResume() {
+        super.onResume();
+        // creating pending intent:
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        // creating intent receiver for NFC events:
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(NfcAdapter.ACTION_TAG_DISCOVERED);
+        filter.addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
+        filter.addAction(NfcAdapter.ACTION_TECH_DISCOVERED);
+        // enabling foreground dispatch for getting intent from NFC event:
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        nfcAdapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{filter}, this.techList);
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-
+    protected void onPause() {
+        super.onPause();
+        // disabling foreground dispatch:
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        nfcAdapter.disableForegroundDispatch(this);
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        apiClient.disconnect();
-    }
-
 
     @Override
     protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
+        if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
+            NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+            Parcelable mytag = intent.getParcelableExtra(nfcAdapter.EXTRA_TAG);  // get the detected tag
+            String tagId = "";
+            for (int i = 0; i < 4; i++) {
+                tagId = tagId + ":" + GlobalHelper.decToHex(((Tag) mytag).getId()[i]).toString();
+            }
+            StringBuilder stringBuilder = new StringBuilder(tagId);
+            stringBuilder.deleteCharAt(0);
+            nfcSendIdToPhone(stringBuilder.toString());
+        }
     }
+
+    private void nfcSendIdToPhone(String tagId) {
+        MessageModel messageModel = new MessageModel();
+        messageModel.labelCode = tagId;
+        try {
+            //провибрировать на приложенную метку
+            Vibrator vibratorNFCCheck = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vibratorNFCCheck.vibrate(100);
+
+            GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, BytesHelper.toByteArray(messageModel));
+        } catch (IOException e) {
+            //
+        }
+    }
+
 
     //метод будет заменять инфу в открытом фрагменте или же сменит фрагмент
     //если сменился режим приложения
     public void changeInformation(byte[] data) {
-
-
-        switch (intentType){
-            case IntentTypes.Waiting:{
+        switch (intentType) {
+            case IntentTypes.Waiting: {
                 if (this.fragmentManager.getFragments().get(this.fragmentManager.getFragments().size() - 1) instanceof WaitingFragment) {
 
                 } else {
@@ -289,10 +220,9 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
                 break;
 
-
             }
 
-            case IntentTypes.Info:{
+            case IntentTypes.Info: {
                 if (this.fragmentManager.getFragments().get(0) instanceof WaitingFragment) {
                     //отображение фрагмента ожидания метки
                     Bundle fragBundle = new Bundle();
@@ -311,9 +241,8 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
                 break;
 
-
             }
-            case IntentTypes.Learning:{
+            case IntentTypes.Learning: {
                 if (this.fragmentManager.getFragments().get(0) instanceof LearningWearFragment) {
                     //вывод информации на фрайм
                     ((LearningWearFragment) this.fragmentManager.getFragments().get(0)).changeInformation(data);
@@ -330,7 +259,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
                 break;
             }
-            case IntentTypes.Exam:{
+            case IntentTypes.Exam: {
                 if (this.fragmentManager.getFragments().get(this.fragmentManager.getFragments().size() - 1) instanceof ExamWearFragment) {
                     //вывод информации на фрайм
                     Bundle fragBundle = new Bundle();
@@ -353,7 +282,5 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                 break;
             }
         }
-
     }
-
 }

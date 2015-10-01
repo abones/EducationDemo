@@ -23,33 +23,40 @@ public class WearMessageListenerService extends WearableListenerService {
     private MessageModel messageModel;
     private GoogleApiClient apiClient;
 
+    //Вернет распарсенную модель и поднимет ее сведения из базы
+    private MessageModel getSerializedMessageModel(byte[] data) {
+        MessageModel model;
+        try {
+            model = (MessageModel) BytesHelper.toObject(data);
+            Label label = LabelsMock.getByCode(model.labelCode);
+            model.isValued = label.isValued;
+            model.labelId = String.valueOf(label.labelId);
+            return model;
+        } catch (IOException e) {
+            return new MessageModel();
+        }//
+        catch (ClassNotFoundException e) {
+            return new MessageModel();
+        }
+
+    }
+
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         if (messageEvent.getPath().equals(MessagePaths.LABEL_MESSAGE_PATH)) {
 
             if (GlobalHelper.CurrentAppMode == AppMode.INFORMATION_SENDER) {
                 //отправляем сообщение о запрошенном объекте
-                try {
-                    byte[] object = messageEvent.getData();
-                    messageModel = (MessageModel) BytesHelper.toObject(object);
-                    sendInformationMessage(messageModel.labelCode);
-                }
-                catch (IOException e){
-                    GlobalHelper.showToast(this, e.getMessage());
-                }//
-                catch (ClassNotFoundException e){
-
-                }
+                messageModel = getSerializedMessageModel(messageEvent.getData());
+                sendInformationMessage(messageModel.labelCode);
             } else if (GlobalHelper.CurrentAppMode == AppMode.LEARNING) {
                 //если обучение, то просто смотрим верно ли прислонили метку
                 //если верно то помечаем и идем далее иначе продолжаем ждать верный ответ
-                try {
-                    byte[] object = messageEvent.getData();
-                    messageModel = (MessageModel) BytesHelper.toObject(object);
-                    if (messageModel.isValued) {
-                        //TODO заглушка для локальной сети
-                        GlobalHelper.setMockModelParameters();
-                        studyAnswer();
+                messageModel = getSerializedMessageModel(messageEvent.getData());
+                if (messageModel.isValued) {
+                    //TODO заглушка для локальной сети
+                    GlobalHelper.setMockModelParameters();
+                    studyAnswer();
                         /*GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
@@ -57,29 +64,19 @@ public class WearMessageListenerService extends WearableListenerService {
                             }
                         });*/
 
-                    }else
-                    {
-                        studyAnswer();
-                    }
-
+                } else {
+                    studyAnswer();
                 }
-                catch (IOException e){
-                    GlobalHelper.showToast(this, e.getMessage());
-                }//
-                catch (ClassNotFoundException e){
 
-                }
-            }
-            else if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE) {
+            } else if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE) {
                 //если экзамен, то всегда продолжаем выполнять задание
                 //
-                try {
-                    byte[] object = messageEvent.getData();
-                    messageModel = (MessageModel) BytesHelper.toObject(object);
-                    if (messageModel.isValued) {
-                        //TODO заглушка для локальной сети
-                        GlobalHelper.setMockModelParameters();
-                        examAnswer();
+
+                messageModel = getSerializedMessageModel(messageEvent.getData());
+                if (messageModel.isValued) {
+                    //TODO заглушка для локальной сети
+                    GlobalHelper.setMockModelParameters();
+                    examAnswer();
                         /*GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
@@ -88,18 +85,11 @@ public class WearMessageListenerService extends WearableListenerService {
                         });*/
 
 
-                    }else
-                    {
-                        examAnswer();
-                    }
-
+                } else {
+                    examAnswer();
                 }
-                catch (IOException e){
-                    GlobalHelper.showToast(this, e.getMessage());
-                }//
-                catch (ClassNotFoundException e){
 
-                }
+
             }
         } else {
             byte[] data = messageEvent.getData();
@@ -109,11 +99,13 @@ public class WearMessageListenerService extends WearableListenerService {
     }
 
     //для ассинхронных запросов к сайту при обучении
-    private void studyAnswer(){
+
+    private void studyAnswer() {
         GlobalHelper.getLearningFragment().wearAnswer(messageModel);
     }
+
     //для ассинхронных запросов к сайту при обучении
-    private void examAnswer(){
+    private void examAnswer() {
         GlobalHelper.getExamFragment().wearAnswer(messageModel);
     }
 
@@ -125,14 +117,14 @@ public class WearMessageListenerService extends WearableListenerService {
         String path = "";
         if (labelNFC != null) {
             byte[] data;
-                try {
-                    data = BytesHelper.toByteArray(labelNFC);
-                    isGeneratedArray = true;
-                    path = MessagePaths.INFO_MESSAGE_PATH;
-                } catch (Exception ex) {
-                    data = new byte[]{};
-                    isGeneratedArray = false;
-                }
+            try {
+                data = BytesHelper.toByteArray(labelNFC);
+                isGeneratedArray = true;
+                path = MessagePaths.INFO_MESSAGE_PATH;
+            } catch (Exception ex) {
+                data = new byte[]{};
+                isGeneratedArray = false;
+            }
             if (isGeneratedArray) {
                 GlobalHelper.sendMessage(path, data);
             }

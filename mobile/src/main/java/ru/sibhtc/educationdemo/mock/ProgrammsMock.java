@@ -22,9 +22,9 @@ public class ProgrammsMock {
 
             //программа 1 начало
             ArrayList<Step> steps = new ArrayList<Step>();
-            steps.add(new Step(0, "Надеть каску", StepResult.WAITING, "helmet"));
+            steps.add(new Step(0, "Надеть каску", StepResult.WAITING, LabelsMock.getCodeById(6)));
             steps.add(new Step(1, "Проверка загазованности ", StepResult.WAITING, "gas"));
-            steps.add(new Step(2, "0", "SwitchIn", "Открытие крана 1", StepResult.WAITING, "tap1"));
+            steps.add(new Step(2, "0", "SwitchIn", "Открытие крана 1", StepResult.WAITING, LabelsMock.getCodeById(1)));
             steps.add(new Step(3, "0", "SwitchOut", "Открытие крана 2", StepResult.WAITING, "tap2"));
             steps.add(new Step(4, "Взвод пусковой пробки РД", StepResult.WAITING, "tube"));
             steps.add(new Step(5, "Выбор инструмента регулировки давления", StepResult.WAITING, "switch"));

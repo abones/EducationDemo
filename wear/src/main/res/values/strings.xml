@@ -16,4 +16,6 @@
     <string name="waiting_screen_message">Поднесите устройство к метке!</string>
     <string name="image_content">Поднесите к метке</string>
     <string name="waiting_layout_title_informatoin_about_label">Информация об объекте</string>
+
+    <string name="ok_detection">gdfgfdgf</string>
 </resources>

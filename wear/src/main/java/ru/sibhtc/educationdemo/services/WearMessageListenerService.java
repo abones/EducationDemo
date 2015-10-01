@@ -32,8 +32,7 @@ public class WearMessageListenerService extends WearableListenerService {
             case MessagePaths.ERROR_MESSAGE_PATH: {
                 String message = new String(data);
                 Vibrator vibratorNFCCheck = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                vibratorNFCCheck.vibrate(100);
-                vibratorNFCCheck.vibrate(100);
+                vibratorNFCCheck.vibrate(300);
                 showToast(message);
                 break;
             }
