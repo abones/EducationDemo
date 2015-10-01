@@ -68,11 +68,28 @@ public class InfoFragment extends Fragment {
 
     }
 
+    private String prepereControlValueText(LabelNFC labelNFC){
+        String result = "";
+
+        if(labelNFC.isValued)
+        {
+            if(labelNFC.isBool){
+                result = labelNFC.trueValue;
+            }
+            else
+            {
+               result = (labelNFC.controlValue ==null?"": labelNFC.controlValue) +
+                        " " + (labelNFC.valueMeasure == null? "" : labelNFC.valueMeasure);
+            }
+        }
+        return result;
+
+    }
+
     private void setInformation(final byte[] data) {
         LabelNFC labelNFC = getObjectByByteArray(data);
         infoTitle.setText(labelNFC.labelName);
-        infoControlValue.setText( labelNFC.controlValue ==null?"": labelNFC.controlValue +
-                " " + labelNFC.valueMeasure == null? "" : labelNFC.valueMeasure);
+        infoControlValue.setText( prepereControlValueText(labelNFC));
         infoText.setText(labelNFC.labelDescription);
     }
 }

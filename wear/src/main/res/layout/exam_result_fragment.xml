@@ -1,105 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"     android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="#80FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/mainApplicationTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:background="@color/gp_blue"
+        android:gravity="center"
+        android:text="@string/main_application_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/info_text"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/mainApplicationBottomTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gp_blue"
+        android:gravity="right"
+        android:text="@string/main_application_bottom_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/red"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:weightSum="100">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="70"
-            android:layout_height="30dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/examTitle"
-            android:textAlignment="center"
-            android:textColor="@color/info_text"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="70"
             android:text="Экзамен закончен"
-            android:textSize="14sp"/>
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/info_text"
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="30"
-            android:layout_height="30dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/examTotalTime"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="30"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/info_text"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/infoSeparator"
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/blue"
-        android:layout_marginRight="5dp"
+        android:layout_height="2dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"/>
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/blue" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:weightSum="100">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="70"
-            android:layout_height="30dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/examErrorTitle"
-            android:textAlignment="center"
-            android:textColor="@color/info_text"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="70"
             android:text="Ошибок"
-            android:textSize="20sp"/>
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/info_text"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="30"
-            android:layout_height="30dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/examErrorCount"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="30"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/info_text"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:weightSum="100">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="70"
-            android:layout_height="30dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/examRatingTitle"
-            android:textAlignment="center"
-            android:textColor="@color/info_text"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="70"
             android:text="Оценка"
-            android:textSize="20sp"/>
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/info_text"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="30"
-            android:layout_height="30dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/examRatingValue"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="30"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/info_text"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
     </LinearLayout>
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
         android:id="@+id/examResultImage"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 </LinearLayout>

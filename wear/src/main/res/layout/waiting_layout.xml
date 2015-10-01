@@ -3,32 +3,57 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#80FFFFFF"
+    >
 
+    <TextView
+        android:id="@+id/mainApplicationTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:textColor="@color/info_text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/main_application_title"
+        android:background="@color/gp_blue"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/mainApplicationBottomTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:text="@string/main_application_bottom_title"
+        android:gravity="right"
+        android:background="@color/gp_blue"
+        />
     <TextView
         android:id="@+id/waitingTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/info_text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
+
         android:singleLine="false"
         android:maxLines="25"
         android:textSize="15sp"
         android:text="@string/waiting_layout_title_informatoin_about_label"
-        android:paddingLeft="5sp"/>
+        android:paddingLeft="5sp"
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:id="@+id/infoSeparator"
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="@color/blue"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="2dp"/>
     <ImageView
         android:layout_width="53dp"
-        android:layout_height="46dp"
+        android:layout_height="40dp"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:src="@mipmap/ic_wear_with_nfc"
@@ -39,7 +64,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/waiting_screen_message"
-        android:textColor="@color/info_text"
+        android:textColor="@color/white"
         android:id="@+id/textView"
         android:gravity="center"
         android:background="@drawable/back"
@@ -50,4 +75,5 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"/>
+
 </LinearLayout>
