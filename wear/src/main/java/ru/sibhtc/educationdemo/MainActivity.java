@@ -23,19 +23,24 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
+import android.support.wearable.view.DismissOverlayView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
@@ -56,7 +61,8 @@ import ru.sibhtc.educationdemo.helpers.GlobalHelper;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
 import ru.sibhtc.educationdemo.models.MessageModel;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements
+        View.OnTouchListener, View.OnLongClickListener {
     String LOG_TAG = MainActivity.class.getSimpleName();
     // list of NFC technologies detected:
     private final String[][] techList = new String[][]{
@@ -70,6 +76,11 @@ public class MainActivity extends FragmentActivity {
                     MifareUltralight.class.getName(), Ndef.class.getName()
             }
     };
+
+    private DismissOverlayView mDismissOverlayView;
+    private GestureDetector mDetector;
+
+
 
     private GoogleApiClient apiClient;
     private FrameLayout frameLayout;
@@ -99,7 +110,8 @@ public class MainActivity extends FragmentActivity {
 
         onNewIntent(getIntent());
         frameLayout = (FrameLayout) findViewById(R.id.watchDataFrame);
-        Fragment fragment = new WaitingFragment();
+
+        final Fragment fragment = new WaitingFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (fragmentManager.findFragmentById(R.id.watchDataFrame) != null) {
             fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
@@ -113,6 +125,20 @@ public class MainActivity extends FragmentActivity {
             this.setIsIntentWasDestroid(GlobalHelper.mainActivity.getIsIntentWasDestroid());
 
         GlobalHelper.mainActivity = this;
+        mDismissOverlayView = new DismissOverlayView(this);
+        // Attach Long Click detector
+        frameLayout.setOnLongClickListener(this);
+
+        frameLayout.addView(mDismissOverlayView, new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT));
+
+        // Configure a gesture detector
+        mDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            public void onLongPress(MotionEvent ev) {
+                mDismissOverlayView.show();
+            }
+        });
 
     }
 
@@ -381,5 +407,22 @@ public class MainActivity extends FragmentActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        mDismissOverlayView.show();
+        return true;
+    }
+
+    public boolean onTouch(View v, MotionEvent event) {
+        //...
+        return false;
+    }
+
+    // Capture long presses
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return mDetector.onTouchEvent(ev) || super.onTouchEvent(ev);
     }
 }

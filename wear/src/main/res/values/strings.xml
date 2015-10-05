@@ -20,4 +20,5 @@
     <string name="main_application_bottom_title">demo</string>
 
     <string name="ok_detection">gdfgfdgf</string>
+    <string name="long_press_intro">Вы уверены?</string>
 </resources>

@@ -62,7 +62,7 @@ public class DetailResultItemAdapter extends ArrayAdapter<EventResultModel> {
         }
 
         if (data.size() != 1) {
-            holder.getResultRatingImage().setImageResource(R.mipmap.success);
+            holder.getResultRatingImage().setImageResource(R.mipmap.error);
 
             holder.getDateEvent().setText("13.10.2015");
             holder.getTimeResult().setText("06:08");
