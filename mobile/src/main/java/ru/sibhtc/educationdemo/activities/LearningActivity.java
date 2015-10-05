@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ru.sibhtc.educationdemo.R;
+import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.constants.MessageStrings;
 import ru.sibhtc.educationdemo.fragments.LearningFragment;
 import ru.sibhtc.educationdemo.fragments.SettingsFragment;
@@ -93,16 +94,24 @@ public class LearningActivity extends AppCompatActivity {
             case R.id.itemStudents: {
                 Intent intent = new Intent(that, StudentsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                String str = "";
+                GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
+                this.finish();
                 startActivity(intent);
                 break;
             }
             case R.id.itemExam: {
                 Intent intent = new Intent(that, ExamActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                String str = "";
+                GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
+                this.finish();
                 startActivity(intent);
                 break;
             }
             case android.R.id.home: {
+                String str = "";
+                GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
                 LearningActivity.this.finish();
                 break;
             }
@@ -121,6 +130,8 @@ public class LearningActivity extends AppCompatActivity {
                         .setCancelable(false)
                         .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                String str = "";
+                                GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
                                 LearningActivity.this.finish();
                             }
                         })

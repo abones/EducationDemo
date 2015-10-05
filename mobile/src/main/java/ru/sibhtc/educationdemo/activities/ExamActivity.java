@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ru.sibhtc.educationdemo.R;
+import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.constants.MessageStrings;
 import ru.sibhtc.educationdemo.fragments.ExamFragment;
 import ru.sibhtc.educationdemo.fragments.SettingsFragment;
@@ -63,6 +64,8 @@ public class ExamActivity extends AppCompatActivity {
                         .setCancelable(false)
                         .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                String str = "";
+                                GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
                                 ExamActivity.this.finish();
                             }
                         })
@@ -96,6 +99,9 @@ public class ExamActivity extends AppCompatActivity {
                     .setCancelable(false)
                     .setPositiveButton(MessageStrings.MAIN_YES, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            String str = "";
+                            GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
+                            ExamActivity.this.finish();
                             changeActivityByMenu(item);
                         }
                     })

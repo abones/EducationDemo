@@ -77,7 +77,7 @@ public class ExamWearResultFragment extends Fragment {
         examRatingValue.setText(String.valueOf(eventModel.getAnswerCount() - eventModel.getErrorCount()) + "/" +
                 String.valueOf(eventModel.getAnswerCount()));
 
-        if ((eventModel.getAnswerCount() - eventModel.getErrorCount()) * 100 / eventModel.getAnswerCount() >= 50) {
+        if (eventModel.getErrorCount() == 0) {
             examResultImage.setImageResource(R.mipmap.success);
         } else {
             examResultImage.setImageResource(R.mipmap.error);

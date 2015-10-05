@@ -20,8 +20,16 @@ import ru.sibhtc.educationdemo.models.EventResultModel;
  * Created by nikpodrivnik on 29/09/15.
  */
 public class LearningResultFragment extends Fragment {
+    private ArrayList<EventResultModel> eventResultModels;
     private Button finishButton;
 
+    public ArrayList<EventResultModel> getEventResultModels() {
+        return eventResultModels;
+    }
+
+    public void setEventResultModels(ArrayList<EventResultModel> eventResultModels) {
+        this.eventResultModels = eventResultModels;
+    }
 
     public static DetailsResultFragment newInstance(int index) {
         DetailsResultFragment f = new DetailsResultFragment();
@@ -55,17 +63,19 @@ public class LearningResultFragment extends Fragment {
             }
         });
 
-        //заглушка для резултатов тестирования
-        ArrayList<EventResultModel> eventResultModels = new ArrayList<>();
-        EventResultModel eventResultModel = new EventResultModel();
-        eventResultModels.add(eventResultModel);
+        if (eventResultModels == null) {
+            //заглушка для резултатов тестирования
+            eventResultModels = new ArrayList<>();
+            EventResultModel eventResultModel = new EventResultModel();
+            eventResultModels.add(eventResultModel);
+        }
+        
         ListView listDetailResult;
         listDetailResult = (ListView) view.findViewById(R.id.fragment_learning_result_view);
         DetailResultItemAdapter adapter = new DetailResultItemAdapter(getActivity(), R.layout.details_result_list_item, eventResultModels);
         adapter.setNotifyOnChange(true);
         listDetailResult.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
         return view;
     }
 }

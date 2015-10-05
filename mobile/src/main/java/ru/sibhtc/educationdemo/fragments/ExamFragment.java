@@ -122,6 +122,9 @@ public class ExamFragment extends EventFragment {
 
                             //показываем результаты экзамена
                             LearningResultFragment learningResultFragment = new LearningResultFragment();
+                            ArrayList<EventResultModel> eventResultModelArrayList = new ArrayList<EventResultModel>();
+                            eventResultModelArrayList.add(eventResultModel);
+                            learningResultFragment.setEventResultModels(eventResultModelArrayList);
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fTrans = fragmentManager.beginTransaction();
                             sendFinishExamMessage();
@@ -156,9 +159,11 @@ public class ExamFragment extends EventFragment {
                             sendFinishExamMessage();
                             //показываем результаты экзамена
                             LearningResultFragment learningResultFragment = new LearningResultFragment();
+                            ArrayList<EventResultModel> eventResultModelArrayList = new ArrayList<EventResultModel>();
+                            eventResultModelArrayList.add(eventResultModel);
+                            learningResultFragment.setEventResultModels(eventResultModelArrayList);
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fTrans = fragmentManager.beginTransaction();
-
                             fTrans.replace(R.id.examTabFrame, learningResultFragment, "EXAM");
                             fTrans.commit();
                         }

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -60,12 +61,28 @@ public class DetailResultItemAdapter extends ArrayAdapter<EventResultModel> {
             holder = (DetailResultItemHolder) row.getTag();
         }
 
-        holder.getResultRatingImage().setImageResource(R.mipmap.success);
+        if (data.size() != 1) {
+            holder.getResultRatingImage().setImageResource(R.mipmap.success);
 
-        holder.getDateEvent().setText("11.12.2015 12:31");
-        holder.getTimeResult().setText("06:08");
-        holder.getErrorCount().setText("3");
-        holder.getResultRating().setText("7/10");
+            holder.getDateEvent().setText("13.10.2015");
+            holder.getTimeResult().setText("06:08");
+            holder.getErrorCount().setText("3");
+            holder.getResultRating().setText("7/10");
+        } else {
+            if (data.get(0).getErrorCount() == 0) {
+                holder.getResultRatingImage().setImageResource(R.mipmap.success);
+            } else {
+                holder.getResultRatingImage().setImageResource(R.mipmap.error);
+            }
+            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+
+            holder.getDateEvent().setText(formatter.format(data.get(0).getDateEvent()));
+            holder.getTimeResult().setText(String.valueOf(data.get(0).getTimeResult() / 60) + ":" +
+                    String.valueOf(data.get(0).getTimeResult() - (data.get(0).getTimeResult() / 60)));
+            holder.getErrorCount().setText(data.get(0).getErrorCount().toString());
+            holder.getResultRating().setText(String.valueOf(data.get(0).getAnswerCount() - data.get(0).getErrorCount()) +
+                    "/" + data.get(0).getAnswerCount().toString());
+        }
         return row;
     }
 

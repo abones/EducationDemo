@@ -73,7 +73,17 @@ public class StepAdapter extends ArrayAdapter<Step> {
                 holder.getStepTime().setText("(" +
                         getDiffDate(data.get(position).getStepStart(),
                                 data.get(position).getStepEnd()) + ")");
-                holder.getStepValue().setText(data.get(position).getEnteredValue());
+                if (data.get(position).getEnteredValue() != null) {
+                    if (data.get(position).getEnteredValue().equals("0")) {
+                        holder.getStepValue().setText("Открыт");
+                    } else {
+                        if (data.get(position).getEnteredValue().equals("1")) {
+                            holder.getStepValue().setText("Закрыт");
+                        } else {
+                            holder.getStepValue().setText(data.get(position).getEnteredValue());
+                        }
+                    }
+                }
                 holder.getStepValue().setTextColor(Color.BLACK);
                 break;
             case ERROR:
@@ -83,7 +93,17 @@ public class StepAdapter extends ArrayAdapter<Step> {
                 holder.getStepTime().setText("(" +
                         getDiffDate(data.get(position).getStepStart(),
                                 data.get(position).getStepEnd()) + ")");
-                holder.getStepValue().setText(data.get(position).getEnteredValue());
+                if (data.get(position).getEnteredValue() != null) {
+                    if (data.get(position).getEnteredValue().equals("0")) {
+                        holder.getStepValue().setText("Открыт");
+                    } else {
+                        if (data.get(position).getEnteredValue().equals("1")) {
+                            holder.getStepValue().setText("Закрыт");
+                        } else {
+                            holder.getStepValue().setText(data.get(position).getEnteredValue());
+                        }
+                    }
+                }
                 holder.getStepValue().setTextColor(Color.RED);
 
                 break;
