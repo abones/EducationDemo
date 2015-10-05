@@ -30,15 +30,7 @@ import ru.sibhtc.educationdemo.mock.AppMode;
  * Created by Антон on 16.09.2015.
  **/
 public class ExamActivity extends AppCompatActivity {
-    final String LOG_TAG = "myLogs";
-    private static final String TAG = "junk";
-
-    private Date examStartDate;
-    private SettingsFragment settingsFragment;
     private ExamFragment examFragment;
-
-
-    private FragmentTransaction fTrans;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,11 +38,12 @@ public class ExamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exam);
 
         ActionBar bar = getSupportActionBar();
+        assert bar != null;
         bar.setTitle(R.string.application_name);
         bar.setSubtitle(Html.fromHtml("<font color='#ff0000'>" + getString(R.string.application_name_demo) + "</font>"));
         bar.setDisplayHomeAsUpEnabled(true);
 
-        settingsFragment = new SettingsFragment();
+        SettingsFragment settingsFragment = new SettingsFragment();
         settingsFragment.setAppMode(AppMode.EXAMINE);
         examFragment = new ExamFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -81,8 +74,7 @@ public class ExamActivity extends AppCompatActivity {
             } else {
                 return super.onKeyDown(keyCode, event);
             }
-        }else
-        {
+        } else {
             return super.onKeyDown(keyCode, event);
         }
     }
@@ -145,7 +137,7 @@ public class ExamActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
         Bundle bundle = new Bundle();
-        examStartDate = new Date();
+        Date examStartDate = new Date();
         bundle.putInt("programId", programId);
         bundle.putInt("studentId", studentId);
         bundle.putString("date", dateFormat.format(examStartDate));

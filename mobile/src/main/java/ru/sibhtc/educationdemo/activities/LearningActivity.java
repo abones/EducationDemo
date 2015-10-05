@@ -107,7 +107,7 @@ public class LearningActivity extends AppCompatActivity {
                 break;
             }
             //default:
-                //return super.onOptionsItemSelected(item);
+            //return super.onOptionsItemSelected(item);
         }
     }
 

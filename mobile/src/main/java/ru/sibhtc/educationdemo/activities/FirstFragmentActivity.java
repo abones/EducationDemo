@@ -25,14 +25,7 @@ import ru.sibhtc.educationdemo.models.TestSendModel;
  * Created by Антон on 15.09.2015.
  **/
 public class FirstFragmentActivity extends Activity implements GoogleApiClient.ConnectionCallbacks {
-    private Button sendButton;
-    private Button sendObject;
-    private Button sendInfo;
-    private Button sendProgress;
-    private Button sendExam;
-    private TextView receivedMessagesTextView;
     private EditText sendMessage;
-    private Button getInfoFromServerButton;
 
     private GoogleApiClient apiClient;
 
@@ -47,29 +40,21 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
 
     private void initGoogleApiClient() {
         apiClient = new GoogleApiClient.Builder(this)
-                .addApi( Wearable.API )
+                .addApi(Wearable.API)
                 .build();
 
         apiClient.connect();
     }
 
-    private void init(){
+    private void init() {
         //тестовые кнопули
-        sendButton = (Button) findViewById(R.id.test_btn);
-        sendObject = (Button) findViewById(R.id.object_btn);
-        sendInfo = (Button) findViewById(R.id.info_btn);
-        sendProgress = (Button)findViewById(R.id.progress_btn);
+        Button sendButton = (Button) findViewById(R.id.test_btn);
+        Button sendObject = (Button) findViewById(R.id.object_btn);
+        Button sendProgress = (Button) findViewById(R.id.progress_btn);
         sendMessage = (EditText) findViewById(R.id.editText);
-        sendExam  = (Button)findViewById(R.id.exam_start_btn);
-        getInfoFromServerButton = (Button) findViewById(R.id.get_info_from_server_btn);
+        Button sendExam = (Button) findViewById(R.id.exam_start_btn);
+        Button getInfoFromServerButton = (Button) findViewById(R.id.get_info_from_server_btn);
 
-        /*getInfoFromServerButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                GlobalHelper.getServerInfo();
-            }
-        });
-*/
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,13 +72,10 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 byte[] data;
                 String path;
 
-                try
-                {
+                try {
                     data = BytesHelper.toByteArray(test);
                     path = MessagePaths.OBJECT_MESSAGE_PATH;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     data = ex.getMessage().getBytes();
                     path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
@@ -108,13 +90,10 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 byte[] data;
                 String path;
 
-                try
-                {
+                try {
                     data = BytesHelper.toByteArray(progress);
                     path = MessagePaths.PROGRESS_MESSAGE_PATH;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     data = ex.getMessage().getBytes();
                     path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
@@ -129,13 +108,10 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
                 byte[] data;
                 String path;
 
-                try
-                {
+                try {
                     data = BytesHelper.toByteArray(exam);
                     path = MessagePaths.EXAM_MESSAGE_PATH;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     data = ex.getMessage().getBytes();
                     path = MessagePaths.ERROR_MESSAGE_PATH;
                 }
@@ -145,20 +121,20 @@ public class FirstFragmentActivity extends Activity implements GoogleApiClient.C
 
     }
 
-    private void sendMessage( final String path, final byte[] data ) {
-        new Thread( new Runnable() {
+    private void sendMessage(final String path, final byte[] data) {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes( apiClient ).await();
-                for(Node node : nodes.getNodes()) {
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(apiClient).await();
+                for (Node node : nodes.getNodes()) {
                     MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
-                            apiClient, node.getId(), path, data ).await();
+                            apiClient, node.getId(), path, data).await();
                 }
 
-                runOnUiThread( new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        sendMessage.setText( "" );
+                        sendMessage.setText("");
                     }
                 });
             }

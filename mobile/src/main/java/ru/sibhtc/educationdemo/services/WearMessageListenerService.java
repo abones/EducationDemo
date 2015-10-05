@@ -9,6 +9,7 @@ import java.io.IOException;
 import ru.sibhtc.educationdemo.constants.MessagePaths;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.helpers.GlobalHelper;
+import ru.sibhtc.educationdemo.helpers.ICallbackInterface;
 import ru.sibhtc.educationdemo.mock.AppMode;
 import ru.sibhtc.educationdemo.models.Label;
 import ru.sibhtc.educationdemo.mock.LabelsMock;
@@ -55,14 +56,14 @@ public class WearMessageListenerService extends WearableListenerService {
                 messageModel = getSerializedMessageModel(messageEvent.getData());
                 if (messageModel.isValued) {
                     //TODO заглушка для локальной сети
-                    GlobalHelper.setMockModelParameters();
-                    studyAnswer();
-                        /*GlobalHelper.getServerInfo(new ICallbackInterface() {
+                    //GlobalHelper.setMockModelParameters();
+                    //studyAnswer();
+                        GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
                                 studyAnswer();
                             }
-                        });*/
+                        });
 
                 } else {
                     studyAnswer();
@@ -75,14 +76,14 @@ public class WearMessageListenerService extends WearableListenerService {
                 messageModel = getSerializedMessageModel(messageEvent.getData());
                 if (messageModel.isValued) {
                     //TODO заглушка для локальной сети
-                    GlobalHelper.setMockModelParameters();
-                    examAnswer();
-                        /*GlobalHelper.getServerInfo(new ICallbackInterface() {
+                    //GlobalHelper.setMockModelParameters();
+                    //examAnswer();
+                        GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
                                 examAnswer();
                             }
-                        });*/
+                        });
 
 
                 } else {
