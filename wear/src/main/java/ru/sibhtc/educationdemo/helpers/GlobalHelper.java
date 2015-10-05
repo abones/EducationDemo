@@ -37,6 +37,8 @@ public class GlobalHelper {
             '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
     };
 
+    public static Integer fragmentNumber = 0;
+
     public static void sendMessage( final String path, final byte[] data ) {
         new Thread( new Runnable() {
             @Override
@@ -58,5 +60,7 @@ public class GlobalHelper {
         }
         return hexBuilder.toString();
     }
+
+
 
 }

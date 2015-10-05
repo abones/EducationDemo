@@ -90,11 +90,11 @@ public class LearningWearFragment extends Fragment {
     private void setInformation(final byte[] data) {
         LearningModel learningModel = getObjectByByteArray(data);
 
-        learningTitle.setText(String.format("Шаг %d/%d", learningModel.currentStep, learningModel.stepCount));
-        learningStepInfo.setText(learningModel.stepInfo);
+        learningTitle.setText(String.format("Шаг %d/%d", 5, 10));
+        learningStepInfo.setText("Пусковая пробка регулятора давления");
 
-        learningStepPosition.setMax(learningModel.stepCount);
-        learningStepPosition.setProgress(learningModel.currentStep - 1);
+        learningStepPosition.setMax(10);
+        learningStepPosition.setProgress(5);
 
     }
 }

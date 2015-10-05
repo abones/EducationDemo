@@ -63,6 +63,7 @@ public class WearMessageListenerService extends WearableListenerService {
         }
     }
 
+
     private void prepareAndStartActivity(String intentType, byte[] data) {
         Intent intent = new Intent(this, MainActivity.class);
         Bundle bundle = new Bundle();

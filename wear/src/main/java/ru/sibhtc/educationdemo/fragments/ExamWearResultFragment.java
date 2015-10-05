@@ -71,7 +71,11 @@ public class ExamWearResultFragment extends Fragment {
 
     private void setInformation(final byte[] data) {
         EventResultModel eventModel = getObjectByByteArray(data);
-        examTotalTime.setText(String.valueOf(eventModel.getTimeResult() % 60) + ":" +
+        examTotalTime.setText("20:15");
+        examErrorCount.setText("2");
+        examRatingValue.setText("1/10");
+        examResultImage.setImageResource(R.mipmap.success);
+        /*examTotalTime.setText(String.valueOf(eventModel.getTimeResult() % 60) + ":" +
                 String.valueOf(eventModel.getTimeResult() - (eventModel.getTimeResult() % 60)));
         examErrorCount.setText(String.valueOf(eventModel.getErrorCount()));
         examRatingValue.setText(String.valueOf(eventModel.getAnswerCount() - eventModel.getErrorCount()) + "/" +
@@ -81,6 +85,6 @@ public class ExamWearResultFragment extends Fragment {
             examResultImage.setImageResource(R.mipmap.success);
         } else {
             examResultImage.setImageResource(R.mipmap.error);
-        }
+        }*/
     }
 }

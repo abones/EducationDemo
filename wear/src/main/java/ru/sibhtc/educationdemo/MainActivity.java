@@ -311,17 +311,113 @@ public class MainActivity extends FragmentActivity implements
     private void nfcSendIdToPhone(String tagId) {
         MessageModel messageModel = new MessageModel();
         messageModel.labelCode = tagId;
-        try {
+
             //провибрировать на приложенную метку
             Vibrator vibratorNFCCheck = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             vibratorNFCCheck.vibrate(100);
+             changeInformation2();
+            //GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, BytesHelper.toByteArray(messageModel));
 
-            GlobalHelper.sendMessage(MessagePaths.LABEL_MESSAGE_PATH, BytesHelper.toByteArray(messageModel));
-        } catch (IOException e) {
-            //
+    }
+    //метод будет заменять инфу в открытом фрагменте или же сменит фрагмент
+    //если сменился режим приложения
+    public void changeInformation2() {
+        GlobalHelper.fragmentNumber ++;
+        if (GlobalHelper.fragmentNumber == 5)
+            GlobalHelper.fragmentNumber = 0;
+
+        switch (GlobalHelper.fragmentNumber) {
+            case 0: {
+                if (this.fragmentManager.getFragments().get(this.fragmentManager.getFragments().size() - 1) instanceof WaitingFragment) {
+
+                } else {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", null);
+                    Fragment fragment = new WaitingFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "Waiting");
+
+                    fragmentTransaction.commit();
+                }
+
+                break;
+
+            }
+
+            case 1: {
+                if (this.fragmentManager.getFragments().get(0) instanceof WaitingFragment) {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", null);
+                    Fragment fragment = new InfoFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "INFO");
+
+                    fragmentTransaction.commit();
+                } else if (this.fragmentManager.getFragments().get(0) instanceof InfoFragment) {
+                    //вывод информации на фрайм
+                    ((InfoFragment) this.fragmentManager.getFragments().get(0)).changeInformation(null);
+                }
+
+                break;
+
+            }
+            case 2: {
+                if (this.fragmentManager.getFragments().get(0) instanceof LearningWearFragment) {
+                    //вывод информации на фрайм
+                    ((LearningWearFragment) this.fragmentManager.getFragments().get(0)).changeInformation(null);
+                } else {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", null);
+                    Fragment fragment = new LearningWearFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "LearningModel");
+                    fragmentTransaction.commit();
+                }
+
+                break;
+            }
+            case 3: {
+                if (this.fragmentManager.getFragments().get(this.fragmentManager.getFragments().size() - 1) instanceof ExamWearFragment) {
+                    //вывод информации на фрайм
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", null);
+                    Fragment fragment = new ExamWearResultFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "ExamModelResult");
+                    fragmentTransaction.commit();
+                } else {
+                    //отображение фрагмента ожидания метки
+                    Bundle fragBundle = new Bundle();
+                    fragBundle.putByteArray("info", null);
+                    Fragment fragment = new ExamWearFragment();
+                    fragment.setArguments(fragBundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.watchDataFrame, fragment, "ExamModel");
+                    fragmentTransaction.commit();
+                }
+                break;
+            }
+            case 4:{
+                //вывод информации на фрайм
+                Bundle fragBundle = new Bundle();
+                fragBundle.putByteArray("info", null);
+                Fragment fragment = new ExamWearResultFragment();
+                fragment.setArguments(fragBundle);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.watchDataFrame, fragment, "ExamModelResult");
+                fragmentTransaction.commit();
+            }
         }
     }
-
 
     //метод будет заменять инфу в открытом фрагменте или же сменит фрагмент
     //если сменился режим приложения

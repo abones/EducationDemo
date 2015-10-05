@@ -88,8 +88,8 @@ public class InfoFragment extends Fragment {
 
     private void setInformation(final byte[] data) {
         LabelNFC labelNFC = getObjectByByteArray(data);
-        infoTitle.setText(labelNFC.labelName);
-        infoControlValue.setText( prepereControlValueText(labelNFC));
-        infoText.setText(labelNFC.labelDescription);
+        infoTitle.setText("Регулировочная гайка");
+        infoControlValue.setText( "0.2 кПа");
+        infoText.setText("Закручивается по часовой стрелке. Каждый оборот 0,2...0,4 кПа");
     }
 }
