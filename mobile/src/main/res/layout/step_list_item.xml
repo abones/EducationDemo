@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/stepValue"
-        android:layout_width="60dp"
+        android:layout_width="200dp"
         android:layout_height="@dimen/steps_list_layout_height"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textAlignment="textEnd"

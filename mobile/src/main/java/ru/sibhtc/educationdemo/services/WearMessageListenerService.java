@@ -56,14 +56,14 @@ public class WearMessageListenerService extends WearableListenerService {
                 messageModel = getSerializedMessageModel(messageEvent.getData());
                 if (messageModel.isValued) {
                     //TODO заглушка для локальной сети
-                    GlobalHelper.setMockModelParameters();
-                    studyAnswer();
-                        /*GlobalHelper.getServerInfo(new ICallbackInterface() {
+                    //GlobalHelper.setMockModelParameters();
+                    //studyAnswer();
+                        GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
                                 studyAnswer();
                             }
-                        });*/
+                        });
 
                 } else {
                     studyAnswer();
@@ -76,14 +76,14 @@ public class WearMessageListenerService extends WearableListenerService {
                 messageModel = getSerializedMessageModel(messageEvent.getData());
                 if (messageModel.isValued) {
                     //TODO заглушка для локальной сети
-                    GlobalHelper.setMockModelParameters();
-                    examAnswer();
-                        /*GlobalHelper.getServerInfo(new ICallbackInterface() {
+                    //GlobalHelper.setMockModelParameters();
+                    //examAnswer();
+                        GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
                                 examAnswer();
                             }
-                        });*/
+                        });
 
 
                 } else {
