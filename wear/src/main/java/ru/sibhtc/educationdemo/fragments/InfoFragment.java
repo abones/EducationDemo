@@ -89,7 +89,7 @@ public class InfoFragment extends Fragment {
     private void setInformation(final byte[] data) {
         LabelNFC labelNFC = getObjectByByteArray(data);
         infoTitle.setText(labelNFC.labelName);
-        infoControlValue.setText( prepereControlValueText(labelNFC));
+        //infoControlValue.setText( prepereControlValueText(labelNFC));
         infoText.setText(labelNFC.labelDescription);
     }
 }
