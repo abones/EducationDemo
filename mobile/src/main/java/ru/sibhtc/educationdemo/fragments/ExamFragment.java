@@ -79,7 +79,12 @@ public class ExamFragment extends EventFragment {
         timeTxt.setText(date);
 
         listSteps = (ListView) view.findViewById(R.id.stepsList);
-
+        prName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wearAnswer(null);
+            }
+        });
 
         return view;
     }
@@ -118,7 +123,7 @@ public class ExamFragment extends EventFragment {
                     act.runOnUiThread(new Runnable() {
                         public void run() {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
-                            adapter.refreshFinishedAdapter();
+                            adapter.refreshFinishedAdapter(MessageStrings.EXAM_FINISHED);
 
                             //показываем результаты экзамена
                             LearningResultFragment learningResultFragment = new LearningResultFragment();
@@ -154,7 +159,7 @@ public class ExamFragment extends EventFragment {
                     act.runOnUiThread(new Runnable() {
                         public void run() {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.ERROR);
-                            adapter.refreshFinishedAdapter();
+                            adapter.refreshFinishedAdapter(MessageStrings.EXAM_FINISHED);
                             eventResultModel.setErrorCount(eventResultModel.getErrorCount() + 1);
                             sendFinishExamMessage();
                             //показываем результаты экзамена

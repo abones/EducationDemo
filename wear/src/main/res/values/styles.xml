@@ -3,4 +3,5 @@
     <style name="AppTheme" >
         <item name="android:windowSwipeToDismiss">false</item>
     </style>
+
 </resources>

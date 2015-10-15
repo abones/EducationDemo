@@ -128,10 +128,10 @@ public class StepAdapter extends ArrayAdapter<Step> {
         notifyDataSetChanged();
     }
 
-    public synchronized void refreshFinishedAdapter() {
+    public synchronized void refreshFinishedAdapter(String message) {
         data.get(data.size() - 1).setStepEnd(new Date());
         notifyDataSetChanged();
-        GlobalHelper.showToast(context, MessageStrings.LEARNING_FINISHED);
+        GlobalHelper.showToast(context, message);
     }
 
 

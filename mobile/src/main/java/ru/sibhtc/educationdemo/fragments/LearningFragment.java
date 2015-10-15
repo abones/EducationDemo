@@ -81,6 +81,7 @@ public class LearningFragment extends EventFragment {
         listSteps.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+
     }
 
     public void wearAnswer(MessageModel messageModel) {
@@ -108,7 +109,7 @@ public class LearningFragment extends EventFragment {
                             completeSteps.get(completeSteps.size() - 1).setStepState(StepResult.SUCCESS);
                             sendLearningMessage(completeSteps.size(), steps.size(),
                                     currentStep.getStepTitle(), true);
-                            adapter.refreshFinishedAdapter();
+                            adapter.refreshFinishedAdapter(MessageStrings.LEARNING_FINISHED);
                             String str = "";
                             GlobalHelper.sendMessage(MessagePaths.INFO_START_MESSAGE_PATH, str.getBytes());
                         }

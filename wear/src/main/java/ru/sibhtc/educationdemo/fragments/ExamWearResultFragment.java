@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 import ru.sibhtc.educationdemo.R;
 import ru.sibhtc.educationdemo.helpers.BytesHelper;
 import ru.sibhtc.educationdemo.models.EventModel;
@@ -71,8 +73,8 @@ public class ExamWearResultFragment extends Fragment {
 
     private void setInformation(final byte[] data) {
         EventResultModel eventModel = getObjectByByteArray(data);
-        examTotalTime.setText(String.valueOf(eventModel.getTimeResult() / 60) + ":" +
-                String.valueOf(eventModel.getTimeResult() - (eventModel.getTimeResult() / 60)));
+        examTotalTime.setText(String.valueOf(TimeUnit.SECONDS.toMinutes(eventModel.getTimeResult())) + ":" +
+                String.valueOf(eventModel.getTimeResult() - (TimeUnit.SECONDS.toMinutes(eventModel.getTimeResult()) * 60)));
         examErrorCount.setText(String.valueOf(eventModel.getErrorCount()));
         examRatingValue.setText(String.valueOf(eventModel.getAnswerCount() - eventModel.getErrorCount()) + "/" +
                 String.valueOf(eventModel.getAnswerCount()));

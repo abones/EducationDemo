@@ -78,7 +78,7 @@ public class DetailResultItemAdapter extends ArrayAdapter<EventResultModel> {
 
             holder.getDateEvent().setText(formatter.format(data.get(0).getDateEvent()));
             holder.getTimeResult().setText(String.valueOf(data.get(0).getTimeResult() / 60) + ":" +
-                    String.valueOf(data.get(0).getTimeResult() - (data.get(0).getTimeResult() / 60)));
+                    String.valueOf(data.get(0).getTimeResult() - ((data.get(0).getTimeResult() / 60 )* 60)));
             holder.getErrorCount().setText(data.get(0).getErrorCount().toString());
             holder.getResultRating().setText(String.valueOf(data.get(0).getAnswerCount() - data.get(0).getErrorCount()) +
                     "/" + data.get(0).getAnswerCount().toString());

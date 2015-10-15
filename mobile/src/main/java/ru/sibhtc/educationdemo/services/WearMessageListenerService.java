@@ -30,8 +30,10 @@ public class WearMessageListenerService extends WearableListenerService {
         try {
             model = (MessageModel) BytesHelper.toObject(data);
             Label label = LabelsMock.getByCode(model.labelCode);
-            model.isValued = label.isValued;
-            model.labelId = String.valueOf(label.labelId);
+            if (label != null) {
+                model.isValued = label.isValued;
+                model.labelId = String.valueOf(label.labelId);
+            }
             return model;
         } catch (IOException e) {
             return new MessageModel();
@@ -49,15 +51,22 @@ public class WearMessageListenerService extends WearableListenerService {
             if (GlobalHelper.CurrentAppMode == AppMode.INFORMATION_SENDER) {
                 //отправляем сообщение о запрошенном объекте
                 messageModel = getSerializedMessageModel(messageEvent.getData());
-                sendInformationMessage(messageModel.labelCode);
+                if (messageModel.labelId == null) {
+                    GlobalHelper.showToast(this, "Метка не опознана");
+                } else {
+                    sendInformationMessage(messageModel.labelCode);
+                }
             } else if (GlobalHelper.CurrentAppMode == AppMode.LEARNING) {
                 //если обучение, то просто смотрим верно ли прислонили метку
                 //если верно то помечаем и идем далее иначе продолжаем ждать верный ответ
                 messageModel = getSerializedMessageModel(messageEvent.getData());
-                if (messageModel.isValued) {
-                    //TODO заглушка для локальной сети
-                    //GlobalHelper.setMockModelParameters();
-                    //studyAnswer();
+                if (messageModel.labelId == null) {
+                    GlobalHelper.showToast(this, "Метка не опознана");
+                } else {
+                    if (messageModel.isValued) {
+                        //TODO заглушка для локальной сети
+                        //GlobalHelper.setMockModelParameters();
+                        //studyAnswer();
                         GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
@@ -65,8 +74,10 @@ public class WearMessageListenerService extends WearableListenerService {
                             }
                         });
 
-                } else {
-                    studyAnswer();
+                    } else {
+                        studyAnswer();
+                    }
+
                 }
 
             } else if (GlobalHelper.CurrentAppMode == AppMode.EXAMINE) {
@@ -74,10 +85,13 @@ public class WearMessageListenerService extends WearableListenerService {
                 //
 
                 messageModel = getSerializedMessageModel(messageEvent.getData());
-                if (messageModel.isValued) {
-                    //TODO заглушка для локальной сети
-                    //GlobalHelper.setMockModelParameters();
-                    //examAnswer();
+                if (messageModel.labelId == null) {
+                    GlobalHelper.showToast(this, "Метка не опознана");
+                } else {
+                    if (messageModel.isValued) {
+                        //TODO заглушка для локальной сети
+                        //GlobalHelper.setMockModelParameters();
+                        //examAnswer();
                         GlobalHelper.getServerInfo(new ICallbackInterface() {
                             @Override
                             public void onDownloadFinished() {
@@ -86,11 +100,11 @@ public class WearMessageListenerService extends WearableListenerService {
                         });
 
 
-                } else {
-                    examAnswer();
+                    } else {
+                        examAnswer();
+                    }
+
                 }
-
-
             }
         } else {
             byte[] data = messageEvent.getData();
