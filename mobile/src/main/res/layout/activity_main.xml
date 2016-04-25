@@ -3,12 +3,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:background="@android:color/transparent"
     >
 <ImageView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/start_background"
     android:layout_margin="100dp"
-
+    android:background="@android:color/transparent"
+    android:src="@mipmap/logo"
     />
 </LinearLayout>

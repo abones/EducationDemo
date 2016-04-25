@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView imageView = (ImageView) findViewById(R.id.start_background);
-        imageView.setImageResource(R.mipmap.ic_main_logo);
+//        ImageView imageView = (ImageView) findViewById(R.id.start_background);
+//        imageView.setImageResource(R.mipmap.logo);
 
         ActionBar bar = getSupportActionBar();
         assert bar != null;
