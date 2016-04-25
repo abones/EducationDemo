@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">EducationDemo</string>
-    <string name="hello_round">Hello Round World!</string>
-    <string name="hello_square">Hello Square World!</string>
     <string name="received_messages">Полученные сообщения:</string>
     <string name="send_test_message">Отправить сообщение</string>
     <string name="message_sent">Сообщение успешно отправлено.</string>
@@ -16,9 +14,9 @@
     <string name="waiting_screen_message">Поднесите устройство к метке!</string>
     <string name="image_content">Поднесите к метке</string>
     <string name="waiting_layout_title_informatoin_about_label">Информация об объекте</string>
-    <string name="main_application_title">Газпром трансгаз Томск</string>
-    <string name="main_application_bottom_title">demo</string>
+    <string name="main_application_title">Оператор газовой котельной</string>
+    <string name="main_application_bottom_title">демонстрация</string>
 
-    <string name="ok_detection">gdfgfdgf</string>
-    <string name="long_press_intro">Вы уверены?</string>
+    <!--<string name="ok_detection">gdfgfdgf</string>-->
+    <!--<string name="long_press_intro">Вы уверены?</string>-->
 </resources>

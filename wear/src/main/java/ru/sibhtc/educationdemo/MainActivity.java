@@ -197,7 +197,8 @@ public class MainActivity extends FragmentActivity implements
 
         // enabling foreground dispatch for getting intent from NFC event:
         NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{filter}, this.techList);
+        if (nfcAdapter != null && nfcAdapter.isEnabled())
+            nfcAdapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{filter}, this.techList);
 
         //если на часах приложение было закрыто, то открываем в нужном режиме
         if (getIntent().getAction() == null && getIsIntentWasDestroid()) {
@@ -289,7 +290,8 @@ public class MainActivity extends FragmentActivity implements
         super.onPause();
         // disabling foreground dispatch:
         NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        nfcAdapter.disableForegroundDispatch(this);
+        if (nfcAdapter != null && nfcAdapter.isEnabled())
+            nfcAdapter.disableForegroundDispatch(this);
     }
 
     @Override
