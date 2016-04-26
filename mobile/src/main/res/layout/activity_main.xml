@@ -11,6 +11,6 @@
     android:id="@+id/start_background"
     android:layout_margin="100dp"
     android:background="@android:color/transparent"
-    android:src="@mipmap/logo"
+    android:src="@drawable/logo_v"
     />
 </LinearLayout>
